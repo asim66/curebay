@@ -85,12 +85,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   ];
 
-  console.log('87', allProducts, selectedTests)
+  {% comment %} console.log('87', allProducts, selectedTests) {% endcomment %}
 
   const vendorsContainer = document.getElementById("vendorsContainer");
 
   const matchingVendors = allProducts.filter(product =>
-    selectedTests.some(test => String(product.testMeta || '').toLowerCase() === test.toLowerCase())
+    selectedTests.some(test => {
+        console.log('94', String(product.testMeta || '').toLowerCase(), test.toLowerCase())
+        String(product.testMeta || '').toLowerCase() === test.toLowerCase()})
   );
 
 
