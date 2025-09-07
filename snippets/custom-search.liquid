@@ -64,17 +64,23 @@
 
 .search-box {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   position: relative;
   width: 100%;
+  min-height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .search-box input {
   flex: 1;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  min-width: 150px;
+  border: none;
   font-size: 16px;
+  outline: none;
 }
 
 .results-list {
@@ -110,16 +116,6 @@
   background: #f1f1f1;
 }
 
-.selected-tests-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  margin-top: 15px;
-}
-
 .selected-test {
   background: #0d3c74;
   color: white;
@@ -144,6 +140,11 @@
   color: white;
   cursor: pointer;
   font-weight: bold;
+}
+
+.continue-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
 .images_below_search {
@@ -182,10 +183,8 @@
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="{{ section.settings.search_placeholder }}">
       <ul id="searchResults" class="results-list"></ul>
-      <button class="continue-btn" id="continueBtn">Continue</button>
+      <button class="continue-btn disabled" id="continueBtn" disabled>Continue</button>
     </div>
-
-    <div id="selectedTestsContainer" class="selected-tests-container"></div>
 
     <div class="images_below_search">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/certified_labs.png?v=1757226897" alt="Image 1" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
@@ -201,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const tabs = document.querySelectorAll(".search-tabs .tab");
   const searchInput = document.getElementById("searchInput");
   const resultsList = document.getElementById("searchResults");
-  const selectedTestsContainer = document.getElementById("selectedTestsContainer");
+  const searchBox = document.querySelector(".search-box");
   const continueBtn = document.getElementById("continueBtn");
 
   let activeType = "test";
@@ -238,13 +237,25 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  function updateContinueButtonState() {
+    if (selectedTests.length === 0) {
+      continueBtn.classList.add("disabled");
+      continueBtn.disabled = true;
+    } else {
+      continueBtn.classList.remove("disabled");
+      continueBtn.disabled = false;
+    }
+  }
+
   function renderSelectedTests() {
-    selectedTestsContainer.innerHTML = "";
+    const existingPills = searchBox.querySelectorAll(".selected-test");
+    existingPills.forEach(pill => pill.remove());
+
     selectedTests.forEach((test, index) => {
       const div = document.createElement("div");
       div.className = "selected-test";
       div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
-      selectedTestsContainer.appendChild(div);
+      searchBox.insertBefore(div, searchInput);
     });
 
     document.querySelectorAll(".remove-test").forEach(btn => {
@@ -252,8 +263,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const idx = btn.getAttribute("data-index");
         selectedTests.splice(idx, 1);
         renderSelectedTests();
+        updateContinueButtonState();
       });
     });
+
+    updateContinueButtonState();
   }
 
   searchInput.addEventListener("input", () => {
@@ -301,5 +315,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const selectedHandles = selectedTests.map(t => t.handle).join(",");
     window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
   });
+
+  updateContinueButtonState();
 });
 </script>
