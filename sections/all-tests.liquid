@@ -87,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const vendorsContainer = document.getElementById("vendorsContainer");
 
   const matchingVendors = allProducts.filter(product => 
-  Array.isArray(product.testMeta) &&
-  selectedTests.some(test => {
-    console.log("DEBUG:", product.testMeta.map(t => t.toLowerCase()), test.toLowerCase());
-    return product.testMeta.map(t => t.toLowerCase()).includes(test.toLowerCase());
-  })
-);
+    Array.isArray(product.testMeta) &&
+    selectedTests.some(test => {
+        console.log("DEBUG:", product.testMeta.map(t => t.toLowerCase()), test.toLowerCase());
+        return product.testMeta.map(t => t.toLowerCase()).includes(test.toLowerCase());
+    })
+  );
 
 console.log('97', matchingVendors)
 
