@@ -121,7 +121,7 @@ console.log('97', matchingVendors)
             <p class="vendor-price">₹${product.price}</p>
         </div>
         <form method="post" action="/cart/add">
-            <input type="hidden" name="id" value="${product.variants[0].id}">
+            <input type="hidden" name="id" value="${product.variantId}">
             <button type="submit" class="add-to-cart-btn">Add to Cart</button>
         </form>
         `;
