@@ -120,6 +120,12 @@
   display: flex;
   overflow: auto;
   width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.selected-test-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .selected-test {
@@ -130,6 +136,8 @@
   display: flex;
   align-items: center;
   font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .selected-test .remove-test {
