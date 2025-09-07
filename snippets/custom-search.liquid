@@ -21,7 +21,7 @@
   font-size: 28px;
   font-weight: bold;
   margin: 5px 0 20px;
-  color: #28a745; /* green */
+  color: #28a745;
 }
 
 .search-container {
@@ -30,7 +30,7 @@
   border-radius: 15px;
   margin: auto;
   width: 100%;
-  position: relative; /* important for dropdown */
+  position: relative;
 }
 
 .search-header {
@@ -77,23 +77,12 @@
   font-size: 16px;
 }
 
-.continue-btn {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #ccc;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* --- Dropdown style --- */
 .results-list {
   list-style: none;
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 100%; /* directly below input */
+  top: 100%;
   left: 0;
   right: 0;
   background: white;
@@ -121,6 +110,43 @@
   background: #f1f1f1;
 }
 
+.selected-tests-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.selected-test {
+  background: #0d3c74;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.selected-test .remove-test {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.continue-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
 .images_below_search {
   display: flex;
   justify-content: space-around;
@@ -135,20 +161,12 @@
     width: 100%;
   }
   .search-section {
-    background: #0d3c74;
-    padding: 20px;
-    color: white;
-    position: absolute;
-    z-index: 1;
-    text-align: left;
-    border-radius: 10px;
     top: 10%;
     left: 6%;
     width: 90%;
   }
 }
 </style>
-
 
 <section class="search-section">
   <div class="search-header">
@@ -167,6 +185,10 @@
       <ul id="searchResults" class="results-list"></ul>
     </div>
 
+    <div id="selectedTestsContainer" class="selected-tests-container"></div>
+
+    <button class="continue-btn" id="continueBtn">Continue</button>
+
     <div class="images_below_search">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/certified_labs.png?v=1757226897" alt="Image 1" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/doorstep_sample_collection.png?v=1757226897" alt="Image 2" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
@@ -176,13 +198,16 @@
   </div>
 </section>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const tabs = document.querySelectorAll(".search-tabs .tab");
   const searchInput = document.getElementById("searchInput");
   const resultsList = document.getElementById("searchResults");
+  const selectedTestsContainer = document.getElementById("selectedTestsContainer");
+  const continueBtn = document.getElementById("continueBtn");
+
   let activeType = "test";
+  let selectedTests = [];
 
   const allProducts = [
     {% for product in collections.all.products %}
@@ -205,7 +230,6 @@ document.addEventListener("DOMContentLoaded", function() {
     {% endfor %}
   ];
 
-  // Switch Tabs
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -216,7 +240,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Search functionality
+  function renderSelectedTests() {
+    selectedTestsContainer.innerHTML = "";
+    selectedTests.forEach((test, index) => {
+      const div = document.createElement("div");
+      div.className = "selected-test";
+      div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
+      selectedTestsContainer.appendChild(div);
+    });
+
+    document.querySelectorAll(".remove-test").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = btn.getAttribute("data-index");
+        selectedTests.splice(idx, 1);
+        renderSelectedTests();
+      });
+    });
+  }
+
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
     resultsList.innerHTML = "";
@@ -225,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (activeType === "test") {
       matches = allProducts
         .map((title, i) => ({ title, handle: productHandles[i] }))
-        .filter(p => p.title.toLowerCase().includes(query));
+        .filter(p => p.title.toLowerCase().includes(query) && !selectedTests.some(t => t.handle === p.handle));
     } else if (activeType === "lab") {
       matches = collectionsTitles
         .map((title, i) => ({ title, handle: collectionHandles[i] }))
@@ -239,10 +280,11 @@ document.addEventListener("DOMContentLoaded", function() {
         li.textContent = item.title;
         li.addEventListener("click", () => {
           if (activeType === "test") {
-            window.location.href = `/products/${item.handle}`;
-          } else if (activeType === "lab") {
-            window.location.href = `/collections/${item.handle}`;
+            selectedTests.push(item);
+            renderSelectedTests();
           }
+          searchInput.value = "";
+          resultsList.style.display = "none";
         });
         resultsList.appendChild(li);
       });
@@ -251,11 +293,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-box")) {
       resultsList.style.display = "none";
     }
+  });
+
+  continueBtn.addEventListener("click", () => {
+    const selectedHandles = selectedTests.map(t => t.handle).join(",");
+    window.location.href = `/vendors?tests=${encodeURIComponent(selectedHandles)}`;
   });
 });
 </script>
