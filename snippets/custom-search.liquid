@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   continueBtn.addEventListener("click", () => {
     const selectedHandles = selectedTests.map(t => t.handle).join(",");
-    window.location.href = `/pages?tests=${encodeURIComponent(selectedHandles)}`;
+    window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
   });
 });
 </script>
