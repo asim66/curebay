@@ -73,16 +73,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const allProducts = [
     {% for product in collections.all.products %}
-      {
-        title: {{ product.title | json }},
-        handle: {{ product.handle | json }},
-        price: {{ product.price | json }},
-        compare_at_price: {{ product.compare_at_price | json }},
-        image: {{ product.featured_image | img_url: 'medium' | json }},
-      testMeta: '{{ product.metafields.custom.test | default: '' }}'
-
-      }{% unless forloop.last %},{% endunless %}
+        {
+        title: "{{ product.title | escape }}",
+        handle: "{{ product.handle | escape }}",
+        price: "{{ product.price | escape }}",
+        compare_at_price: "{{ product.compare_at_price | escape }}",
+        image: "{{ product.featured_image | img_url: 'medium' | escape }}",
+        testMeta: {{ product.metafields.custom.test | default: '[]' }}
+        }{% unless forloop.last %},{% endunless %}
     {% endfor %}
+
   ];
 
   console.log('87', allProducts, selectedTests)
