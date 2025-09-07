@@ -248,33 +248,34 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function renderSelectedTests() {
-    const existingPills = searchBox.querySelectorAll(".selected-test");
-    existingPills.forEach(pill => pill.remove());
+  // Remove all previous wrappers
+  const existingWrappers = searchBox.querySelectorAll(".selected-test-wrapper");
+  existingWrappers.forEach(wrapper => wrapper.remove());
 
-    selectedTests.forEach((test, index) => {
-      const parentDiv = document.createElement("div");
-      parentDiv.className = "selected-test-wrapper"; // Add a class if needed for styling
+  selectedTests.forEach((test, index) => {
+    const parentDiv = document.createElement("div");
+    parentDiv.className = "selected-test-wrapper";
 
-      const div = document.createElement("div");
-      div.className = "selected-test";
-      div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
+    const div = document.createElement("div");
+    div.className = "selected-test";
+    div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
 
-      parentDiv.appendChild(div);
-      searchBox.insertBefore(parentDiv, searchInput);
+    parentDiv.appendChild(div);
+    searchBox.insertBefore(parentDiv, searchInput);
+  });
 
+  document.querySelectorAll(".remove-test").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = btn.getAttribute("data-index");
+      selectedTests.splice(idx, 1);
+      renderSelectedTests();
+      updateContinueButtonState();
     });
+  });
 
-    document.querySelectorAll(".remove-test").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = btn.getAttribute("data-index");
-        selectedTests.splice(idx, 1);
-        renderSelectedTests();
-        updateContinueButtonState();
-      });
-    });
+  updateContinueButtonState();
+}
 
-    updateContinueButtonState();
-  }
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
