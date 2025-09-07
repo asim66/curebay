@@ -75,20 +75,19 @@ document.addEventListener("DOMContentLoaded", function() {
     {% for product in collections.all.products %}
       {
         title: {{ product.title | json }},
-        vendor: {{ product.vendor | json }},
         handle: {{ product.handle | json }},
         price: {{ product.price | json }},
         compare_at_price: {{ product.compare_at_price | json }},
-        image: {{ product.featured_image | img_url: 'medium' | json }}
+        image: {{ product.featured_image | img_url: 'medium' | json }},
+        testMeta: {{ product.metafields.custom.test | json }}
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
 
   const vendorsContainer = document.getElementById("vendorsContainer");
-  console.log('88', allProducts)
 
   const matchingVendors = allProducts.filter(product =>
-    selectedTests.some(test => product.vendor.toLowerCase().includes(test.toLowerCase()))
+    selectedTests.some(test => (product.testMeta || '').toLowerCase() === test.toLowerCase())
   );
 
   if (matchingVendors.length === 0) {
@@ -100,8 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
       vendorCard.innerHTML = `
         <img src="${product.image}" alt="${product.title}" class="vendor-image">
         <div class="vendor-info">
-          <h3 class="vendor-title">${product.vendor}</h3>
-          <p class="vendor-tests">Tests Provided: ${selectedTests.join(", ")}</p>
+          <h3 class="vendor-title">${product.title}</h3>
+          <p class="vendor-tests">Tests Provided: ${product.testMeta}</p>
           <p class="vendor-price">₹${product.price}</p>
         </div>
         <a href="/products/${product.handle}" class="add-to-cart-btn">View Details</a>
@@ -111,8 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
-
-
 
 {% schema %}
 {
@@ -127,7 +124,11 @@ document.addEventListener("DOMContentLoaded", function() {
   ],
   "presets": [
     {
-      "name": "all products"
+      "name": "Default",
+      "category": "Tests",
+      "settings": {
+        "heading": "Available Labs"
+      }
     }
   ]
 }
