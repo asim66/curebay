@@ -89,8 +89,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const vendorsContainer = document.getElementById("vendorsContainer");
 
   const matchingVendors = allProducts.filter(product =>
-    selectedTests.some(test => (product.testMeta || '').toLowerCase() === test.toLowerCase())
-  );
+    selectedTests.some(test => String(product.testMeta || '').toLowerCase() === test.toLowerCase())
+    );
+
 
   if (matchingVendors.length === 0) {
     vendorsContainer.innerHTML = "<p>No vendors found for selected tests.</p>";
