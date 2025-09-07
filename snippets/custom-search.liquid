@@ -121,6 +121,14 @@
   background: #f1f1f1;
 }
 
+.images_below_search {
+  display: flex;
+  justify-content: space-around;
+  background: #0d3c74;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 768px){
   .search-container, .search-header {
     margin: auto;
@@ -159,7 +167,7 @@
       <ul id="searchResults" class="results-list"></ul>
     </div>
 
-    <div style="display: flex; gap: 20px; justify-content: center; margin: 30px 0;">
+    <div class="images_below_search">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/certified_labs.png?v=1757226897" alt="Image 1" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/doorstep_sample_collection.png?v=1757226897" alt="Image 2" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
       <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/lowest_price.png?v=1757226897" alt="Image 3" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
