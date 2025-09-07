@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
       title: "{{ product.title | escape }}",
       handle: "{{ product.handle | escape }}",
       vendor: "{{ product.vendor | escape }}",
-      variantId: " {{ product.selected_or_first_available_variant.id }}"
+      variantId: " {{ product.selected_or_first_available_variant.id }}",
       price: "{{ product.price | escape }}",
       compare_at_price: "{{ product.compare_at_price | escape }}",
       image: "{{ product.featured_image | img_url: 'medium' | escape }}",
