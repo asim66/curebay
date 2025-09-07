@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         price: {{ product.price | json }},
         compare_at_price: {{ product.compare_at_price | json }},
         image: {{ product.featured_image | img_url: 'medium' | json }},
-        testMeta: {{ product.metafields.custom.test | json }}
+        testMeta: {{ product.metafields.custom.test }}
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const matchingVendors = allProducts.filter(product =>
     selectedTests.some(test => String(product.testMeta || '').toLowerCase() === test.toLowerCase())
-    );
+  );
 
 
   if (matchingVendors.length === 0) {
