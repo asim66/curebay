@@ -248,20 +248,22 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function renderSelectedTests() {
-  // Remove all previous wrappers
-  const existingWrappers = searchBox.querySelectorAll(".selected-test-wrapper");
-  existingWrappers.forEach(wrapper => wrapper.remove());
+  // Remove the existing wrapper if present
+  let parentDiv = searchBox.querySelector(".selected-test-wrapper");
+
+  if (!parentDiv) {
+    parentDiv = document.createElement("div");
+    parentDiv.className = "selected-test-wrapper";
+    searchBox.insertBefore(parentDiv, searchInput);
+  }
+
+  parentDiv.innerHTML = ""; // Clear existing pills inside the wrapper
 
   selectedTests.forEach((test, index) => {
-    const parentDiv = document.createElement("div");
-    parentDiv.className = "selected-test-wrapper";
-
     const div = document.createElement("div");
     div.className = "selected-test";
     div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
-
     parentDiv.appendChild(div);
-    searchBox.insertBefore(parentDiv, searchInput);
   });
 
   document.querySelectorAll(".remove-test").forEach(btn => {
