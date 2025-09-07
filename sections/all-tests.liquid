@@ -110,3 +110,24 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+
+
+
+{% schema %}
+{
+  "name": "All Test Vendors",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Available Labs"
+    }
+  ],
+  "presets": [
+    {
+      "name": "all products"
+    }
+  ]
+}
+{% endschema %}
