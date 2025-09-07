@@ -38,9 +38,17 @@
         "content_padding_top": 100,
         "content_padding_bottom": 100
       }
+    },
+    "all_tests_njMdKt": {
+      "type": "all-tests",
+      "name": "all products",
+      "settings": {
+        "heading": "Available Labs"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "all_tests_njMdKt"
   ]
 }
