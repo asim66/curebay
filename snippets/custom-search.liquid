@@ -253,9 +253,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     selectedTests.forEach((test, index) => {
       const div = document.createElement("div");
+      const parentDiv = document.createElement("div");
       div.className = "selected-test";
       div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
       searchBox.insertBefore(div, searchInput);
+      parentDiv.appendChild(div)
     });
 
     document.querySelectorAll(".remove-test").forEach(btn => {
