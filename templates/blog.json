@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "show_breadcrumbs": true,
+        "show_breadcrumbs_top": false,
+        "image": "",
+        "image_block": false,
+        "radius_background": true,
+        "image_size": "50",
+        "image_overlay_opacity": 40,
+        "heading_size": "h1",
+        "description_text": "",
+        "text_size_block": "medium",
+        "heading_alignment": "center",
+        "color_scheme": "",
+        "text_secondary_color": false,
+        "section_full_width": true,
+        "layout": "grid",
+        "show_image": true,
+        "image_height": "adapt",
+        "show_date": true,
+        "show_author": false,
+        "read_more_title": "READ MORE",
+        "banner_padding_top": 200,
+        "banner_padding_bottom": 100,
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "15355796-ef3f-4c71-a2af-246c974a1bf4": {
+      "type": "contact-form",
+      "settings": {
+        "image": "",
+        "desktop_image_width": "e-small",
+        "layout": "text_first",
+        "heading": "Subscribe to Our Newsletter",
+        "description": "<p>Be the first to get notified about new arrivals, discounts, and bargain deals!</p>",
+        "text_color": "foreground-secondary",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "show_textarea": false,
+        "secondary_background": true,
+        "secondary_background_color": "#e5f2ef",
+        "padding_top": 0,
+        "padding_bottom": 130
+      }
+    },
+    "multicolumn_Yw99F3": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_tigHL7": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "scheme-1",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Genuine Medicines",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Verified and high-quality medicines from trusted manufacturers.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_i386HY": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "After sales support",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Dedicated healthcare experts ready to assist you anytime.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dK764B": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Fast & Secure Delivery",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Safe and timely delivery of medicines to your doorstep.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Q94YKW": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Affordable Healthcare",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Competitive pricing with discounts and savings on essential medicines.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_tigHL7",
+        "column_i386HY",
+        "column_dK764B",
+        "column_Q94YKW"
+      ],
+      "settings": {
+        "title": "",
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "description": "",
+        "text_size_block": "medium",
+        "text_color": "main",
+        "image_width": "fourth",
+        "image_ratio": "landscape",
+        "columns_desktop": 4,
+        "grid_type": "grid",
+        "column_divider": true,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "background_color_full_width": true,
+        "background_border_radius": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "15355796-ef3f-4c71-a2af-246c974a1bf4",
+    "multicolumn_Yw99F3"
+  ]
+}

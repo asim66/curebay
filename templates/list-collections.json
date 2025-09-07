@@ -1,0 +1,317 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "image": "",
+        "banner_height": "medium",
+        "image_block": false,
+        "hide_radius": true,
+        "image_size": "60",
+        "image_overlay_opacity": 0,
+        "show_breadcrumbs": true,
+        "show_breadcrumbs_top": false,
+        "title": "Our Collections",
+        "heading_size": "h1",
+        "description_text": "",
+        "text_size_block": "medium",
+        "heading_alignment": "center",
+        "content_alignment": "bottom",
+        "banner_color_scheme": "",
+        "text_secondary_color": false,
+        "section_full_width": true,
+        "padding_top": 200,
+        "padding_bottom": 100,
+        "sort": "date_reversed",
+        "image_ratio": "square",
+        "image_type": "cover",
+        "cover_overlay": "linear-gradient(\n  to top,\n  #000F11 0%,\n  #000F11cc 20%,\n  #000F1180 40%,\n  #000F1140 60%,\n  #000F111a 80%,\n  transparent 100%\n)",
+        "hide_radius_cover": true,
+        "cover_color_scheme": "scheme-4",
+        "card_heading_size": "h4",
+        "show_description": true,
+        "description_size": "text--small",
+        "link_label": "SHOP NOW",
+        "button_style": "link",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "collection_padding_top": 130,
+        "collection_padding_bottom": 130
+      }
+    },
+    "help_and_feedback_mFaiKM": {
+      "type": "help-and-feedback",
+      "blocks": {
+        "collapsible_heading_x6ALmP": {
+          "type": "collapsible_heading",
+          "settings": {
+            "collapsible_heading": "FAQs",
+            "button_label": "SEE ALL FAQS",
+            "button_link": "",
+            "button_style_secondary": true
+          }
+        },
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What payment methods can I use?",
+            "icon": "none",
+            "row_content": "<p>We offer 35 different payment methods including major providers like Mastercard, Visa, PayPal, American Express and Diners as well as many different local payment methods including Klarna, iDEAL, AliPay and more others payment methods.</p>",
+            "page": "",
+            "open_collapsible_row": true
+          }
+        },
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are the products on your website genuine?",
+            "icon": "none",
+            "row_content": "<p>Yes, all the products on our website are 100% genuine and sourced from trusted manufacturers to ensure top quality and reliability for your home.</p>",
+            "page": "",
+            "open_collapsible_row": false
+          }
+        },
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if the product I purchased doesn’t meet my expectations?",
+            "icon": "none",
+            "row_content": "<p>If you’re not satisfied with your purchase, we offer a hassle-free return policy. Just contact our customer support team within 30 days, and we'll help you with the return or exchange process.</p>",
+            "page": "",
+            "open_collapsible_row": false
+          }
+        },
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do you offer e-gift cards for international customers?",
+            "icon": "none",
+            "row_content": "<p>Yes, we offer e-gift cards that can be purchased and sent internationally, making it easy to gift home goods to friends, family, or colleagues, no matter where they are!</p>",
+            "page": "",
+            "open_collapsible_row": false
+          }
+        },
+        "21f3fdcb-3f3e-4608-830d-1c249c644c10": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How can I ensure that I'm purchasing the correct product?",
+            "icon": "none",
+            "row_content": "<p>To ensure you're choosing the right product, review the detailed descriptions and specifications on each product page, and feel free to reach out to our customer support team for personalized guidance. We're here to help you make the best choice for your project needs!</p>",
+            "page": "",
+            "open_collapsible_row": false
+          }
+        },
+        "testimonial_heading_gHfR4J": {
+          "type": "testimonial_heading",
+          "settings": {
+            "testimonial_heading": "Customer Reviews"
+          }
+        },
+        "testimonial_h7J3f6": {
+          "type": "testimonial",
+          "settings": {
+            "rating_star": 4,
+            "image": "",
+            "full_name": "Emma Johnson",
+            "full_name_size": "h6",
+            "full_name_font_weight": "fw-400",
+            "job_title": "Strategy Head",
+            "job_title_color": "foreground-secondary",
+            "text": "Sofista transformed my living space into a cozy haven! The quality of their rugs and cushions is unmatched. The delivery was quick, and the packaging felt premium. Highly recommend for anyone looking to elevate their home!",
+            "text_color": "foreground"
+          }
+        },
+        "testimonial_QMHXFG": {
+          "type": "testimonial",
+          "settings": {
+            "rating_star": 5,
+            "image": "",
+            "full_name": "Raj Patel",
+            "full_name_size": "h6",
+            "full_name_font_weight": "fw-400",
+            "job_title": "Design Head",
+            "job_title_color": "foreground-secondary",
+            "text": "I was skeptical about buying furniture online, but Sofista exceeded my expectations. The dining set I ordered is stunning and incredibly sturdy. The modern design blends perfectly with my space. Customer service was also super helpful in answering all my questions.",
+            "text_color": "foreground"
+          }
+        },
+        "testimonial_GGqzfF": {
+          "type": "testimonial",
+          "settings": {
+            "rating_star": 5,
+            "image": "",
+            "full_name": "Amara P",
+            "full_name_size": "h6",
+            "full_name_font_weight": "fw-400",
+            "job_title": "Consultant",
+            "job_title_color": "foreground-secondary",
+            "text": "Sofista’s curated collection made redecorating so easy! From the sleek coffee table to the dreamy bedding, every piece feels like it was made just for my home. I love how stylish and functional everything is. Plus, their sustainability efforts are a huge bonus!",
+            "text_color": "foreground"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_heading_x6ALmP",
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-1",
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-2",
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-3",
+        "template--16766664605933__213deb17-cc31-4e82-8167-e558eae2a42d-collapsible_row-4",
+        "21f3fdcb-3f3e-4608-830d-1c249c644c10",
+        "testimonial_heading_gHfR4J",
+        "testimonial_h7J3f6",
+        "testimonial_QMHXFG",
+        "testimonial_GGqzfF"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "text": "",
+        "color_scheme": "",
+        "faq_color_scheme": "scheme-7",
+        "reviews_color_scheme": "",
+        "desktop_layout": "image_first",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    },
+    "multicolumn_gtMmmn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_tigHL7": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "scheme-1",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Genuine Medicines",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Verified and high-quality medicines from trusted manufacturers.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_i386HY": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "After Sales Support",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Dedicated healthcare experts ready to assist you anytime.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dK764B": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Fast & Secure Delivery",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Safe and timely delivery of medicines to your doorstep.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Q94YKW": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Affordable Healthcare",
+            "heading_size_block": "h5",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "<p>Competitive pricing with discounts and savings on essential medicines.</p>",
+            "text_size_block": "small",
+            "text_color": "foreground-secondary",
+            "button_style": "solid",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_tigHL7",
+        "column_i386HY",
+        "column_dK764B",
+        "column_Q94YKW"
+      ],
+      "settings": {
+        "title": "",
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "description": "",
+        "text_size_block": "medium",
+        "text_color": "main",
+        "image_width": "fourth",
+        "image_ratio": "landscape",
+        "columns_desktop": 4,
+        "grid_type": "grid",
+        "column_divider": true,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "background_color_full_width": true,
+        "background_border_radius": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "help_and_feedback_mFaiKM",
+    "multicolumn_gtMmmn"
+  ]
+}

@@ -1,0 +1,246 @@
+<style>
+.search-section {
+  background: #0d3c74;
+  padding: 20px;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  text-align: left;
+  border-radius: 10px;
+  top: 30%;
+  left: 6%;
+  width: 46vw;
+}
+
+.search-heading {
+  font-size: 16px;
+  margin: 0;
+}
+
+.search-subheading {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 5px 0 20px;
+  color: #28a745; /* green */
+}
+
+.search-container {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin: auto;
+  width: 100%;
+  position: relative; /* important for dropdown */
+}
+
+.search-header {
+  margin: auto;
+  width: 100%;
+}
+
+.search-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.search-tabs .tab {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #0d3c74;
+  background: white;
+  color: #0d3c74;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-tabs .tab.active {
+  background: #0d3c74;
+  color: white;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.continue-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ccc;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- Dropdown style --- */
+.results-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%; /* directly below input */
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.results-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+.results-list li:last-child {
+  border-bottom: none;
+}
+
+.results-list li:hover {
+  background: #f1f1f1;
+}
+
+@media screen and (max-width: 768px){
+  .search-container, .search-header {
+    margin: auto;
+    width: 100%;
+  }
+  .search-section {
+    background: #0d3c74;
+    padding: 20px;
+    color: white;
+    position: absolute;
+    z-index: 1;
+    text-align: left;
+    border-radius: 10px;
+    top: 10%;
+    left: 6%;
+    width: 90%;
+  }
+}
+</style>
+
+
+<section class="search-section">
+  <div class="search-header">
+    <p class="search-heading">{{ section.settings.heading }}</p>
+    <h2 class="search-subheading">{{ section.settings.subheading }}</h2>
+  </div>
+
+  <div class="search-container">
+    <div class="search-tabs">
+      <button class="tab active" data-type="test">{{ section.settings.tab1 }}</button>
+      <button class="tab" data-type="lab">{{ section.settings.tab2 }}</button>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="{{ section.settings.search_placeholder }}">
+      <ul id="searchResults" class="results-list"></ul>
+    </div>
+  </div>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll(".search-tabs .tab");
+  const searchInput = document.getElementById("searchInput");
+  const resultsList = document.getElementById("searchResults");
+  let activeType = "test";
+
+  const allProducts = [
+    {% for product in collections.all.products %}
+      {{ product.title | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  const productHandles = [
+    {% for product in collections.all.products %}
+      {{ product.handle | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  const collectionsTitles = [
+    {% for collection in collections %}
+      {{ collection.title | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  const collectionHandles = [
+    {% for collection in collections %}
+      {{ collection.handle | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  // Switch Tabs
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      activeType = tab.dataset.type;
+      resultsList.style.display = "none";
+      searchInput.value = "";
+    });
+  });
+
+  // Search functionality
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    resultsList.innerHTML = "";
+
+    let matches = [];
+    if (activeType === "test") {
+      matches = allProducts
+        .map((title, i) => ({ title, handle: productHandles[i] }))
+        .filter(p => p.title.toLowerCase().includes(query));
+    } else if (activeType === "lab") {
+      matches = collectionsTitles
+        .map((title, i) => ({ title, handle: collectionHandles[i] }))
+        .filter(c => c.title.toLowerCase().includes(query));
+    }
+
+    if (matches.length > 0 && query.length > 0) {
+      resultsList.style.display = "block";
+      matches.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.title;
+        li.addEventListener("click", () => {
+          if (activeType === "test") {
+            window.location.href = `/products/${item.handle}`;
+          } else if (activeType === "lab") {
+            window.location.href = `/collections/${item.handle}`;
+          }
+        });
+        resultsList.appendChild(li);
+      });
+    } else {
+      resultsList.style.display = "none";
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-box")) {
+      resultsList.style.display = "none";
+    }
+  });
+});
+</script>
