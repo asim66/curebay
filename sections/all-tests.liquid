@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
   ];
 
   const vendorsContainer = document.getElementById("vendorsContainer");
+  console.log('88', allProducts)
 
   const matchingVendors = allProducts.filter(product =>
     selectedTests.some(test => product.vendor.toLowerCase().includes(test.toLowerCase()))
