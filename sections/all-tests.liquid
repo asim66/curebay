@@ -86,14 +86,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const vendorsContainer = document.getElementById("vendorsContainer");
 
-  const normalize = str => str.toLowerCase().replace(/\s+/g, '-');
+const normalize = str => str.toLowerCase().replace(/\s+/g, '-');
 
-    const matchingVendors = allProducts.filter(product => 
-    Array.isArray(product.testMeta) &&
-    selectedTests.some(test =>
-        product.testMeta.some(metaTest => normalize(metaTest).includes(test.toLowerCase()))
-    )
-    );
+const matchingVendors = allProducts.filter(product => 
+  Array.isArray(product.testMeta) &&
+  selectedTests.some(test =>
+    product.testMeta.some(metaTest => normalize(metaTest).includes(test.toLowerCase()) || test.toLowerCase().includes(normalize(metaTest)))
+  )
+);
+
 
 
 console.log('97', matchingVendors)
