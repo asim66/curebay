@@ -79,13 +79,13 @@ document.addEventListener("DOMContentLoaded", function() {
         price: {{ product.price | json }},
         compare_at_price: {{ product.compare_at_price | json }},
         image: {{ product.featured_image | img_url: 'medium' | json }},
-      testMeta: {{ product.metafields.custom.test | default: '' }}
+      testMeta: '{{ product.metafields.custom.test | default: '' }}'
 
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
 
-  console.log('87', allProducts)
+  console.log('87', allProducts, selectedTests)
 
   const vendorsContainer = document.getElementById("vendorsContainer");
 
