@@ -113,8 +113,9 @@ console.log('97', matchingVendors)
     matchingVendors.forEach(product => {
         const vendorCard = document.createElement("div");
         vendorCard.className = "vendor-card";
+
         vendorCard.innerHTML = `
-            <a href='${ product.productUrl.trim() }' class="vendor-link">
+            <a href='/products/${product.handle}' class="vendor-link">
                 <img src="${product.image}" alt="${product.title}" class="vendor-image">
                 <div class="vendor-info">
                     <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
@@ -123,16 +124,43 @@ console.log('97', matchingVendors)
                     <p class="vendor-price">₹${product.price}</p>
                 </div>
             </a>
-            <form method="post" action="/cart/add" class="add-to-cart-form">
+
+            <form method="post" action="/cart/add.js" class="add-to-cart-form">
                 <input type="hidden" name="id" value="${product.variantId}">
                 <button type="submit" class="add-to-cart-btn">Add to Cart</button>
             </form>
         `;
+
         vendorsContainer.appendChild(vendorCard);
     });
 
   }
 
+});
+</script>
+
+<script>
+    document.addEventListener('submit', function(e) {
+    if (e.target.classList.contains('add-to-cart-form')) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Product added to cart successfully!');
+            console.log('Added to cart:', data);
+            // Optional: update cart count UI here
+        })
+        .catch(error => {
+            console.error('Add to cart failed:', error);
+            alert('Failed to add product to cart.');
+        });
+    }
 });
 </script>
 
