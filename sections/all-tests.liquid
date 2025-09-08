@@ -109,12 +109,15 @@ const normalize = str => str.toLowerCase().replace(/\s+/g, '-');
 
 const matchingVendors = allProducts.filter(product => 
   Array.isArray(product.testMeta) &&
-  selectedTests.some(test =>
-    product.testMeta.some(metaTest => {
-        console.log('114', normalize(metaTest), test.toLowerCase());
-        return normalize(metaTest).includes(test.toLowerCase()) || test.toLowerCase().includes(normalize(metaTest));
-    })
-  )
+  selectedTests.some(test => {
+    const testWords = test.toLowerCase().split(/[\s-]+/); // Split test into words
+    
+    return product.testMeta.some(metaTest => {
+      const metaWords = normalize(metaTest).split('-'); // Split metaTest into words
+      
+      return testWords.some(tWord => metaWords.includes(tWord));
+    });
+  })
 );
 
 
