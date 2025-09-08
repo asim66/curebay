@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
       handle: "{{ product.handle | escape }}",
       vendor: "{{ product.vendor | escape }}",
       variantId: " {{ product.selected_or_first_available_variant.id }}",
+      productUrl: " {{ product.url }}",
       price: "{{ product.price | escape }}",
       compare_at_price: "{{ product.compare_at_price | escape }}",
       image: "{{ product.featured_image | img_url: 'medium' | escape }}",
@@ -113,6 +114,7 @@ console.log('97', matchingVendors)
         const vendorCard = document.createElement("div");
         vendorCard.className = "vendor-card";
         vendorCard.innerHTML = `
+        <a herf='${ product.productUrl }'>
         <img src="${product.image}" alt="${product.title}" class="vendor-image">
         <div class="vendor-info">
             <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
@@ -124,6 +126,7 @@ console.log('97', matchingVendors)
             <input type="hidden" name="id" value="${product.variantId}">
             <button type="submit" class="add-to-cart-btn">Add to Cart</button>
         </form>
+        </a>
         `;
         vendorsContainer.appendChild(vendorCard);
     });
