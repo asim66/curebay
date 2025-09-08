@@ -114,7 +114,7 @@ console.log('97', matchingVendors)
         const vendorCard = document.createElement("div");
         vendorCard.className = "vendor-card";
         vendorCard.innerHTML = `
-        <a herf='${ product.productUrl }'>
+        <a href='${ product.productUrl.trim() }'>
         <img src="${product.image}" alt="${product.title}" class="vendor-image">
         <div class="vendor-info">
             <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
