@@ -113,6 +113,7 @@ const matchingVendors = allProducts.filter(product =>
     product.testMeta.some(metaTest => normalize(metaTest).includes(test.toLowerCase()) || test.toLowerCase().includes(normalize(metaTest)))
   )
 );
+console.log('116', normalize, selectedTests)
 
   if (matchingVendors.length === 0) {
     vendorsContainer.innerHTML = "<p>No vendors found for selected tests.</p>";
