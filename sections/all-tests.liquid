@@ -110,10 +110,11 @@ const normalize = str => str.toLowerCase().replace(/\s+/g, '-');
 const matchingVendors = allProducts.filter(product => 
   Array.isArray(product.testMeta) &&
   selectedTests.some(test =>
-    product.testMeta.some(metaTest => normalize(metaTest).includes(test.toLowerCase()) || test.toLowerCase().includes(normalize(metaTest)))
+    product.testMeta.some(metaTest => {
+        console.log('114', normalize(metaTest), test.toLowerCase())
+        normalize(metaTest).includes(test.toLowerCase()) || test.toLowerCase().includes(normalize(metaTest))})
   )
 );
-console.log('116', normalize, selectedTests)
 
   if (matchingVendors.length === 0) {
     vendorsContainer.innerHTML = "<p>No vendors found for selected tests.</p>";
