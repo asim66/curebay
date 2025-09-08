@@ -150,6 +150,7 @@ console.log('97', matchingVendors)
     .then(response => response.json())
     .then(data => {
       alert('Product added to cart successfully!');
+      drawerUpateCustom();
       console.log('Added to cart:', data);
       // Optionally update cart UI here
     })
@@ -158,6 +159,32 @@ console.log('97', matchingVendors)
       alert('Failed to add product to cart.');
     });
   }
+
+  window.drawerUpateCustom = () => {
+  fetch(`${routes.cart_url}?section_id=cart-drawer`)
+    .then(data => data.text())
+    .then(result => {
+      const html = new DOMParser().parseFromString(result, 'text/html');
+
+      document.querySelector('cart-drawer').innerHTML = '';
+      document.querySelector('cart-drawer').append(html.documentElement.querySelector('#CartDrawer'));
+      document.querySelector('cart-drawer').classList.remove('is-empty');
+
+      if (!document.querySelector('.header__icons .cart-count-bubble')) {
+        document.querySelector('#cart-icon-bubble').innerHTML += `<div class="cart-count-bubble"><span aria-hidden="true">1</span><span class="visually-hidden">1 item</span></div>`;
+      } else {
+        let updatedQty = parseInt(document.querySelector('.header__icons .cart-count-bubble').innerText.split('')[0]) + 1;
+        console.log('updatedQty', updatedQty);
+        document.querySelector('.header__icons .cart-count-bubble').innerText = updatedQty;
+      }
+
+      document.querySelector('#cart-icon-bubble').click();
+    })
+    .catch(error => {
+      console.error('Cart update failed:', error);
+    });
+};
+
 </script>
 
 
