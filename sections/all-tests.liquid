@@ -141,10 +141,11 @@ console.log('97', matchingVendors)
 
 <script>
   function addToCart(variantId) {
+    variantIdd = Number(variantId)
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity: 1 })
+      body: JSON.stringify({ id: variantIdd, quantity: 1 })
     })
     .then(response => response.json())
     .then(data => {
