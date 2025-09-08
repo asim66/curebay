@@ -149,10 +149,7 @@ console.log('97', matchingVendors)
     })
     .then(response => response.json())
     .then(data => {
-      alert('Product added to cart successfully!');
       drawerUpateCustom();
-      console.log('Added to cart:', data);
-      // Optionally update cart UI here
     })
     .catch(error => {
       console.error('Add to cart failed:', error);
