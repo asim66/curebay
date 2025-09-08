@@ -56,12 +56,19 @@
 }
 
 .add-to-cart-btn {
-  background: #0d3c74;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
+      display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--buttons-border-width) solid rgba(var(--color-button), var(--buttons-border-opacity));
+    padding: 1.2rem 2rem;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: none;
+    color: rgb(var(--color-button-text));
+    background-color: rgba(var(--color-button), var(--alpha-button-background));
+    transition: all .3s ease;
+    -webkit-appearance: none;
+    appearance: none;
 }
 </style>
 
