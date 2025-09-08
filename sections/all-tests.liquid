@@ -140,29 +140,25 @@ console.log('97', matchingVendors)
 </script>
 
 <script>
-    document.addEventListener('submit', function(e) {
-    if (e.target.classList.contains('add-to-cart-form')) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-
-        fetch('/cart/add.js', {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Product added to cart successfully!');
-            console.log('Added to cart:', data);
-            // Optional: update cart count UI here
-        })
-        .catch(error => {
-            console.error('Add to cart failed:', error);
-            alert('Failed to add product to cart.');
-        });
-    }
-});
+  function addToCart(variantId) {
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Product added to cart successfully!');
+      console.log('Added to cart:', data);
+      // Optionally update cart UI here
+    })
+    .catch(error => {
+      console.error('Add to cart failed:', error);
+      alert('Failed to add product to cart.');
+    });
+  }
 </script>
+
 
 
 {% schema %}
