@@ -29,59 +29,44 @@
   margin-right: 20px;
 }
 
-.product-vendor {
-    margin: 0;
-}
+.product-vendor { margin: 0; }
 
-.vendor-info {
-  flex: 1;
-}
+.vendor-info { flex: 1; }
 
-.vendor-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 8px 0;
-}
+.vendor-title { font-size: 18px; font-weight: bold; margin: 8px 0; }
 
-.vendor-tests {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 8px;
-}
+.vendor-tests { font-size: 14px; color: #555; margin-bottom: 8px; }
 
-.vendor-price {
-  font-size: 16px;
-  font-weight: bold;
-  color: #0d3c74;
-}
+.vendor-price { font-size: 16px; font-weight: bold; color: #0d3c74; }
 
 .add-to-cart-btn {
-      display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border: var(--buttons-border-width) solid rgba(var(--color-button), var(--buttons-border-opacity));
-    padding: 1.2rem 2rem;
-    cursor: pointer;
-    font: inherit;
-    text-decoration: none;
-    color: rgb(var(--color-button-text));
-    background-color: rgba(var(--color-button), var(--alpha-button-background));
-    transition: all .3s ease;
-    -webkit-appearance: none;
-    appearance: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--buttons-border-width) solid rgba(var(--color-button), var(--buttons-border-opacity));
+  padding: 1.2rem 2rem;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  color: rgb(var(--color-button-text));
+  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  transition: all .3s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
 </style>
 
 <section>
   <h2>{{ section.settings.heading }}</h2>
-  <div id="vendorsContainer" class="vendors-container"></div>
+  <div id="testsContainer" class="vendors-container"></div>
+  <div id="packagesContainer" class="vendors-container"></div>
 </section>
 
 <script>
 function getSelectedTestsFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   const tests = urlParams.get('tests');
-  return tests ? tests.split(',') : [];
+  return tests ? tests.split(',').map(t => t.trim().toLowerCase()) : [];
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -93,116 +78,21 @@ document.addEventListener("DOMContentLoaded", function() {
       title: "{{ product.title | escape }}",
       handle: "{{ product.handle | escape }}",
       vendor: "{{ product.vendor | escape }}",
-      variantId: " {{ product.selected_or_first_available_variant.id }}",
-      productUrl: " {{ product.url }}",
+      variantId: "{{ product.selected_or_first_available_variant.id }}",
+      productUrl: "{{ product.url }}",
       price: "{{ product.price | escape }}",
-      compare_at_price: "{{ product.compare_at_price | escape }}",
       image: "{{ product.featured_image | img_url: 'medium' | escape }}",
-      testMeta: {{ product.metafields.custom.test | default: '[]' }}
+      tags: {{ product.tags | json | default: '[]' }}
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
-
-  const vendorsContainer = document.getElementById("vendorsContainer");
-
-const normalize = str => str.toLowerCase().replace(/\s+/g, '-');
-
-const matchingVendors = allProducts.filter(product => 
-  Array.isArray(product.testMeta) &&
-  selectedTests.some(test => {
-    const testWords = test.toLowerCase().split(/[\s-]+/); // Split test into words
-    
-    return product.testMeta.some(metaTest => {
-      const metaWords = normalize(metaTest).split('-'); // Split metaTest into words
-      
-      return testWords.some(tWord => metaWords.includes(tWord));
-    });
-  })
-);
-
-
-  if (matchingVendors.length === 0) {
-    vendorsContainer.innerHTML = "<p>No vendors found for selected tests.</p>";
-    } else {
-    matchingVendors.forEach(product => {
-        const vendorCard = document.createElement("div");
-        vendorCard.className = "vendor-card";
-
-        vendorCard.innerHTML = `
-            <a href='/products/${product.handle}' class="vendor-link">
-                <img src="${product.image}" alt="${product.title}" class="vendor-image">
-                <div class="vendor-info">
-                    <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
-                    <h6 class="vendor-title">${product.title}</h6>
-                    <p class="vendor-tests">Tests Provided: ${product.testMeta.join(', ')}</p>
-                    <p class="vendor-price">₹${product.price / 100}</p>
-                </div>
-            </a>
-
-            <button class="add-to-cart-btn" onclick="addToCart('${product.variantId.trim()}')">
-                Add to Cart
-            </button>
-        `;
-
-        vendorsContainer.appendChild(vendorCard);
-    });
-
-
-  }
-
-});
-</script>
-
-<script>
-  function addToCart(variantId) {
-    variantIdd = Number(variantId)
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ id: variantIdd, quantity: 1 })
-    })
-    .then(response => response.json())
-    .then(data => {
-      drawerUpateCustom();
-    })
-   <section>
-  <h2>{{ section.settings.heading }}</h2>
-  <div id="testsContainer" class="vendors-container"></div>
-  <div id="packagesContainer" class="vendors-container"></div>
-</section>
-
-<script>
-function getSelectedTestsFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const tests = urlParams.get('tests');
-  return tests ? tests.map(t => t.trim().toLowerCase()) : tests?.split(',').map(t => t.trim().toLowerCase()) || [];
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  const selectedTests = getSelectedTestsFromURL();
-
-  const allProducts = [
-  {% for product in collections.all.products %}
-  {
-    title: "{{ product.title | escape }}",
-    handle: "{{ product.handle | escape }}",
-    vendor: "{{ product.vendor | escape }}",
-    variantId: "{{ product.selected_or_first_available_variant.id }}",
-    productUrl: "{{ product.url }}",
-    price: "{{ product.price | escape }}",
-    image: "{{ product.featured_image | img_url: 'medium' | escape }}",
-    tags: {{ product.tags | json | default: '[]' }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-];
-
-console.log('199', allProducts)
 
   const testsContainer = document.getElementById("testsContainer");
   const packagesContainer = document.getElementById("packagesContainer");
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
+  // Filter products that match selected tests
   const matchingProducts = allProducts.filter(product =>
     product.tags.some(tag => selectedTests.includes(normalizeTag(tag)))
   );
@@ -226,23 +116,21 @@ console.log('199', allProducts)
       const vendorCard = document.createElement("div");
       vendorCard.className = "vendor-card";
 
-      const productTags = product.tags
-        .map(tag => normalizeTag(tag))
-        .join(', ');
+      const productTags = product.tags.map(tag => normalizeTag(tag)).join(', ');
 
       vendorCard.innerHTML = `
         <a href='/products/${product.handle}' class="vendor-link">
-            <img src="${product.image}" alt="${product.title}" class="vendor-image">
-            <div class="vendor-info">
-                <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
-                <h6 class="vendor-title">${product.title}</h6>
-                <p class="vendor-tests">Tests Provided: ${productTags}</p>
-                <p class="vendor-price">₹${product.price / 100}</p>
-            </div>
+          <img src="${product.image}" alt="${product.title}" class="vendor-image">
+          <div class="vendor-info">
+            <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
+            <h6 class="vendor-title">${product.title}</h6>
+            <p class="vendor-tests">Tests Provided: ${productTags}</p>
+            <p class="vendor-price">₹${product.price / 100}</p>
+          </div>
         </a>
 
         <button class="add-to-cart-btn" onclick="addToCart('${product.variantId.trim()}')">
-            Add to Cart
+          Add to Cart
         </button>
       `;
 
@@ -253,31 +141,35 @@ console.log('199', allProducts)
   renderProducts(testsContainer, testsProducts, 'tests');
   renderProducts(packagesContainer, packagesProducts, 'packages');
 });
-</script>
 
-
-
-
-
-{% schema %}
-{
-  "name": "All Test Vendors",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Available Labs"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Default",
-      "category": "Tests",
-      "settings": {
-        "heading": "Available Labs"
-      }
-    }
-  ]
+// Add to cart function
+function addToCart(variantId) {
+  const variantIdNum = Number(variantId);
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ id: variantIdNum, quantity: 1 })
+  })
+  .then(res => res.json())
+  .then(data => {
+    drawerUpateCustom();
+  })
+  .catch(err => {
+    console.error('Add to cart failed:', err);
+    alert('Failed to add product to cart.');
+  });
 }
-{% endschema %}
+
+// Update cart drawer
+function drawerUpateCustom() {
+  fetch(`${routes.cart_url}?section_id=cart-drawer`)
+    .then(res => res.text())
+    .then(result => {
+      const html = new DOMParser().parseFromString(result, 'text/html');
+      document.querySelector('cart-drawer').innerHTML = '';
+      document.querySelector('cart-drawer').append(html.documentElement.querySelector('#CartDrawer'));
+      document.querySelector('cart-drawer').classList.remove('is-empty');
+    })
+    .catch(err => console.error('Cart update failed:', err));
+}
+</script>
