@@ -165,38 +165,98 @@ const matchingVendors = allProducts.filter(product =>
     .then(data => {
       drawerUpateCustom();
     })
-    .catch(error => {
-      console.error('Add to cart failed:', error);
-      alert('Failed to add product to cart.');
+   <section>
+  <h2>{{ section.settings.heading }}</h2>
+  <div id="testsContainer" class="vendors-container"></div>
+  <div id="packagesContainer" class="vendors-container"></div>
+</section>
+
+<script>
+function getSelectedTestsFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tests = urlParams.get('tests');
+  return tests ? tests.split(',') : [];
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const selectedTests = getSelectedTestsFromURL();
+
+  const allProducts = [
+    {% for product in collections.all.products %}
+    {
+      title: "{{ product.title | escape }}",
+      handle: "{{ product.handle | escape }}",
+      vendor: "{{ product.vendor | escape }}",
+      variantId: "{{ product.selected_or_first_available_variant.id }}",
+      productUrl: "{{ product.url }}",
+      price: "{{ product.price | escape }}",
+      compare_at_price: "{{ product.compare_at_price | escape }}",
+      image: "{{ product.featured_image | img_url: 'medium' | escape }}",
+      tags: {{ product.tags | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  const testsContainer = document.getElementById("testsContainer");
+  const packagesContainer = document.getElementById("packagesContainer");
+
+  const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
+
+  const matchingProducts = allProducts.filter(product =>
+    product.tags.some(tag => {
+      const cleanTag = normalizeTag(tag);
+      return selectedTests.some(test => test.toLowerCase() === cleanTag);
+    })
+  );
+
+  const testsProducts = matchingProducts.filter(p =>
+    p.tags.some(tag => tag.startsWith('test_'))
+  );
+
+  const packagesProducts = matchingProducts.filter(p =>
+    p.tags.some(tag => tag.startsWith('package_'))
+  );
+
+  function renderProducts(container, products, type) {
+    if (products.length === 0) {
+      container.innerHTML = `<p>No ${type} found for selected tests.</p>`;
+      return;
+    }
+
+    products.forEach(product => {
+      const vendorCard = document.createElement("div");
+      vendorCard.className = "vendor-card";
+
+      const productTags = product.tags
+        .map(tag => normalizeTag(tag))
+        .join(', ');
+
+      vendorCard.innerHTML = `
+        <a href='/products/${product.handle}' class="vendor-link">
+            <img src="${product.image}" alt="${product.title}" class="vendor-image">
+            <div class="vendor-info">
+                <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
+                <h6 class="vendor-title">${product.title}</h6>
+                <p class="vendor-tests">Tests Provided: ${productTags}</p>
+                <p class="vendor-price">₹${product.price / 100}</p>
+            </div>
+        </a>
+
+        <button class="add-to-cart-btn" onclick="addToCart('${product.variantId.trim()}')">
+            Add to Cart
+        </button>
+      `;
+
+      container.appendChild(vendorCard);
     });
   }
 
-  window.drawerUpateCustom = () => {
-  fetch(`${routes.cart_url}?section_id=cart-drawer`)
-    .then(data => data.text())
-    .then(result => {
-      const html = new DOMParser().parseFromString(result, 'text/html');
-
-      document.querySelector('cart-drawer').innerHTML = '';
-      document.querySelector('cart-drawer').append(html.documentElement.querySelector('#CartDrawer'));
-      document.querySelector('cart-drawer').classList.remove('is-empty');
-
-      if (!document.querySelector('.header__icons .cart-count-bubble')) {
-        document.querySelector('#cart-icon-bubble').innerHTML += `<div class="cart-count-bubble"><span aria-hidden="true">1</span><span class="visually-hidden">1 item</span></div>`;
-      } else {
-        let updatedQty = parseInt(document.querySelector('.header__icons .cart-count-bubble').innerText.split('')[0]) + 1;
-        console.log('updatedQty', updatedQty);
-        document.querySelector('.header__icons .cart-count-bubble').innerText = updatedQty;
-      }
-
-      document.querySelector('#cart-icon-bubble').click();
-    })
-    .catch(error => {
-      console.error('Cart update failed:', error);
-    });
-};
-
+  // Render separately
+  renderProducts(testsContainer, testsProducts, 'tests');
+  renderProducts(packagesContainer, packagesProducts, 'packages');
+});
 </script>
+
 
 
 
