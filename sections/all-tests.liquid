@@ -71,7 +71,7 @@ function getSelectedTestsFromURL() {
 
 document.addEventListener("DOMContentLoaded", function() {
   const selectedTests = getSelectedTestsFromURL();
-  const userPincode = sessionStorage.getItem('userPincode'); // Get user pincode
+  const userPincode = sessionStorage.getItem('userPincode');
 
   const allProducts = [
     {% for product in collections.all.products %}
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
-  // Filter products: check if any tag matches selectedTests AND pincode matches
+  // Filter products: matching tests + pincode
   let matchingProducts = allProducts.filter(product => {
     const matchesTest = product.tags.some(tag => selectedTests.includes(normalizeTag(tag)));
     const matchesPincode = !userPincode || 
@@ -102,14 +102,13 @@ document.addEventListener("DOMContentLoaded", function() {
     return matchesTest && matchesPincode;
   });
 
-  // Deduplicate by product handle (or variantId if needed)
-  const uniqueProductsMap = {};
-  matchingProducts.forEach(product => {
-    if (!uniqueProductsMap[product.handle]) {
-      uniqueProductsMap[product.handle] = product;
-    }
+  // Deduplicate products by handle
+  const seenHandles = new Set();
+  matchingProducts = matchingProducts.filter(product => {
+    if (seenHandles.has(product.handle)) return false;
+    seenHandles.add(product.handle);
+    return true;
   });
-  matchingProducts = Object.values(uniqueProductsMap);
 
   // Separate tests and packages
   const testsProducts = matchingProducts.filter(p =>
@@ -121,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
   );
 
   function renderProducts(container, products, type) {
-    container.innerHTML = ''; // Clear container
+    container.innerHTML = '';
     if (products.length === 0) {
       container.innerHTML = `<p>No ${type} found for selected tests/pincode.</p>`;
       return;
