@@ -171,6 +171,7 @@ function addToCart(variantId) {
 
 // Update cart drawer
 function drawerUpateCustom() {
+    console.log('here')
   fetch(`${routes.cart_url}?section_id=cart-drawer`)
     .then(res => res.text())
     .then(result => {
