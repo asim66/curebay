@@ -373,9 +373,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   continueBtn.addEventListener("click", () => {
     const selectedHandles = selectedTests.join(",");
-    window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
+    window.location.href = `/collections/vendors?q=${encodeURIComponent(selectedHandles)}`;
   });
-
   updateContinueButtonState();
 });
 </script>
