@@ -94,30 +94,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
-  // Filter products: matching tests + pincode
-  let matchingProducts = allProducts.filter(product => {
+  // Filter and deduplicate products in **one pass**
+  const uniqueProductsMap = new Map(); // key = handle
+
+  allProducts.forEach(product => {
     const matchesTest = product.tags.some(tag => selectedTests.includes(normalizeTag(tag)));
     const matchesPincode = !userPincode || 
       (Array.isArray(product.availableLocations) && product.availableLocations.includes(Number(userPincode)));
-    return matchesTest && matchesPincode;
+
+    if (matchesTest && matchesPincode && !uniqueProductsMap.has(product.handle)) {
+      uniqueProductsMap.set(product.handle, product);
+    }
   });
 
-  // Deduplicate products by handle
-  const seenHandles = new Set();
-  matchingProducts = matchingProducts.filter(product => {
-    if (seenHandles.has(product.handle)) return false;
-    seenHandles.add(product.handle);
-    return true;
-  });
+  const uniqueProducts = Array.from(uniqueProductsMap.values());
 
-  // Separate tests and packages
-  const testsProducts = matchingProducts.filter(p =>
-    p.tags.some(tag => tag.startsWith('test_'))
-  );
-
-  const packagesProducts = matchingProducts.filter(p =>
-    p.tags.some(tag => tag.startsWith('package_'))
-  );
+  const testsProducts = uniqueProducts.filter(p => p.tags.some(tag => tag.startsWith('test_')));
+  const packagesProducts = uniqueProducts.filter(p => p.tags.some(tag => tag.startsWith('package_')));
 
   function renderProducts(container, products, type) {
     container.innerHTML = '';
