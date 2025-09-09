@@ -94,34 +94,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
-  // Filter products based on selected tests
-  let matchingProducts = allProducts.filter(product =>
-    product.tags.some(tag => selectedTests.includes(normalizeTag(tag)))
-  );
-
-  // If userPincode exists, filter products based on availableLocations metafield
-  if (userPincode) {
-    matchingProducts = matchingProducts.filter(product =>
-      Array.isArray(product.availableLocations) &&
-      product.availableLocations.includes(Number(userPincode))
-    );
-  }
-
-  // Remove duplicate products based on handle
-  const uniqueProducts = [];
-  const seenHandles = new Set();
-  matchingProducts.forEach(product => {
-    if (!seenHandles.has(product.handle)) {
-      seenHandles.add(product.handle);
-      uniqueProducts.push(product);
-    }
+  // Filter products: only include each product once
+  const matchingProducts = allProducts.filter(product => {
+    const matchesTest = product.tags.some(tag => selectedTests.includes(normalizeTag(tag)));
+    const matchesPincode = !userPincode || 
+      (Array.isArray(product.availableLocations) && product.availableLocations.includes(Number(userPincode)));
+    return matchesTest && matchesPincode;
   });
 
-  const testsProducts = uniqueProducts.filter(p =>
+  // Separate tests and packages
+  const testsProducts = matchingProducts.filter(p =>
     p.tags.some(tag => tag.startsWith('test_'))
   );
 
-  const packagesProducts = uniqueProducts.filter(p =>
+  const packagesProducts = matchingProducts.filter(p =>
     p.tags.some(tag => tag.startsWith('package_'))
   );
 
@@ -161,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
   renderProducts(testsContainer, testsProducts, 'tests');
   renderProducts(packagesContainer, packagesProducts, 'packages');
 });
+
 
 
 // Add to cart function
