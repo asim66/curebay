@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let matchingProducts = allProducts.filter(product =>
     product.tags.some(tag => selectedTests.includes(normalizeTag(tag)))
   );
-console.log('101', userPincode, matchingProducts)
+
   // If userPincode exists, filter products based on availableLocations metafield
   if (userPincode) {
     matchingProducts = matchingProducts.filter(product =>
@@ -106,13 +106,22 @@ console.log('101', userPincode, matchingProducts)
       product.availableLocations.includes(Number(userPincode))
     );
   }
-  console.log('109', userPincode, matchingProducts)
 
-  const testsProducts = matchingProducts.filter(p =>
+  // Remove duplicate products based on handle
+  const uniqueProducts = [];
+  const seenHandles = new Set();
+  matchingProducts.forEach(product => {
+    if (!seenHandles.has(product.handle)) {
+      seenHandles.add(product.handle);
+      uniqueProducts.push(product);
+    }
+  });
+
+  const testsProducts = uniqueProducts.filter(p =>
     p.tags.some(tag => tag.startsWith('test_'))
   );
 
-  const packagesProducts = matchingProducts.filter(p =>
+  const packagesProducts = uniqueProducts.filter(p =>
     p.tags.some(tag => tag.startsWith('package_'))
   );
 
@@ -152,6 +161,7 @@ console.log('101', userPincode, matchingProducts)
   renderProducts(testsContainer, testsProducts, 'tests');
   renderProducts(packagesContainer, packagesProducts, 'packages');
 });
+
 
 // Add to cart function
 function addToCart(variantId) {
