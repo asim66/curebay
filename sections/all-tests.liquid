@@ -171,7 +171,7 @@ function addToCart(variantId) {
 
 // Update cart drawer
 function drawerUpateCustom() {
-  console.log('here')
+  console.log('here');
   fetch(`${routes.cart_url}?section_id=cart-drawer`)
     .then(res => res.text())
     .then(result => {
@@ -181,20 +181,24 @@ function drawerUpateCustom() {
       cartDrawer.append(html.documentElement.querySelector('#CartDrawer'));
       cartDrawer.classList.remove('is-empty');
 
-      // Update cart count bubble safely
-      const cartBubble = document.querySelector('.header__icons .cart-count-bubble');
-      if (cartBubble) {
-        let currentQty = parseInt(cartBubble.innerText) || 0;
-        cartBubble.innerText = currentQty + 1;
+      // Find the cart bubble container
+      const headerIcons = document.querySelector('.header__icons');
+      let cartBubble = headerIcons.querySelector('.cart-count-bubble');
+
+      if (!cartBubble) {
+        // Bubble doesn't exist — create it
+        cartBubble = document.createElement('div');
+        cartBubble.className = 'cart-count-bubble';
+        cartBubble.innerHTML = '<span aria-hidden="true">1</span><span class="visually-hidden">1 item</span>';
+        headerIcons.appendChild(cartBubble);
       } else {
-        // If it doesn't exist, create it
-        const headerIcons = document.querySelector('.header__icons');
-        if (headerIcons) {
-          const newBubble = document.createElement('span');
-          newBubble.className = 'cart-count-bubble';
-          newBubble.innerText = '1';
-          headerIcons.appendChild(newBubble);
-        }
+        // Bubble exists — increment count
+        const visibleSpan = cartBubble.querySelector('span[aria-hidden="true"]');
+        let currentQty = parseInt(visibleSpan.innerText) || 0;
+        visibleSpan.innerText = currentQty + 1;
+
+        const hiddenSpan = cartBubble.querySelector('.visually-hidden');
+        hiddenSpan.innerText = `${currentQty + 1} item${currentQty + 1 > 1 ? 's' : ''}`;
       }
 
       // Open cart drawer
@@ -203,5 +207,6 @@ function drawerUpateCustom() {
     })
     .catch(err => console.error('Cart update failed:', err));
 }
+
 
 </script>
