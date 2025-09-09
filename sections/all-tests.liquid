@@ -94,13 +94,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
-  // Filter products: only include each product once
-  const matchingProducts = allProducts.filter(product => {
+  // Filter products: check if any tag matches selectedTests AND pincode matches
+  let matchingProducts = allProducts.filter(product => {
     const matchesTest = product.tags.some(tag => selectedTests.includes(normalizeTag(tag)));
     const matchesPincode = !userPincode || 
       (Array.isArray(product.availableLocations) && product.availableLocations.includes(Number(userPincode)));
     return matchesTest && matchesPincode;
   });
+
+  // Deduplicate by product handle (or variantId if needed)
+  const uniqueProductsMap = {};
+  matchingProducts.forEach(product => {
+    if (!uniqueProductsMap[product.handle]) {
+      uniqueProductsMap[product.handle] = product;
+    }
+  });
+  matchingProducts = Object.values(uniqueProductsMap);
 
   // Separate tests and packages
   const testsProducts = matchingProducts.filter(p =>
