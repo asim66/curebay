@@ -1,236 +1,383 @@
-<section id="SearchBanner-{{ section.id }}" class="search-banner">
-  <div class="search-banner__inner">
-    <div class="tabs" role="tablist" aria-label="Search options">
-      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="test" id="tab-test-btn-{{ section.id }}"><span>🧪</span> Search by Test</button>
-      <a href="/collections/labs" class="tab-btn tab-link" role="link" id="tab-lab-btn-{{ section.id }}"><span>🏥</span> Browse Labs</a>
-      <button class="tab-btn" role="tab" data-tab="prescription" id="tab-prescription-btn-{{ section.id }}"><span>📄</span> Upload Prescription</button>
-    </div>
+<style>
+.search-section {
+  background: #0d3c74;
+  padding: 20px;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  text-align: left;
+  border-radius: 10px;
+  top: 30%;
+  left: 6%;
+  width: 46vw;
+}
 
-    <div class="tab-content active" id="tab-test-{{ section.id }}" role="tabpanel" aria-labelledby="tab-test-btn-{{ section.id }}">
-      <form class="search-form" action="{{ routes.search_url }}" method="get" onsubmit="return false;">
-        <div class="search-wrapper" style="position:relative;">
-          <input type="search" id="search-test-{{ section.id }}" placeholder="Search Tests and Packages" autocomplete="off" aria-label="Search tests" aria-autocomplete="list" role="combobox" aria-expanded="false">
-          <button type="button" id="continue-test-{{ section.id }}" class="continue-btn" disabled>Continue</button>
-          <div id="results-test-{{ section.id }}" class="predictive-results" hidden role="listbox" aria-label="Search suggestions"></div>
-        </div>
-      </form>
-    </div>
+.search-heading {
+  font-size: 16px;
+  margin: 0;
+}
 
-    <div class="tab-content" id="tab-prescription-{{ section.id }}" role="tabpanel" aria-labelledby="tab-prescription-btn-{{ section.id }}">
-      <p class="coming-soon">Upload Prescription will be enabled soon.</p>
-    </div>
+.search-subheading {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 5px 0 20px;
+  color: #28a745;
+}
+
+.search-container {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin: auto;
+  width: 100%;
+  position: relative;
+}
+
+.search-header {
+  margin: auto;
+  width: 100%;
+}
+
+.search-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.search-tabs .tab {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #0d3c74;
+  background: white;
+  color: #0d3c74;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-tabs .tab.active {
+  background: #0d3c74;
+  color: white;
+}
+
+.search-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  min-height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 150px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-box input:focus-visible {
+  outline-offset: unset;
+  box-shadow: unset;
+}
+
+.results-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.results-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+.results-list li:last-child {
+  border-bottom: none;
+}
+
+.results-list li:hover {
+  background: #f1f1f1;
+}
+
+.selected-test-wrapper {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.selected-test-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.selected-test {
+  background: #0d3c74;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.selected-test .remove-test {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.continue-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #0d3c74;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.continue-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.images_below_search {
+  display: flex;
+  justify-content: space-around;
+  background: #0d3c74;
+  border-radius: 10px;
+  margin-top: 10px;
+  max-width: 100%;
+  overflow: scroll;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 768px){
+  .search-container, .search-header {
+    margin: auto;
+    width: 100%;
+  }
+  .search-section {
+    top: 10%;
+    left: 6%;
+    width: 90%;
+  }
+}
+
+.search-category-heading {
+  font-weight: bold;
+  padding: 10px;
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+
+</style>
+
+<section class="search-section">
+  <div class="search-header">
+    <p class="search-heading">{{ section.settings.heading }}</p>
+    <h2 class="search-subheading">{{ section.settings.subheading }}</h2>
   </div>
 
-  <style>
-    .search-banner { padding: 24px; }
-    .search-banner__inner { background: #f5f9ff; padding: 25px; border-radius: 16px; max-width: 760px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
-    .tabs { display:flex; gap:12px; margin-bottom:18px; justify-content:center; flex-wrap:wrap; }
-    .tab-btn { flex:1 1 200px; padding:12px 14px; border:1.5px solid #d7dce3; border-radius:12px; background:#fff; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:.2s; text-decoration:none; color:inherit; }
-    .tab-btn.active { background:#004aad; color:#fff; border-color:#004aad; }
-    .tab-content { display:none; } .tab-content.active { display:block; }
-    .search-wrapper { display:flex; gap:8px; align-items:center; border:1.5px solid #d7dce3; border-radius:12px; background:#fff; padding:6px 6px 6px 10px; }
-    .search-wrapper input { flex:1; border:none; outline:none; font-size:15px; padding:10px 6px; min-width:0; }
-    .continue-btn { padding:10px 14px; border:none; background:#004aad; color:#fff; font-weight:600; border-radius:8px; }
-    .continue-btn:disabled { background:#bfc7d4; cursor:not-allowed; }
-    .predictive-results { position:absolute; left:0; right:0; top:calc(100% + 8px); border:1.5px solid #d7dce3; background:#fff; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.08); max-height:340px; overflow:auto; z-index:999; padding:8px; }
-    .results-heading { font-weight:700; font-size:12px; color:#6b7280; padding:8px 10px; background:#f8fafc; border:1px solid #eef1f5; border-radius:8px; text-transform:uppercase; letter-spacing:.4px; margin:4px; }
-    .result-item { padding:10px 12px; border-radius:8px; cursor:pointer; }
-    .result-item:hover { background:#f0f6ff; }
-    .result-item .subline { font-size:12px; color:#6b7280; margin-top:2px; }
-    .results-empty { padding:12px 10px; color:#6b7280; }
-    .results-note { padding:8px 10px; margin:4px 4px 8px; border-radius:8px; background:#fff7ed; border:1px solid #fed7aa; color:#92400e; font-size:12px; }
-  </style>
+  <div class="search-container">
+    <div class="search-tabs">
+      <button class="tab active" data-type="test">{{ section.settings.tab1 }}</button>
+      <button class="tab" data-type="lab">{{ section.settings.tab2 }}</button>
+    </div>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const root = document.getElementById('SearchBanner-{{ section.id }}');
-    if (!root) return;
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="{{ section.settings.search_placeholder }}">
+      <ul id="searchResults" class="results-list"></ul>
+      <button class="continue-btn disabled" id="continueBtn" disabled>Continue</button>
+    </div>
 
-    const input = root.querySelector('#search-test-{{ section.id }}');
-    const box = root.querySelector('#results-test-{{ section.id }}');
-    const continueBtn = root.querySelector('#continue-test-{{ section.id }}');
-    let selected = null;
+    <div class="images_below_search">
+      <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/certified_labs.png?v=1757226897" alt="Image 1" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+      <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/doorstep_sample_collection.png?v=1757226897" alt="Image 2" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+      <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/lowest_price.png?v=1757226897" alt="Image 3" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+      <img src="https://cdn.shopify.com/s/files/1/0940/2371/3072/files/online_report.png?v=1757226897" alt="Image 4" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+    </div>
+  </div>
+</section>
 
-    // ---------------- utils ----------------
-    const debounce = (fn, ms=220) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; };
-    const showBox = () => { box.hidden = false; input.setAttribute('aria-expanded','true'); };
-    const hideBox = () => { box.hidden = true; input.setAttribute('aria-expanded','false'); };
-    const norm = s => String(s||'').toLowerCase().trim();
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll(".search-tabs .tab");
+  const searchInput = document.getElementById("searchInput");
+  const resultsList = document.getElementById("searchResults");
+  const searchBox = document.querySelector(".search-box");
+  const continueBtn = document.getElementById("continueBtn");
 
-    function formatMoneyFromCents(cents) {
-      if (cents == null) return '';
-      const value = Number(cents) / 100;
-      const cur = {{ shop.currency | json }};
-      if (cur === 'INR') return '₹' + value.toLocaleString(undefined, { minimumFractionDigits: 0 });
-      return value.toLocaleString(undefined, { style: 'currency', currency: cur });
+  let activeType = "test";
+  let selectedTests = [];
+
+  const allProducts = [
+    {% for product in collections.all.products %}
+    {
+      handle: "{{ product.handle | escape }}",
+      tags: {{ product.tags | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      activeType = tab.dataset.type;
+      resultsList.style.display = "none";
+      searchInput.value = "";
+    });
+  });
+
+  function updateContinueButtonState() {
+    if (selectedTests.length === 0) {
+      continueBtn.classList.add("disabled");
+      continueBtn.disabled = true;
+    } else {
+      continueBtn.classList.remove("disabled");
+      continueBtn.disabled = false;
+    }
+  }
+
+  function renderSelectedTests() {
+    let parentDiv = searchBox.querySelector(".selected-test-wrapper");
+
+    if (!parentDiv) {
+      parentDiv = document.createElement("div");
+      parentDiv.className = "selected-test-wrapper";
+      searchBox.insertBefore(parentDiv, searchInput);
     }
 
-    // -------------- SVC wait ---------------
-    function waitForSVC(){
-      return new Promise(resolve=>{
-        if (window.SVC && window.SVC.ready) return resolve(window.SVC);
-        const h = ()=>{ resolve(window.SVC); window.removeEventListener('svc:ready', h); };
-        window.addEventListener('svc:ready', h);
+    parentDiv.innerHTML = "";
+
+    selectedTests.forEach((test, index) => {
+      const div = document.createElement("div");
+      div.className = "selected-test";
+      div.innerHTML = `${test} <span class="remove-test" data-index="${index}">✕</span>`;
+      parentDiv.appendChild(div);
+    });
+
+    document.querySelectorAll(".remove-test").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = btn.getAttribute("data-index");
+        selectedTests.splice(idx, 1);
+        renderSelectedTests();
+        updateContinueButtonState();
       });
-    }
+    });
 
-    // -------------- API --------------------
-    async function searchAPI(query) {
-      const url = `/search?view=json&q=${encodeURIComponent(query)}&type=product`;
-      try {
-        const res = await fetch(url, { headers: { 'Accept': 'application/json' }});
-        if (!res.ok) return [];
-        const data = await res.json();
-        return Array.isArray(data) ? data : [];
-      } catch (e) {
-        console.error('[SearchBanner grouped] searchAPI', e);
-        return [];
-      }
-    }
+    updateContinueButtonState();
+  }
 
-    // --------- vendor gating --------------
-    function filterByPincode(products){
-      if(!window.SVC || !window.SVC.ready) return products;
-      const arr = window.SVC.vendors ? Array.from(window.SVC.vendors) : [];
-      if(!arr.length){ return products; } // relax when no vendors configured
-      const allowed = new Set(arr.map(v => norm(v)));
-      return products.filter(p => allowed.has(norm(p.vendor)));
-    }
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    resultsList.innerHTML = "";
 
-    // --------- tag helpers ----------------
-    function getTagValCI(tags, prefix) {
-      const tgs = (tags || []).map(t => String(t));
-      const lower = tgs.map(t => t.toLowerCase().trim());
-      const idx = lower.findIndex(t => t.startsWith(prefix));
-      if (idx === -1) return '';
-      return tgs[idx].split(':').slice(1).join(':').trim();
-    }
+    let matchedTests = [];
+    let matchedPackages = [];
 
-    // ------------- render helpers ----------
-    function clearBox(){ box.innerHTML = ''; }
-    function renderHeading(text) {
-      const h = document.createElement('div');
-      h.className = 'results-heading';
-      h.textContent = text;
-      box.appendChild(h);
-    }
-    function renderNote(msg){
-      const n = document.createElement('div');
-      n.className = 'results-note';
-      n.textContent = msg;
-      box.appendChild(n);
-    }
-    function renderEmpty(msg='No results found') {
-      const d = document.createElement('div');
-      d.className = 'results-empty';
-      d.textContent = msg;
-      box.appendChild(d);
-    }
-    function renderItemRow(item) {
-      const div = document.createElement('div');
-      div.className = 'result-item';
-      const titleEl = document.createElement('div'); titleEl.textContent = item.title;
-      const subEl = document.createElement('div'); subEl.className = 'subline';
-      subEl.textContent = `Available at ${item.count} lab${item.count>1?'s':''} • from ${formatMoneyFromCents(item.priceMin)}`;
-      div.appendChild(titleEl); div.appendChild(subEl);
-      div.addEventListener('click', () => {
-        selected = { handle: item.handleCheapest, title: item.title };
-        window.location.href = '/products/' + item.handleCheapest;
-      });
-      box.appendChild(div);
-    }
-
-    // ------------- grouping ----------------
-    function groupResults(products) {
-      const testsMap = new Map();
-      const pkgsMap = new Map();
-
-      for (const p of products) {
-        const tagsLower = (p.tags || []).map(t => norm(t));
-        const isTest = tagsLower.includes('type:test') || tagsLower.includes('test');
-        const isPkg  = tagsLower.includes('type:package') || tagsLower.includes('package');
-
-        const code  = (getTagValCI(p.tags, 'code:') || '').toUpperCase();
-        const pkgId = getTagValCI(p.tags, 'pkg:');
-
-        if (isTest && code) {
-          const prev = testsMap.get(code);
-          if (!prev) {
-            testsMap.set(code, { title: p.title, count: 1, priceMin: p.price_min, handleCheapest: p.handle });
-          } else {
-            prev.count++;
-            if (p.price_min != null && p.price_min < prev.priceMin) {
-              prev.priceMin = p.price_min; prev.handleCheapest = p.handle;
-            }
+    allProducts.forEach(product => {
+      product.tags.forEach(tag => {
+        const lowerTag = tag.toLowerCase();
+        if (lowerTag.startsWith('test_')) {
+          const cleanTag = tag.slice(5);
+          if (cleanTag.toLowerCase().includes(query) && !selectedTests.includes(cleanTag)) {
+            matchedTests.push(cleanTag);
           }
-        } else if (isPkg) {
-          const key = pkgId || norm(p.title);
-          const prev = pkgsMap.get(key);
-          if (!prev) {
-            pkgsMap.set(key, { title: p.title, count: 1, priceMin: p.price_min, handleCheapest: p.handle });
-          } else {
-            prev.count++;
-            if (p.price_min != null && p.price_min < prev.priceMin) {
-              prev.priceMin = p.price_min; prev.handleCheapest = p.handle;
-            }
+        } else if (lowerTag.startsWith('package_')) {
+          const cleanTag = tag.slice(8);
+          if (cleanTag.toLowerCase().includes(query) && !selectedTests.includes(cleanTag)) {
+            matchedPackages.push(cleanTag);
           }
         }
+      });
+    });
+
+    if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
+      resultsList.style.display = "block";
+
+      if (matchedTests.length) {
+        const testsHeading = document.createElement("li");
+        testsHeading.className = "search-category-heading";
+        testsHeading.textContent = "Tests:";
+        resultsList.appendChild(testsHeading);
+
+        matchedTests.forEach(tag => {
+          const li = document.createElement("li");
+          li.textContent = tag;
+          li.addEventListener("click", () => {
+            selectedTests.push(tag);
+            renderSelectedTests();
+            searchInput.value = "";
+            resultsList.style.display = "none";
+          });
+          resultsList.appendChild(li);
+        });
       }
 
-      return { tests: Array.from(testsMap.values()), packages: Array.from(pkgsMap.values()) };
+      if (matchedPackages.length) {
+        const packagesHeading = document.createElement("li");
+        packagesHeading.className = "search-category-heading";
+        packagesHeading.textContent = "Packages:";
+        resultsList.appendChild(packagesHeading);
+
+        matchedPackages.forEach(tag => {
+          const li = document.createElement("li");
+          li.textContent = tag;
+          li.addEventListener("click", () => {
+            selectedTests.push(tag);
+            renderSelectedTests();
+            searchInput.value = "";
+            resultsList.style.display = "none";
+          });
+          resultsList.appendChild(li);
+        });
+      }
+    } else {
+      resultsList.style.display = "none";
     }
-
-    // -------------- main -------------------
-    const onInput = debounce(async () => {
-      const q = (input.value || '').trim();
-      selected = null; continueBtn.disabled = true;
-      if (q.length < 2) { hideBox(); return; }
-
-      clearBox();
-      await waitForSVC();
-
-      const raw = await searchAPI(q);
-      const byVendor = filterByPincode(raw);
-
-      // Relaxed fallback if vendor gating killed everything
-      let toDisplay = byVendor;
-      const relaxed = (!byVendor.length && raw.length);
-      if (relaxed) toDisplay = raw;
-
-      const { tests, packages } = groupResults(toDisplay);
-
-      if (!tests.length && !packages.length) {
-        const msg = window.SVC?.pincode ? `No results for PIN ${window.SVC.pincode}` : 'No results found';
-        renderEmpty(msg); showBox(); return;
-      }
-
-      if (relaxed) renderNote('Showing results for your search. Some labs may not serve the selected PIN.');
-
-      if (tests.length) { renderHeading('Tests'); tests.forEach(renderItemRow); }
-      if (packages.length) { renderHeading('Packages'); packages.forEach(renderItemRow); }
-      showBox();
-    }, 220);
-
-    input.addEventListener('input', onInput);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const q = (input.value || '').trim();
-        if (!q) return;
-        if (selected) window.location.href = '/products/' + selected.handle;
-        else window.location.href = '{{ routes.search_url }}?q=' + encodeURIComponent(q);
-      }
-    });
-    continueBtn.addEventListener('click', () => {
-      const q = (input.value || '').trim();
-      if (!q) return;
-      if (selected) window.location.href = '/products/' + selected.handle;
-      else window.location.href = '{{ routes.search_url }}?q=' + encodeURIComponent(q);
-    });
-
-    console.debug('[SearchBanner grouped] ready');
   });
-  </script>
-</section>
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-box")) {
+      resultsList.style.display = "none";
+    }
+  });
+
+  continueBtn.addEventListener("click", () => {
+    const selectedHandles = selectedTests.join(",");
+    window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
+  });
+
+  updateContinueButtonState();
+});
+</script>
 
 
