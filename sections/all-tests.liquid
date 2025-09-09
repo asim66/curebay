@@ -171,18 +171,37 @@ function addToCart(variantId) {
 
 // Update cart drawer
 function drawerUpateCustom() {
-    console.log('here')
+  console.log('here')
   fetch(`${routes.cart_url}?section_id=cart-drawer`)
     .then(res => res.text())
     .then(result => {
       const html = new DOMParser().parseFromString(result, 'text/html');
-      document.querySelector('cart-drawer').innerHTML = '';
-      document.querySelector('cart-drawer').append(html.documentElement.querySelector('#CartDrawer'));
-      document.querySelector('cart-drawer').classList.remove('is-empty');
-      let updatedQty = parseInt(document.querySelector('.header__icons .cart-count-bubble').innerText.split('')[0]) + 1;
-      document.querySelector('.header__icons .cart-count-bubble').innerText = updatedQty;
-      document.querySelector('#cart-icon-bubble').click();
+      const cartDrawer = document.querySelector('cart-drawer');
+      cartDrawer.innerHTML = '';
+      cartDrawer.append(html.documentElement.querySelector('#CartDrawer'));
+      cartDrawer.classList.remove('is-empty');
+
+      // Update cart count bubble safely
+      const cartBubble = document.querySelector('.header__icons .cart-count-bubble');
+      if (cartBubble) {
+        let currentQty = parseInt(cartBubble.innerText) || 0;
+        cartBubble.innerText = currentQty + 1;
+      } else {
+        // If it doesn't exist, create it
+        const headerIcons = document.querySelector('.header__icons');
+        if (headerIcons) {
+          const newBubble = document.createElement('span');
+          newBubble.className = 'cart-count-bubble';
+          newBubble.innerText = '1';
+          headerIcons.appendChild(newBubble);
+        }
+      }
+
+      // Open cart drawer
+      const cartIcon = document.querySelector('#cart-icon-bubble');
+      if (cartIcon) cartIcon.click();
     })
     .catch(err => console.error('Cart update failed:', err));
 }
+
 </script>
