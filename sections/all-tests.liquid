@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let matchingProducts = allProducts.filter(product =>
     product.tags.some(tag => selectedTests.includes(normalizeTag(tag)))
   );
-
+console.log('101', userPincode, matchingProducts)
   // If userPincode exists, filter products based on availableLocations metafield
   if (userPincode) {
     matchingProducts = matchingProducts.filter(product =>
