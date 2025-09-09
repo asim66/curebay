@@ -175,7 +175,7 @@ const matchingVendors = allProducts.filter(product =>
 function getSelectedTestsFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   const tests = urlParams.get('tests');
-  return tests ? tests.split(',') : [];
+  return tests ? tests.map(t => t.trim().toLowerCase()) : tests?.split(',').map(t => t.trim().toLowerCase()) || [];
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -190,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function() {
       variantId: "{{ product.selected_or_first_available_variant.id }}",
       productUrl: "{{ product.url }}",
       price: "{{ product.price | escape }}",
-      compare_at_price: "{{ product.compare_at_price | escape }}",
       image: "{{ product.featured_image | img_url: 'medium' | escape }}",
       tags: {{ product.tags | json }}
     }{% unless forloop.last %},{% endunless %}
@@ -203,10 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
   const matchingProducts = allProducts.filter(product =>
-    product.tags.some(tag => {
-      const cleanTag = normalizeTag(tag);
-      return selectedTests.some(test => test.toLowerCase() === cleanTag);
-    })
+    product.tags.some(tag => selectedTests.includes(normalizeTag(tag)))
   );
 
   const testsProducts = matchingProducts.filter(p =>
@@ -218,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
   );
 
   function renderProducts(container, products, type) {
+    container.innerHTML = ''; // Clear container
     if (products.length === 0) {
       container.innerHTML = `<p>No ${type} found for selected tests.</p>`;
       return;
@@ -251,11 +248,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // Render separately
   renderProducts(testsContainer, testsProducts, 'tests');
   renderProducts(packagesContainer, packagesProducts, 'packages');
 });
 </script>
+
 
 
 
