@@ -231,14 +231,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const allProducts = [
     {% for product in collections.all.products %}
-      {{ product.title | json }}{% unless forloop.last %},{% endunless %}
+    {
+      title: {{ product.title | json }},
+      handle: {{ product.handle | json }},
+      tags: {{ product.tags | json }}
+    }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
-  const productHandles = [
-    {% for product in collections.all.products %}
-      {{ product.handle | json }}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
+
   const collectionsTitles = [
     {% for collection in collections %}
       {{ collection.title | json }}{% unless forloop.last %},{% endunless %}
@@ -271,36 +271,38 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function renderSelectedTests() {
-  // Remove the existing wrapper if present
-  let parentDiv = searchBox.querySelector(".selected-test-wrapper");
+    let parentDiv = searchBox.querySelector(".selected-test-wrapper");
 
-  if (!parentDiv) {
-    parentDiv = document.createElement("div");
-    parentDiv.className = "selected-test-wrapper";
-    searchBox.insertBefore(parentDiv, searchInput);
+    if (!parentDiv) {
+      parentDiv = document.createElement("div");
+      parentDiv.className = "selected-test-wrapper";
+      searchBox.insertBefore(parentDiv, searchInput);
+    }
+
+    parentDiv.innerHTML = "";
+
+    selectedTests.forEach((test, index) => {
+      const div = document.createElement("div");
+      div.className = "selected-test";
+      div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
+      parentDiv.appendChild(div);
+    });
+
+    document.querySelectorAll(".remove-test").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = btn.getAttribute("data-index");
+        selectedTests.splice(idx, 1);
+        renderSelectedTests();
+        updateContinueButtonState();
+      });
+    });
+
+    updateContinueButtonState();
   }
 
-  parentDiv.innerHTML = ""; // Clear existing pills inside the wrapper
-
-  selectedTests.forEach((test, index) => {
-    const div = document.createElement("div");
-    div.className = "selected-test";
-    div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
-    parentDiv.appendChild(div);
-  });
-
-  document.querySelectorAll(".remove-test").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const idx = btn.getAttribute("data-index");
-      selectedTests.splice(idx, 1);
-      renderSelectedTests();
-      updateContinueButtonState();
-    });
-  });
-
-  updateContinueButtonState();
-}
-
+  function normalizeTag(tag) {
+    return tag.replace(/^test_|^package_/, '').toLowerCase();
+  }
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
@@ -309,8 +311,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let matches = [];
     if (activeType === "test") {
       matches = allProducts
-        .map((title, i) => ({ title, handle: productHandles[i] }))
-        .filter(p => p.title.toLowerCase().includes(query) && !selectedTests.some(t => t.handle === p.handle));
+        .map((product) => ({
+          title: product.title,
+          handle: product.handle,
+          tags: product.tags
+        }))
+        .filter(p =>
+          p.tags.some(tag => normalizeTag(tag).includes(query)) &&
+          !selectedTests.some(t => t.handle === p.handle)
+        );
     } else if (activeType === "lab") {
       matches = collectionsTitles
         .map((title, i) => ({ title, handle: collectionHandles[i] }))
@@ -351,3 +360,4 @@ document.addEventListener("DOMContentLoaded", function() {
   updateContinueButtonState();
 });
 </script>
+
