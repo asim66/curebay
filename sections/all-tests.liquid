@@ -181,16 +181,19 @@ function drawerUpateCustom() {
       cartDrawer.append(html.documentElement.querySelector('#CartDrawer'));
       cartDrawer.classList.remove('is-empty');
 
-      // Find the cart bubble container
-      const headerIcons = document.querySelector('.header__icons');
-      let cartBubble = headerIcons.querySelector('.cart-count-bubble');
+      // Get the cart icon container
+      const cartIcon = document.querySelector('.header__icon--cart');
+      if (!cartIcon) return;
+
+      // Find the cart bubble inside the cart icon
+      let cartBubble = cartIcon.querySelector('.cart-count-bubble');
 
       if (!cartBubble) {
         // Bubble doesn't exist — create it
         cartBubble = document.createElement('div');
         cartBubble.className = 'cart-count-bubble';
         cartBubble.innerHTML = '<span aria-hidden="true">1</span><span class="visually-hidden">1 item</span>';
-        headerIcons.appendChild(cartBubble);
+        cartIcon.appendChild(cartBubble);
       } else {
         // Bubble exists — increment count
         const visibleSpan = cartBubble.querySelector('span[aria-hidden="true"]');
@@ -202,11 +205,12 @@ function drawerUpateCustom() {
       }
 
       // Open cart drawer
-      const cartIcon = document.querySelector('#cart-icon-bubble');
-      if (cartIcon) cartIcon.click();
+      const cartIconButton = document.querySelector('#cart-icon-bubble');
+      if (cartIconButton) cartIconButton.click();
     })
     .catch(err => console.error('Cart update failed:', err));
 }
+
 
 
 </script>
