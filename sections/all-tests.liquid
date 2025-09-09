@@ -182,19 +182,20 @@ document.addEventListener("DOMContentLoaded", function() {
   const selectedTests = getSelectedTestsFromURL();
 
   const allProducts = [
-    {% for product in collections.all.products %}
-    {
-      title: "{{ product.title | escape }}",
-      handle: "{{ product.handle | escape }}",
-      vendor: "{{ product.vendor | escape }}",
-      variantId: "{{ product.selected_or_first_available_variant.id }}",
-      productUrl: "{{ product.url }}",
-      price: "{{ product.price | escape }}",
-      image: "{{ product.featured_image | img_url: 'medium' | escape }}",
-      tags: {{ product.tags | json }}
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
+  {% for product in collections.all.products %}
+  {
+    title: "{{ product.title | escape }}",
+    handle: "{{ product.handle | escape }}",
+    vendor: "{{ product.vendor | escape }}",
+    variantId: "{{ product.selected_or_first_available_variant.id }}",
+    productUrl: "{{ product.url }}",
+    price: "{{ product.price | escape }}",
+    image: "{{ product.featured_image | img_url: 'medium' | escape }}",
+    tags: {{ product.tags | json | default: '[]' }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
 
   const testsContainer = document.getElementById("testsContainer");
   const packagesContainer = document.getElementById("packagesContainer");
