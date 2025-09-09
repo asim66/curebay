@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
       product.availableLocations.includes(Number(userPincode))
     );
   }
+  console.log('109', userPincode, matchingProducts)
 
   const testsProducts = matchingProducts.filter(p =>
     p.tags.some(tag => tag.startsWith('test_'))
