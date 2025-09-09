@@ -373,7 +373,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   continueBtn.addEventListener("click", () => {
     const selectedHandles = selectedTests.join(",");
-    window.location.href = `/collections/vendors?q=${encodeURIComponent(selectedHandles)}`;
+    {% comment %} window.location.href = `/collections/vendors?q=${encodeURIComponent(selectedHandles)}`; {% endcomment %}
+    window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
   });
   updateContinueButtonState();
 });
