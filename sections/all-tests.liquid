@@ -179,6 +179,7 @@ function drawerUpateCustom() {
       document.querySelector('cart-drawer').innerHTML = '';
       document.querySelector('cart-drawer').append(html.documentElement.querySelector('#CartDrawer'));
       document.querySelector('cart-drawer').classList.remove('is-empty');
+      let updatedQty = parseInt(document.querySelector('.header__icons .cart-count-bubble').innerText.split('')[0]) + 1;
       document.querySelector('.header__icons .cart-count-bubble').innerText = updatedQty;
       document.querySelector('#cart-icon-bubble').click();
     })
