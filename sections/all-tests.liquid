@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
       price: "{{ product.price | escape }}",
       image: "{{ product.featured_image | img_url: 'medium' | escape }}",
       tags: {{ product.tags | json | default: '[]' }},
-      availableLocations: {{ product.metafields.custom.available_location | json | default: '[]' }}
+      availableLocations: {{ product.metafields.custom.available_location | default: '[]' }}
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
