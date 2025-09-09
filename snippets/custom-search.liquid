@@ -231,22 +231,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const allProducts = [
     {% for product in collections.all.products %}
-    {
-      title: {{ product.title | json }},
-      handle: {{ product.handle | json }},
-      tags: {{ product.tags | json }}
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
-
-  const collectionsTitles = [
-    {% for collection in collections %}
-      {{ collection.title | json }}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
-  const collectionHandles = [
-    {% for collection in collections %}
-      {{ collection.handle | json }}{% unless forloop.last %},{% endunless %}
+      {
+        handle: "{{ product.handle | escape }}",
+        tags: {{ product.tags | json }}
+      }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
 
@@ -284,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function() {
     selectedTests.forEach((test, index) => {
       const div = document.createElement("div");
       div.className = "selected-test";
-      div.innerHTML = `${test.title} <span class="remove-test" data-index="${index}">✕</span>`;
+      div.innerHTML = `${test} <span class="remove-test" data-index="${index}">✕</span>`;
       parentDiv.appendChild(div);
     });
 
@@ -300,42 +288,35 @@ document.addEventListener("DOMContentLoaded", function() {
     updateContinueButtonState();
   }
 
-  function normalizeTag(tag) {
-    return tag.replace(/^test_|^package_/, '').toLowerCase();
-  }
-
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
     resultsList.innerHTML = "";
 
     let matches = [];
     if (activeType === "test") {
-      matches = allProducts
-        .map((product) => ({
-          title: product.title,
-          handle: product.handle,
-          tags: product.tags
-        }))
-        .filter(p =>
-          p.tags.some(tag => normalizeTag(tag).includes(query)) &&
-          !selectedTests.some(t => t.handle === p.handle)
-        );
-    } else if (activeType === "lab") {
-      matches = collectionsTitles
-        .map((title, i) => ({ title, handle: collectionHandles[i] }))
-        .filter(c => c.title.toLowerCase().includes(query));
+      allProducts.forEach(product => {
+        const processedTags = product.tags.map(tag =>
+          tag.toLowerCase().startsWith('test_') ? tag.slice(5) :
+          tag.toLowerCase().startsWith('package_') ? tag.slice(8) :
+          null
+        ).filter(Boolean);
+
+        processedTags.forEach(tag => {
+          if (tag.includes(query) && !selectedTests.includes(tag)) {
+            matches.push({ tag, handle: product.handle });
+          }
+        });
+      });
     }
 
     if (matches.length > 0 && query.length > 0) {
       resultsList.style.display = "block";
       matches.forEach(item => {
         const li = document.createElement("li");
-        li.textContent = item.title;
+        li.textContent = item.tag;
         li.addEventListener("click", () => {
-          if (activeType === "test") {
-            selectedTests.push(item);
-            renderSelectedTests();
-          }
+          selectedTests.push(item.tag);
+          renderSelectedTests();
           searchInput.value = "";
           resultsList.style.display = "none";
         });
@@ -353,11 +334,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   continueBtn.addEventListener("click", () => {
-    const selectedHandles = selectedTests.map(t => t.handle).join(",");
+    const selectedHandles = selectedTests.join(",");
     window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
   });
 
   updateContinueButtonState();
 });
 </script>
+
 
