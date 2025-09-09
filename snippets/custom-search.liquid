@@ -189,6 +189,14 @@
     width: 90%;
   }
 }
+
+.search-category-heading {
+  font-weight: bold;
+  padding: 10px;
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+
 </style>
 
 <section class="search-section">
@@ -231,10 +239,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const allProducts = [
     {% for product in collections.all.products %}
-      {
-        handle: "{{ product.handle | escape }}",
-        tags: {{ product.tags | json }}
-      }{% unless forloop.last %},{% endunless %}
+    {
+      handle: "{{ product.handle | escape }}",
+      tags: {{ product.tags | json }}
+    }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
 
@@ -292,36 +300,66 @@ document.addEventListener("DOMContentLoaded", function() {
     const query = searchInput.value.toLowerCase();
     resultsList.innerHTML = "";
 
-    let matches = [];
-    if (activeType === "test") {
-      allProducts.forEach(product => {
-        const processedTags = product.tags.map(tag =>
-          tag.toLowerCase().startsWith('test_') ? tag.slice(5) :
-          tag.toLowerCase().startsWith('package_') ? tag.slice(8) :
-          null
-        ).filter(Boolean);
+    let matchedTests = [];
+    let matchedPackages = [];
 
-        processedTags.forEach(tag => {
-          if (tag.includes(query) && !selectedTests.includes(tag)) {
-            matches.push({ tag, handle: product.handle });
+    allProducts.forEach(product => {
+      product.tags.forEach(tag => {
+        const lowerTag = tag.toLowerCase();
+        if (lowerTag.startsWith('test_')) {
+          const cleanTag = tag.slice(5);
+          if (cleanTag.toLowerCase().includes(query) && !selectedTests.includes(cleanTag)) {
+            matchedTests.push(cleanTag);
           }
-        });
+        } else if (lowerTag.startsWith('package_')) {
+          const cleanTag = tag.slice(8);
+          if (cleanTag.toLowerCase().includes(query) && !selectedTests.includes(cleanTag)) {
+            matchedPackages.push(cleanTag);
+          }
+        }
       });
-    }
+    });
 
-    if (matches.length > 0 && query.length > 0) {
+    if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
       resultsList.style.display = "block";
-      matches.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item.tag;
-        li.addEventListener("click", () => {
-          selectedTests.push(item.tag);
-          renderSelectedTests();
-          searchInput.value = "";
-          resultsList.style.display = "none";
+
+      if (matchedTests.length) {
+        const testsHeading = document.createElement("li");
+        testsHeading.className = "search-category-heading";
+        testsHeading.textContent = "Tests:";
+        resultsList.appendChild(testsHeading);
+
+        matchedTests.forEach(tag => {
+          const li = document.createElement("li");
+          li.textContent = tag;
+          li.addEventListener("click", () => {
+            selectedTests.push(tag);
+            renderSelectedTests();
+            searchInput.value = "";
+            resultsList.style.display = "none";
+          });
+          resultsList.appendChild(li);
         });
-        resultsList.appendChild(li);
-      });
+      }
+
+      if (matchedPackages.length) {
+        const packagesHeading = document.createElement("li");
+        packagesHeading.className = "search-category-heading";
+        packagesHeading.textContent = "Packages:";
+        resultsList.appendChild(packagesHeading);
+
+        matchedPackages.forEach(tag => {
+          const li = document.createElement("li");
+          li.textContent = tag;
+          li.addEventListener("click", () => {
+            selectedTests.push(tag);
+            renderSelectedTests();
+            searchInput.value = "";
+            resultsList.style.display = "none";
+          });
+          resultsList.appendChild(li);
+        });
+      }
     } else {
       resultsList.style.display = "none";
     }
