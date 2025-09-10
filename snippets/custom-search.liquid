@@ -246,6 +246,15 @@ document.addEventListener("DOMContentLoaded", function() {
     {% endfor %}
   ];
 
+  const allCollections = [
+    {% for collection in collections %}
+    {
+      title: "{{ collection.title | escape }}",
+      handle: "{{ collection.handle | escape }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -296,87 +305,114 @@ document.addEventListener("DOMContentLoaded", function() {
     updateContinueButtonState();
   }
 
- searchInput.addEventListener("input", () => {
-  const query = searchInput.value.toLowerCase();
-  resultsList.innerHTML = "";
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    resultsList.innerHTML = "";
 
-  let matchedTests = [];
-  let matchedPackages = [];
+    if (activeType === 'test') {
+      let matchedTests = [];
+      let matchedPackages = [];
 
-  allProducts.forEach(product => {
-    product.tags.forEach(tag => {
-      let type = null;
-      let cleanTag = "";
-      
-      if (tag.toLowerCase().startsWith('test_')) {
-        type = 'test';
-        cleanTag = tag.slice(5); // remove 'test_'
-      } else if (tag.toLowerCase().startsWith('package_')) {
-        type = 'package';
-        cleanTag = tag.slice(8); // remove 'package_'
-      }
+      allProducts.forEach(product => {
+        product.tags.forEach(tag => {
+          let type = null;
+          let cleanTag = "";
 
-      if (type) {
-        // check if any part of the tag matches the query
-        const words = cleanTag.split(/\s+/);
-        if (words.some(word => word.toLowerCase().includes(query)) && !selectedTests.includes(cleanTag)) {
-          if (type === 'test') matchedTests.push(cleanTag);
-          else matchedPackages.push(cleanTag);
+          if (tag.toLowerCase().startsWith('test_')) {
+            type = 'test';
+            cleanTag = tag.slice(5);
+          } else if (tag.toLowerCase().startsWith('package_')) {
+            type = 'package';
+            cleanTag = tag.slice(8);
+          }
+
+          if (type) {
+            const words = cleanTag.split(/\s+/);
+            if (words.some(word => word.toLowerCase().includes(query)) && !selectedTests.includes(cleanTag)) {
+              if (type === 'test') matchedTests.push(cleanTag);
+              else matchedPackages.push(cleanTag);
+            }
+          }
+        });
+      });
+
+      matchedTests = [...new Set(matchedTests)];
+      matchedPackages = [...new Set(matchedPackages)];
+
+      if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
+        resultsList.style.display = "block";
+
+        if (matchedTests.length) {
+          const testsHeading = document.createElement("li");
+          testsHeading.className = "search-category-heading";
+          testsHeading.textContent = "Tests:";
+          resultsList.appendChild(testsHeading);
+
+          matchedTests.forEach(tag => {
+            const li = document.createElement("li");
+            li.textContent = tag;
+            li.addEventListener("click", () => {
+              selectedTests.push(tag);
+              renderSelectedTests();
+              searchInput.value = "";
+              resultsList.style.display = "none";
+            });
+            resultsList.appendChild(li);
+          });
         }
+
+        if (matchedPackages.length) {
+          const packagesHeading = document.createElement("li");
+          packagesHeading.className = "search-category-heading";
+          packagesHeading.textContent = "Packages:";
+          resultsList.appendChild(packagesHeading);
+
+          matchedPackages.forEach(tag => {
+            const li = document.createElement("li");
+            li.textContent = tag;
+            li.addEventListener("click", () => {
+              selectedTests.push(tag);
+              renderSelectedTests();
+              searchInput.value = "";
+              resultsList.style.display = "none";
+            });
+            resultsList.appendChild(li);
+          });
+        }
+      } else {
+        resultsList.style.display = "none";
       }
-    });
+    } else if (activeType === 'lab') {
+      const matchedCollections = allCollections.filter(collection =>
+        collection.title.toLowerCase().includes(query)
+      ).map(c => c.title);
+
+      const uniqueCollections = [...new Set(matchedCollections)];
+
+      if (uniqueCollections.length && query.length > 0) {
+        resultsList.style.display = "block";
+
+        const labsHeading = document.createElement("li");
+        labsHeading.className = "search-category-heading";
+        labsHeading.textContent = "Labs:";
+        resultsList.appendChild(labsHeading);
+
+        uniqueCollections.forEach(title => {
+          const li = document.createElement("li");
+          li.textContent = title;
+          li.addEventListener("click", () => {
+            selectedTests.push(title);
+            renderSelectedTests();
+            searchInput.value = "";
+            resultsList.style.display = "none";
+          });
+          resultsList.appendChild(li);
+        });
+      } else {
+        resultsList.style.display = "none";
+      }
+    }
   });
-
-  // Remove duplicates
-  matchedTests = [...new Set(matchedTests)];
-  matchedPackages = [...new Set(matchedPackages)];
-
-  if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
-    resultsList.style.display = "block";
-
-    if (matchedTests.length) {
-      const testsHeading = document.createElement("li");
-      testsHeading.className = "search-category-heading";
-      testsHeading.textContent = "Tests:";
-      resultsList.appendChild(testsHeading);
-
-      matchedTests.forEach(tag => {
-        const li = document.createElement("li");
-        li.textContent = tag;
-        li.addEventListener("click", () => {
-          selectedTests.push(tag);
-          renderSelectedTests();
-          searchInput.value = "";
-          resultsList.style.display = "none";
-        });
-        resultsList.appendChild(li);
-      });
-    }
-
-    if (matchedPackages.length) {
-      const packagesHeading = document.createElement("li");
-      packagesHeading.className = "search-category-heading";
-      packagesHeading.textContent = "Packages:";
-      resultsList.appendChild(packagesHeading);
-
-      matchedPackages.forEach(tag => {
-        const li = document.createElement("li");
-        li.textContent = tag;
-        li.addEventListener("click", () => {
-          selectedTests.push(tag);
-          renderSelectedTests();
-          searchInput.value = "";
-          resultsList.style.display = "none";
-        });
-        resultsList.appendChild(li);
-      });
-    }
-  } else {
-    resultsList.style.display = "none";
-  }
-});
-
-
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-box")) {
@@ -386,9 +422,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   continueBtn.addEventListener("click", () => {
     const selectedHandles = selectedTests.join(",");
-    {% comment %} window.location.href = `/collections/vendors?q=${encodeURIComponent(selectedHandles)}`; {% endcomment %}
     window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
   });
+
   updateContinueButtonState();
 });
 </script>
