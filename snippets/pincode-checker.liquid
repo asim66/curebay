@@ -2,8 +2,8 @@
 
 <div id="pincodePopup" class="pincode-popup">
   <div class="pincode-content">
+    <button id="closePincodePopup" class="close-btn">✕</button>
     <h2>Enter Your Pincode to check if we serve your area</h2>
-    {% comment %} <p>Enter your pincode to check if we deliver to your area.</p> {% endcomment %}
     
     <div class="pincode-input-wrapper">
       <input type="text" id="pincodeInput" placeholder="Enter Pincode" maxlength="6" pattern="\d*"/>
@@ -83,6 +83,17 @@
         display: none;
         color: red;
     }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+    }
 </style>
 
 <script>
@@ -99,6 +110,7 @@
   const inputField = document.getElementById('pincodeInput');
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
+  const closeBtn = document.getElementById('closePincodePopup');
 
   inputField.addEventListener("input", function() {
     this.value = this.value.replace(/\D/g, "").slice(0, 6);
@@ -114,6 +126,10 @@
       message.innerText = "Sorry, service is not available in this pincode.";
       message.style.display = "block";
     }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    popup.style.display = 'none';
   });
 
   if (sessionStorage.getItem("userPincode")) {
