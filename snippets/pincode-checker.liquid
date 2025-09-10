@@ -113,6 +113,7 @@ const isPopupClosed = sessionStorage.getItem("pincodePopupClosed");
 // Detect if user is on a collection page by checking if `collection` object exists
 const isCollectionPage = {{ collection.handle ? 'true' : 'false' }};
 
+
 if ((!userPincode && isCollectionPage) && !isPopupClosed) {
   popup.style.display = "flex";
 } else {
