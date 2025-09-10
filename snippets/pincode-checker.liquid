@@ -15,124 +15,123 @@
 </div>
 
 <style>
-    .pincode-popup {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.5);
-        display: flex; justify-content: center; align-items: center;
-        z-index: 9999;
-    }
+.pincode-popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+}
 
-    .pincode-content {
-        background: #fff;
-        padding: 30px 25px;
-        border-radius: 12px;
-        text-align: center;
-        width: 350px;
-        position: relative;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        font-family: sans-serif;
-    }
+.pincode-content {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    font-family: sans-serif;
+}
 
-    .pincode-content h2 {
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 8px;
-        color: #0a3d4d;
-    }
+.pincode-content h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #0a3d4d;
+}
 
-    .pincode-content p {
-        font-size: 14px;
-        margin-bottom: 18px;
-        color: #333;
-    }
+.pincode-input-wrapper {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
 
-    .pincode-input-wrapper {
-        display: flex;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        overflow: hidden;
-    }
+.pincode-input-wrapper input {
+    border: none;
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+}
 
-    .pincode-input-wrapper input {
-        border: none;
-        flex: 1;
-        padding: 10px 12px;
-        font-size: 14px;
-        outline: none;
-    }
+.arrow-btn {
+    background: #007c89;
+    color: #fff;
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
 
-    .arrow-btn {
-        background: #007c89;
-        color: #fff;
-        border: none;
-        padding: 0 16px;
-        cursor: pointer;
-        font-size: 18px;
-        transition: background 0.3s;
-    }
+.arrow-btn:hover {
+    background: #005f66;
+}
 
-    .arrow-btn:hover {
-        background: #005f66;
-    }
+.pincode-message {
+    margin-top: 12px;
+    font-size: 14px;
+    display: none;
+    color: red;
+}
 
-    .pincode-message {
-        margin-top: 12px;
-        font-size: 14px;
-        display: none;
-        color: red;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        background: transparent;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #333;
-    }
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
 </style>
 
 <script>
-  let serviceablePincodes = [];
-  {% if serviceable_pincode.pin %}
-    serviceablePincodes = {{ serviceable_pincode.pin }};
-  {% endif %}
+let serviceablePincodes = [];
+{% if serviceable_pincode.pin %}
+  serviceablePincodes = {{ serviceable_pincode.pin }};
+{% endif %}
 
-  if (!Array.isArray(serviceablePincodes)) {
-    serviceablePincodes = [serviceablePincodes];
-  }
+if (!Array.isArray(serviceablePincodes)) {
+  serviceablePincodes = [serviceablePincodes];
+}
 
-  const popup = document.getElementById('pincodePopup');
-  const inputField = document.getElementById('pincodeInput');
-  const message = document.getElementById('pincodeMessage');
-  const checkBtn = document.getElementById('checkPincodeBtn');
-  const closeBtn = document.getElementById('closePincodePopup');
+const popup = document.getElementById('pincodePopup');
+const inputField = document.getElementById('pincodeInput');
+const message = document.getElementById('pincodeMessage');
+const checkBtn = document.getElementById('checkPincodeBtn');
+const closeBtn = document.getElementById('closePincodePopup');
 
-  inputField.addEventListener("input", function() {
-    this.value = this.value.replace(/\D/g, "").slice(0, 6);
-  });
+// Only show popup if no valid pincode or close action was done
+const userPincode = sessionStorage.getItem("userPincode");
+const isPopupClosed = sessionStorage.getItem("pincodePopupClosed");
 
-  checkBtn.addEventListener('click', function() {
-    let input = inputField.value.trim();
+if (userPincode || isPopupClosed) {
+  popup.style.display = "none";
+}
 
-    if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
-      sessionStorage.setItem("userPincode", input);
-      popup.style.display = 'none';
-    } else {
-      message.innerText = "Sorry, service is not available in this pincode.";
-      message.style.display = "block";
-    }
-  });
+inputField.addEventListener("input", function() {
+  this.value = this.value.replace(/\D/g, "").slice(0, 6);
+});
 
-  closeBtn.addEventListener('click', function() {
+checkBtn.addEventListener('click', function() {
+  const input = inputField.value.trim();
+
+  if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
+    sessionStorage.setItem("userPincode", input);
     popup.style.display = 'none';
-  });
-
-  if (sessionStorage.getItem("userPincode")) {
-    popup.style.display = "none";
+  } else {
+    message.innerText = "Sorry, service is not available in this pincode.";
+    message.style.display = "block";
   }
+});
+
+closeBtn.addEventListener('click', function() {
+  sessionStorage.setItem("pincodePopupClosed", "true");
+  popup.style.display = 'none';
+});
 </script>
