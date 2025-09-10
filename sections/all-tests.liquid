@@ -60,6 +60,9 @@
 }
 </style>
 
+{% assign all_collections = collections | map: 'title' %}
+{% assign all_collections_handles = collections | map: 'handle' %}
+
 <section class="alltests">
   <h2>{{ section.settings.heading }}</h2>
   <div class="vendors-container">
@@ -83,6 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const selectedTests = getSelectedTestsFromURL();
   const userPincode = sessionStorage.getItem('userPincode');
 
+  const allCollections = [
+    {% for collection in collections %}
+    { title: "{{ collection.title | escape }}", handle: "{{ collection.handle | escape }}" }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
   const allProducts = [
     {% for product in collections.all.products %}
     {
@@ -104,8 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const normalizeTag = tag => tag.replace(/^test_|^package_/, '').toLowerCase();
 
-  // Filter and deduplicate products in **one pass**
-  const uniqueProductsMap = new Map(); // key = handle
+  const uniqueProductsMap = new Map();
 
   allProducts.forEach(product => {
     const matchesTest = product.tags.some(tag => selectedTests.includes(normalizeTag(tag)));
@@ -122,6 +130,17 @@ document.addEventListener("DOMContentLoaded", function() {
   const testsProducts = uniqueProducts.filter(p => p.tags.some(tag => tag.startsWith('test_')));
   const packagesProducts = uniqueProducts.filter(p => p.tags.some(tag => tag.startsWith('package_')));
 
+  function findCollectionForVendor(vendor) {
+    const lowerVendor = vendor.toLowerCase();
+    for (const col of allCollections) {
+      if (col.title.toLowerCase().includes(lowerVendor)) {
+        return `/collections/${col.handle}`;
+      }
+    }
+    // fallback
+    return '/collections/all';
+  }
+
   function renderProducts(container, products, type) {
     container.innerHTML = '';
     if (products.length === 0) {
@@ -130,26 +149,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     products.forEach(product => {
+      const vendorCollectionLink = findCollectionForVendor(product.vendor || '');
+      const productTags = product.tags.map(tag => normalizeTag(tag)).join(', ');
+
       const vendorCard = document.createElement("div");
       vendorCard.className = "vendor-card";
 
-      const productTags = product.tags.map(tag => normalizeTag(tag)).join(', ');
-
       vendorCard.innerHTML = `
-        <a href='/collections/${product.vendor.toLowerCase().replace(/\s+/g, "-")}' class="vendor-link">
-            <img src="${product.image}" alt="${product.title}" class="vendor-image">
-            <div class="vendor-info">
+        <a href='${vendorCollectionLink}' class="vendor-link">
+          <img src="${product.image}" alt="${product.title}" class="vendor-image">
+          <div class="vendor-info">
             <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
             <h6 class="vendor-title">${product.title}</h6>
             <p class="vendor-tests">Tests Provided: ${productTags}</p>
             <p class="vendor-price">₹${product.price / 100}</p>
-            </div>
+          </div>
         </a>
 
         <button class="add-to-cart-btn" onclick="addToCart('${product.variantId.trim()}')">
-            Add to Cart
+          Add to Cart
         </button>
-        `;
+      `;
 
       container.appendChild(vendorCard);
     });
@@ -159,9 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
   renderProducts(packagesContainer, packagesProducts, 'packages');
 });
 
-
-
-// Add to cart function
+// Add to cart function remains the same
 function addToCart(variantId) {
   const variantIdNum = Number(variantId);
   fetch('/cart/add.js', {
@@ -179,7 +197,6 @@ function addToCart(variantId) {
   });
 }
 
-// Update cart drawer
 function drawerUpateCustom() {
   console.log('here');
   fetch(`${routes.cart_url}?section_id=cart-drawer`)
@@ -191,21 +208,16 @@ function drawerUpateCustom() {
       cartDrawer.append(html.documentElement.querySelector('#CartDrawer'));
       cartDrawer.classList.remove('is-empty');
 
-      // Get the cart icon container
       const cartIcon = document.querySelector('.header__icon--cart');
       if (!cartIcon) return;
 
-      // Find the cart bubble inside the cart icon
       let cartBubble = cartIcon.querySelector('.cart-count-bubble');
-
       if (!cartBubble) {
-        // Bubble doesn't exist — create it
         cartBubble = document.createElement('div');
         cartBubble.className = 'cart-count-bubble';
         cartBubble.innerHTML = '<span aria-hidden="true">1</span><span class="visually-hidden">1 item</span>';
         cartIcon.appendChild(cartBubble);
       } else {
-        // Bubble exists — increment count
         const visibleSpan = cartBubble.querySelector('span[aria-hidden="true"]');
         let currentQty = parseInt(visibleSpan.innerText) || 0;
         visibleSpan.innerText = currentQty + 1;
@@ -214,13 +226,10 @@ function drawerUpateCustom() {
         hiddenSpan.innerText = `${currentQty + 1} item${currentQty + 1 > 1 ? 's' : ''}`;
       }
 
-      // Open cart drawer
       const cartIconButton = document.querySelector('#cart-icon-bubble');
       if (cartIconButton) cartIconButton.click();
     })
     .catch(err => console.error('Cart update failed:', err));
 }
-
-
-
 </script>
+
