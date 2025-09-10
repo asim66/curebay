@@ -110,16 +110,7 @@ const closeBtn = document.getElementById('closePincodePopup');
 const userPincode = sessionStorage.getItem("userPincode");
 const isPopupClosed = sessionStorage.getItem("pincodePopupClosed");
 
-// Detect if user is on a collection page by checking if `collection` object exists
-const CollectionPage = '{{ collection.handle }}';
-let isCollectionPage;
-if (CollectionPage){
-  isCollectionPage = true;
-}else {
-  isCollectionPage = false;
-}
-
-if ((!userPincode && isCollectionPage) && !isPopupClosed) {
+if (!userPincode && !isPopupClosed) {
   popup.style.display = "flex";
 } else {
   popup.style.display = "none";
@@ -159,7 +150,7 @@ function validateCollectionPincode(pincode) {
   }
 }
 
-if (userPincode && isCollectionPage) {
+if (userPincode) {
   validateCollectionPincode(Number(userPincode));
 }
 </script>
