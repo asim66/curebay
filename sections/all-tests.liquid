@@ -136,20 +136,20 @@ document.addEventListener("DOMContentLoaded", function() {
       const productTags = product.tags.map(tag => normalizeTag(tag)).join(', ');
 
       vendorCard.innerHTML = `
-        <a href='/products/${product.handle}' class="vendor-link">
-          <img src="${product.image}" alt="${product.title}" class="vendor-image">
-          <div class="vendor-info">
+        <a href='/collections/${product.vendor.toLowerCase().replace(/\s+/g, "-")}' class="vendor-link">
+            <img src="${product.image}" alt="${product.title}" class="vendor-image">
+            <div class="vendor-info">
             <h3 class="product-vendor">${product.vendor || 'Unknown Vendor'}</h3>
             <h6 class="vendor-title">${product.title}</h6>
             <p class="vendor-tests">Tests Provided: ${productTags}</p>
             <p class="vendor-price">₹${product.price / 100}</p>
-          </div>
+            </div>
         </a>
 
         <button class="add-to-cart-btn" onclick="addToCart('${product.variantId.trim()}')">
-          Add to Cart
+            Add to Cart
         </button>
-      `;
+        `;
 
       container.appendChild(vendorCard);
     });
