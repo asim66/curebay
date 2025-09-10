@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const continueBtn = document.getElementById("continueBtn");
 
   let activeType = "test";
-  let selectedTests = [];
+  let selectedItems = []; // Can store selected tests or labs
 
   const allProducts = [
     {% for product in collections.all.products %}
@@ -262,11 +262,14 @@ document.addEventListener("DOMContentLoaded", function() {
       activeType = tab.dataset.type;
       resultsList.style.display = "none";
       searchInput.value = "";
+      selectedItems = [];
+      updateContinueButtonState();
+      renderSelectedItems();
     });
   });
 
   function updateContinueButtonState() {
-    if (selectedTests.length === 0) {
+    if (selectedItems.length === 0) {
       continueBtn.classList.add("disabled");
       continueBtn.disabled = true;
     } else {
@@ -275,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  function renderSelectedTests() {
+  function renderSelectedItems() {
     let parentDiv = searchBox.querySelector(".selected-test-wrapper");
 
     if (!parentDiv) {
@@ -286,18 +289,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     parentDiv.innerHTML = "";
 
-    selectedTests.forEach((test, index) => {
+    selectedItems.forEach((item, index) => {
       const div = document.createElement("div");
       div.className = "selected-test";
-      div.innerHTML = `${test} <span class="remove-test" data-index="${index}">✕</span>`;
+      div.innerHTML = `${item} <span class="remove-test" data-index="${index}">✕</span>`;
       parentDiv.appendChild(div);
     });
 
     document.querySelectorAll(".remove-test").forEach(btn => {
       btn.addEventListener("click", () => {
         const idx = btn.getAttribute("data-index");
-        selectedTests.splice(idx, 1);
-        renderSelectedTests();
+        selectedItems.splice(idx, 1);
+        renderSelectedItems();
         updateContinueButtonState();
       });
     });
@@ -328,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           if (type) {
             const words = cleanTag.split(/\s+/);
-            if (words.some(word => word.toLowerCase().includes(query)) && !selectedTests.includes(cleanTag)) {
+            if (words.some(word => word.toLowerCase().includes(query)) && !selectedItems.includes(cleanTag)) {
               if (type === 'test') matchedTests.push(cleanTag);
               else matchedPackages.push(cleanTag);
             }
@@ -352,8 +355,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const li = document.createElement("li");
             li.textContent = tag;
             li.addEventListener("click", () => {
-              selectedTests.push(tag);
-              renderSelectedTests();
+              selectedItems.push(tag);
+              renderSelectedItems();
               searchInput.value = "";
               resultsList.style.display = "none";
             });
@@ -371,8 +374,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const li = document.createElement("li");
             li.textContent = tag;
             li.addEventListener("click", () => {
-              selectedTests.push(tag);
-              renderSelectedTests();
+              selectedItems.push(tag);
+              renderSelectedItems();
               searchInput.value = "";
               resultsList.style.display = "none";
             });
@@ -383,26 +386,21 @@ document.addEventListener("DOMContentLoaded", function() {
         resultsList.style.display = "none";
       }
     } else if (activeType === 'lab') {
-      const matchedCollections = allCollections.filter(collection =>
-        collection.title.toLowerCase().includes(query)
-      ).map(c => c.title);
+      const matchedCollections = allCollections.filter(col =>
+        col.title.toLowerCase().includes(query) && !selectedItems.includes(col.title)
+      ).map(col => col.title);
 
       const uniqueCollections = [...new Set(matchedCollections)];
 
       if (uniqueCollections.length && query.length > 0) {
         resultsList.style.display = "block";
 
-        const labsHeading = document.createElement("li");
-        labsHeading.className = "search-category-heading";
-        labsHeading.textContent = "Labs:";
-        resultsList.appendChild(labsHeading);
-
         uniqueCollections.forEach(title => {
           const li = document.createElement("li");
           li.textContent = title;
           li.addEventListener("click", () => {
-            selectedTests.push(title);
-            renderSelectedTests();
+            selectedItems.push(title);
+            renderSelectedItems();
             searchInput.value = "";
             resultsList.style.display = "none";
           });
@@ -421,8 +419,15 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   continueBtn.addEventListener("click", () => {
-    const selectedHandles = selectedTests.join(",");
-    window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
+    if (activeType === 'test') {
+      const selectedHandles = selectedItems.join(",");
+      window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
+    } else if (activeType === 'lab') {
+      const selectedCollection = allCollections.find(col => col.title === selectedItems[0]);
+      if (selectedCollection) {
+        window.location.href = `/collections/${selectedCollection.handle}`;
+      }
+    }
   });
 
   updateContinueButtonState();
