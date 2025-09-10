@@ -1,5 +1,4 @@
 {% assign serviceable_pincode = shop.metaobjects.serviceable_pincode["serviceable-pincode-dpr6mvxj"] %}
-{% assign collection_available_locations = collection.metafields.custom.available_location %}
 
 <div id="pincodePopup" class="pincode-popup">
   <div class="pincode-content">
@@ -107,12 +106,11 @@ const message = document.getElementById('pincodeMessage');
 const checkBtn = document.getElementById('checkPincodeBtn');
 const closeBtn = document.getElementById('closePincodePopup');
 
+// Only show popup if no valid pincode or close action was done
 const userPincode = sessionStorage.getItem("userPincode");
 const isPopupClosed = sessionStorage.getItem("pincodePopupClosed");
 
-if (!userPincode && !isPopupClosed) {
-  popup.style.display = "flex";
-} else {
+if (userPincode || isPopupClosed) {
   popup.style.display = "none";
 }
 
@@ -126,7 +124,6 @@ checkBtn.addEventListener('click', function() {
   if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
     sessionStorage.setItem("userPincode", input);
     popup.style.display = 'none';
-    validateCollectionPincode(Number(input));
   } else {
     message.innerText = "Sorry, service is not available in this pincode.";
     message.style.display = "block";
@@ -137,20 +134,4 @@ closeBtn.addEventListener('click', function() {
   sessionStorage.setItem("pincodePopupClosed", "true");
   popup.style.display = 'none';
 });
-
-function validateCollectionPincode(pincode) {
-  const availableLocations = {{ collection_available_locations | json | default: '[]' }};
-  
-  const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-  const quickViewButtons = document.querySelectorAll('.quick-view-btn');
-
-  if (!availableLocations.includes(pincode)) {
-    addToCartButtons.forEach(btn => btn.disabled = true);
-    quickViewButtons.forEach(btn => btn.style.display = 'none');
-  }
-}
-
-if (userPincode) {
-  validateCollectionPincode(Number(userPincode));
-}
 </script>
