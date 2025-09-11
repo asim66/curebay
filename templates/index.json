@@ -121,37 +121,37 @@
         "featured_collection_zJxm4p": {
           "type": "featured_collection",
           "settings": {
-            "collection": "all-tests"
+            "collection": "diabetes-care-package-1"
           }
         },
         "featured_collection_BWcX7W": {
           "type": "featured_collection",
           "settings": {
-            "collection": "diabetes-care-package"
+            "collection": "essential-wellness-package"
           }
         },
         "featured_collection_bntUWg": {
           "type": "featured_collection",
           "settings": {
-            "collection": "senior-citizen-health-package"
+            "collection": "curebay-sampurna-swathya-check-up"
           }
         },
         "featured_collection_yYGgqW": {
           "type": "featured_collection",
           "settings": {
-            "collection": "thyroid-profile-package"
+            "collection": "curebay-swasthya-50-parameters"
           }
         },
         "featured_collection_3kRdPY": {
           "type": "featured_collection",
           "settings": {
-            "collection": "comprehensive-full-body-checkup"
+            "collection": "vital-screening-package-82-parameters"
           }
         },
         "featured_collection_drLaLJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "cardiac-care-package"
+            "collection": "advanced-preventive-package"
           }
         },
         "featured_collection_KnWgqQ": {
@@ -207,7 +207,7 @@
         "heading_size": "h2",
         "description": "<p>From Blood Sugar to Full Body Check-Up – All in One Place</p>",
         "text_size_block": "small",
-        "text_color": "secondary",
+        "text_color": "main",
         "show_description": false,
         "countdown_label": "Get The Report In 24 Hours",
         "countdown_font_weight": "400",
@@ -356,7 +356,7 @@
             "link_label": "Book Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "curebay-select-healthcheck-package",
+            "product": "vital-screening-package-82-parameters",
             "product_heading_font_family": "heading-font"
           }
         },
@@ -374,7 +374,7 @@
             "link_label": "Shop Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "curebay-mselect-healthcare-package-thyroid-function-iron-deficiency-liver-profile-lipid-profile-renal-profile-rbs",
+            "product": "curebay-sampurna-swathya-check-up",
             "product_heading_font_family": "heading-font"
           }
         }
@@ -455,7 +455,7 @@
         "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1"
       ],
       "settings": {
-        "product": "curebay-sampurna-swathya-check-up",
+        "product": "swasthya-bharat-package-cbc-lft-kft-lipid-profile-rbs-thyroid-profile-1",
         "color_scheme": "scheme-1",
         "secondary_background": true,
         "secondary_background_color": "#f4f2ec",
@@ -481,7 +481,7 @@
           "type": "collection",
           "settings": {
             "collection": "predlab",
-            "collection_title": "Lab Tests",
+            "collection_title": "PredLab",
             "show_view_all": false,
             "button_label": "View all",
             "button_style_secondary": false
@@ -490,8 +490,8 @@
         "9345b7b0-cbbd-4c30-87b1-4e33079f26ba": {
           "type": "collection",
           "settings": {
-            "collection": "health-packages",
-            "collection_title": "",
+            "collection": "prolife-diagnostic",
+            "collection_title": "SpectroQ BBSR",
             "show_view_all": false,
             "button_label": "View all",
             "button_style_secondary": false
@@ -500,8 +500,8 @@
         "147d461c-00ee-48ba-b203-96b9477efb60": {
           "type": "collection",
           "settings": {
-            "collection": "basic-health-checkup-package",
-            "collection_title": "Family Health Check-Up",
+            "collection": "hope-diagnostic",
+            "collection_title": "Hope Diagnostic",
             "show_view_all": false,
             "button_label": "View all",
             "button_style_secondary": false
