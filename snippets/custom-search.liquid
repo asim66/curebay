@@ -235,11 +235,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const continueBtn = document.getElementById("continueBtn");
 
   let activeType = "test";
-  let selectedItems = []; // Can store selected tests or labs
+  let selectedItems = []; 
 
   const allProducts = [
     {% for product in collections.all.products %}
     {
+      title: "{{ product.title | escape }}",
       handle: "{{ product.handle | escape }}",
       tags: {{ product.tags | json }}
     }{% unless forloop.last %},{% endunless %}
@@ -315,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (activeType === 'test') {
       let matchedTests = [];
       let matchedPackages = [];
+      let matchedProducts = [];
 
       allProducts.forEach(product => {
         product.tags.forEach(tag => {
@@ -337,12 +339,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           }
         });
+
+        if (product.title.toLowerCase().includes(query) && !selectedItems.includes(product.title)) {
+          matchedProducts.push({ title: product.title, handle: product.handle });
+        }
       });
 
       matchedTests = [...new Set(matchedTests)];
       matchedPackages = [...new Set(matchedPackages)];
 
-      if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
+      if ((matchedTests.length || matchedPackages.length || matchedProducts.length) && query.length > 0) {
         resultsList.style.display = "block";
 
         if (matchedTests.length) {
@@ -355,10 +361,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const li = document.createElement("li");
             li.textContent = tag;
             li.addEventListener("click", () => {
-              selectedItems.push(tag);
-              renderSelectedItems();
-              searchInput.value = "";
-              resultsList.style.display = "none";
+              window.location.href = `/pages/tests?tests=${encodeURIComponent(tag)}`;
             });
             resultsList.appendChild(li);
           });
@@ -374,10 +377,23 @@ document.addEventListener("DOMContentLoaded", function() {
             const li = document.createElement("li");
             li.textContent = tag;
             li.addEventListener("click", () => {
-              selectedItems.push(tag);
-              renderSelectedItems();
-              searchInput.value = "";
-              resultsList.style.display = "none";
+              window.location.href = `/pages/tests?tests=${encodeURIComponent(tag)}`;
+            });
+            resultsList.appendChild(li);
+          });
+        }
+
+        if (matchedProducts.length) {
+          const productsHeading = document.createElement("li");
+          productsHeading.className = "search-category-heading";
+          productsHeading.textContent = "Products:";
+          resultsList.appendChild(productsHeading);
+
+          matchedProducts.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = product.title;
+            li.addEventListener("click", () => {
+              window.location.href = `/products/${product.handle}`;
             });
             resultsList.appendChild(li);
           });
@@ -433,5 +449,6 @@ document.addEventListener("DOMContentLoaded", function() {
   updateContinueButtonState();
 });
 </script>
+
 
 
