@@ -203,7 +203,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "1000+ Lab Tests Available",
+        "title": "550+ Lab Tests Available",
         "heading_size": "h2",
         "description": "<p>From Blood Sugar to Full Body Check-Up – All in One Place</p>",
         "text_size_block": "small",
@@ -322,7 +322,7 @@
         "template--16766664409325__fee2a82b-1a9b-41ec-8ac2-d9d964c70db6-heading-1": {
           "type": "heading",
           "settings": {
-            "text": "<p>Top-Rated Diagnostic Packages</p>",
+            "text": "<p>Exclusive Packages for you & your family' with 'Top-Rated Diagnostic Packages'</p>",
             "highlight_text": "#003e52"
           }
         }
