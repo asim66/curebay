@@ -1,1 +1,83 @@
-{"type":"aside","name":"Features","sections":{"notification_f8xtxd":{"type":"notification","settings":{"enable_in_customizer":true,"color_scheme":"","show_notifications_times":1,"notification":"Use Code \"Mycurebay\" To Get 10% Off","custom_text_color":"#003e52","highlight_text":"10%","custom_highlight_text_color":"#088599"}},"scroll_to_top_CLiYUy":{"type":"scroll-to-top","name":"Scroll to top","settings":{"hide_button":false,"button_style":"round","arrow_style":"arrow","arrows_btn_color":"#ffffff","arrows_btn_color_hover":"#ffffff","arrows_btn_bg_color":"#088599","arrows_btn_bg_color_hover":"#067182"}},"social_share_gk7dxC":{"type":"social-share","name":"Social share","settings":{"color_scheme":"","social_label":"Share","show_linkedin_share":true,"show_fb_share":true,"show_twitter_share":true,"show_pinterest_share":false,"show_telegram_share":false,"show_snapchat_share":false,"show_tumblr_share":false,"show_mobile":false}},"promo_popup_dFMQcL":{"type":"promo-popup","name":"Promo popup","settings":{"enable_in_customizer":false,"popup_type":"popup_discount","enable_promo_popup":true,"color_scheme":"","popup_text":"<h3>Welcome to CureBay!<\/h3><p>Join our newsletter for exclusive updates and offers.<\/p>","popup_description":"<h6>Get 10% off on your first diagnostic booking<\/h6>","text_alignment":"left","popup_tag":"Discount code.","popup_timeout":15,"popup_times":1,"discount_popup_heading":"Congratulations! You’ve successfully joined our list","discount_popup_description":"<p>Enjoy 10% off your first booking when you sign up. Terms and conditions apply. Discount code valid for 30 days.<\/p>","text_color":"foreground-secondary","discount_promocode":"Promo","text_alignment_promo":"left"}}},"order":["notification_f8xtxd","scroll_to_top_CLiYUy","social_share_gk7dxC","promo_popup_dFMQcL"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "aside",
+  "name": "Features",
+  "sections": {
+    "notification_f8xtxd": {
+      "type": "notification",
+      "settings": {
+        "enable_in_customizer": true,
+        "color_scheme": "",
+        "show_notifications_times": 1,
+        "notification": "Use Code \"Mycurebay\" To Get 10% Off",
+        "custom_text_color": "#003e52",
+        "highlight_text": "10%",
+        "custom_highlight_text_color": "#088599"
+      }
+    },
+    "scroll_to_top_CLiYUy": {
+      "type": "scroll-to-top",
+      "name": "Scroll to top",
+      "settings": {
+        "hide_button": false,
+        "button_style": "round",
+        "arrow_style": "arrow",
+        "arrows_btn_color": "#ffffff",
+        "arrows_btn_color_hover": "#ffffff",
+        "arrows_btn_bg_color": "#088599",
+        "arrows_btn_bg_color_hover": "#067182"
+      }
+    },
+    "social_share_gk7dxC": {
+      "type": "social-share",
+      "name": "Social share",
+      "settings": {
+        "color_scheme": "",
+        "social_label": "Share",
+        "show_linkedin_share": true,
+        "show_fb_share": true,
+        "show_twitter_share": true,
+        "show_pinterest_share": false,
+        "show_telegram_share": false,
+        "show_snapchat_share": false,
+        "show_tumblr_share": false,
+        "show_mobile": false
+      }
+    },
+    "promo_popup_dFMQcL": {
+      "type": "promo-popup",
+      "name": "Promo popup",
+      "settings": {
+        "enable_in_customizer": false,
+        "popup_type": "popup_discount",
+        "enable_promo_popup": false,
+        "color_scheme": "",
+        "popup_text": "<h3>Welcome to CureBay!</h3><p>Join our newsletter for exclusive updates and offers.</p>",
+        "popup_description": "<h6>Get 10% off on your first diagnostic booking</h6>",
+        "text_alignment": "left",
+        "popup_tag": "Discount code.",
+        "popup_timeout": 15,
+        "popup_times": 1,
+        "discount_popup_heading": "Congratulations! You’ve successfully joined our list",
+        "discount_popup_description": "<p>Enjoy 10% off your first booking when you sign up. Terms and conditions apply. Discount code valid for 30 days.</p>",
+        "text_color": "foreground-secondary",
+        "discount_promocode": "Promo",
+        "text_alignment_promo": "left"
+      }
+    }
+  },
+  "order": [
+    "notification_f8xtxd",
+    "scroll_to_top_CLiYUy",
+    "social_share_gk7dxC",
+    "promo_popup_dFMQcL"
+  ]
+}

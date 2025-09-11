@@ -49,8 +49,8 @@
       ],
       "name": "custom image banner",
       "settings": {
-        "heading": "Smart Diagnostics. Smarter Health",
-        "subheading": "Search Tests or Labs",
+        "heading": "",
+        "subheading": "Smart Diagnostics. Smarter Health.",
         "search_placeholder": "Start typing...",
         "tab1": "Search by Test",
         "tab2": "Search by Lab",
@@ -181,8 +181,8 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "title": "Get Tested from the Comfort of Your Home",
-        "heading_size": "h2",
+        "title": "Smarter Packages for Every Health Concern",
+        "heading_size": "h3",
         "heading_alignment": "center",
         "image_ratio": "square",
         "image_type": "cover_style_2",
@@ -514,7 +514,7 @@
         "147d461c-00ee-48ba-b203-96b9477efb60"
       ],
       "settings": {
-        "title": "Book Tests Anytime, Anywhere",
+        "title": "Find the Right Test & Package for You",
         "heading_alignment": "center",
         "heading_size": "h3",
         "description": "",
