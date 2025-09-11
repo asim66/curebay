@@ -1555,13 +1555,13 @@ summary::-webkit-details-marker {
 .media>*:not(.zoom):not(.deferred-media__poster-button),
 .media model-viewer {
   display: block;
-  max-width: 85%;
+  max-width: 75%;
   position: absolute;
   top: 0;
   margin: auto;
   /* left: 0; */
   height: 100%;
-  width: 85%;
+  width: 75%;
   transform: translateX(-50%);
   left: 50%;
 }
