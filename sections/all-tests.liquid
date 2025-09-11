@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Add to cart function remains the same
 function addToCart(variantId) {
+    
   const variantIdNum = Number(variantId);
   fetch('/cart/add.js', {
     method: 'POST',
