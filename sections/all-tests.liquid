@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
     container.innerHTML = '';
     if (products.length === 0) {
       container.innerHTML = `<p>No ${type} found for selected tests/pincode.</p>`;
+      container.closest('.vendors-container').style.display = 'none';
       return;
     }
 
