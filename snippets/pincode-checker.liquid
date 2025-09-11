@@ -91,47 +91,55 @@
 </style>
 
 <script>
-let serviceablePincodes = [];
-{% if serviceable_pincode.pin %}
-  serviceablePincodes = {{ serviceable_pincode.pin }};
-{% endif %}
+function initializePincodePopup() {
+  let serviceablePincodes = [];
+  {% if serviceable_pincode.pin %}
+    serviceablePincodes = {{ serviceable_pincode.pin }};
+  {% endif %}
 
-if (!Array.isArray(serviceablePincodes)) {
-  serviceablePincodes = [serviceablePincodes];
-}
+  if (!Array.isArray(serviceablePincodes)) {
+    serviceablePincodes = [serviceablePincodes];
+  }
 
-const popup = document.getElementById('pincodePopup');
-const inputField = document.getElementById('pincodeInput');
-const message = document.getElementById('pincodeMessage');
-const checkBtn = document.getElementById('checkPincodeBtn');
-const closeBtn = document.getElementById('closePincodePopup');
+  const popup = document.getElementById('pincodePopup');
+  const inputField = document.getElementById('pincodeInput');
+  const message = document.getElementById('pincodeMessage');
+  const checkBtn = document.getElementById('checkPincodeBtn');
+  const closeBtn = document.getElementById('closePincodePopup');
 
-// Only show popup if no valid pincode or close action was done
-const userPincode = sessionStorage.getItem("userPincode");
-const isPopupClosed = sessionStorage.getItem("pincodePopupClosed");
+  const userPincode = sessionStorage.getItem('userPincode');
+  const isPopupClosed = sessionStorage.getItem('pincodePopupClosed');
 
-if (userPincode || isPopupClosed) {
-  popup.style.display = "none";
-}
-
-inputField.addEventListener("input", function() {
-  this.value = this.value.replace(/\D/g, "").slice(0, 6);
-});
-
-checkBtn.addEventListener('click', function() {
-  const input = inputField.value.trim();
-
-  if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
-    sessionStorage.setItem("userPincode", input);
+  if (userPincode || isPopupClosed) {
     popup.style.display = 'none';
   } else {
-    message.innerText = "Sorry, service is not available in this pincode.";
-    message.style.display = "block";
+    popup.style.display = 'flex';
   }
-});
 
-closeBtn.addEventListener('click', function() {
-  sessionStorage.setItem("pincodePopupClosed", "true");
-  popup.style.display = 'none';
-});
+  inputField.addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 6);
+  });
+
+  checkBtn.addEventListener('click', function () {
+    const input = inputField.value.trim();
+
+    if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
+      sessionStorage.setItem('userPincode', input);
+      popup.style.display = 'none';
+    } else {
+      message.innerText = 'Sorry, service is not available in this pincode.';
+      message.style.display = 'block';
+    }
+  });
+
+  closeBtn.addEventListener('click', function () {
+    sessionStorage.setItem('pincodePopupClosed', 'true');
+    popup.style.display = 'none';
+  });
+}
+
+// Make it global
+window.initializePincodePopup = initializePincodePopup;
+initializePincodePopup();
 </script>
+
