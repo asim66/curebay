@@ -1,1 +1,893 @@
-{"sections":{"custom_image_banner_RRA7Wj":{"type":"custom-image-banner","blocks":{"heading_MPmwrL":{"type":"heading","disabled":true,"settings":{"heading":"Image banner","heading_size":"h2"}},"text_KT4EXa":{"type":"text","disabled":true,"settings":{"text":"Give customers details about the banner image(s) or content on the template.","text_style":"body","text_color":"main"}},"buttons_jXJmxK":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Button label","button_link_1":"","button_style_secondary_1":false,"button_label_2":"Button label","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_MPmwrL","text_KT4EXa","buttons_jXJmxK"],"name":"custom image banner","settings":{"heading":"Smart Diagnostics. Smarter Health","subheading":"Search Tests or Labs","search_placeholder":"Start typing...","tab1":"Search by Test","tab2":"Search by Lab","full_width":true,"image":"shopify:\/\/shop_images\/hero_banner-_Background_png.png","image_overlay_opacity":0,"image_height":"medium","content_width":700,"desktop_content_position":"middle-center","show_text_box":true,"desktop_content_alignment":"center","color_scheme":"","image_behavior":"none","mobile_content_alignment":"center","stack_images_on_mobile":true,"show_text_below":true,"padding_top":0,"padding_bottom":0}},"image_banner_8fBx8p":{"type":"image-banner","blocks":{"heading_9gMPLj":{"type":"heading","settings":{"heading":"Book Your Pathology Test Online – Fast, Easy & Reliable","heading_size":"h2"}},"buttons_9QBfM6":{"type":"buttons","settings":{"button_label_1":"SHOP NOW","button_link_1":"","button_style_secondary_1":false,"button_label_2":"EXPLORE OUR COLLECTIONS","button_link_2":"","button_style_secondary_2":true}}},"block_order":["heading_9gMPLj","buttons_9QBfM6"],"disabled":true,"settings":{"full_width":true,"image_overlay_opacity":10,"image_height":"large","content_width":740,"desktop_content_position":"bottom-left","show_text_box":false,"desktop_content_alignment":"left","color_scheme":"scheme-3","image_behavior":"none","mobile_content_alignment":"center","stack_images_on_mobile":true,"show_text_below":false,"padding_top":0,"padding_bottom":0}},"collection_list_yY9iXL":{"type":"collection-list","blocks":{"featured_collection_zJxm4p":{"type":"featured_collection","settings":{"collection":"all-tests"}},"featured_collection_BWcX7W":{"type":"featured_collection","settings":{"collection":"diabetes-care-package"}},"featured_collection_bntUWg":{"type":"featured_collection","settings":{"collection":"senior-citizen-health-package"}},"featured_collection_yYGgqW":{"type":"featured_collection","settings":{"collection":"thyroid-profile-package"}},"featured_collection_3kRdPY":{"type":"featured_collection","settings":{"collection":"comprehensive-full-body-checkup"}},"featured_collection_drLaLJ":{"type":"featured_collection","settings":{"collection":"cardiac-care-package"}},"featured_collection_KnWgqQ":{"type":"featured_collection","settings":{"collection":"women-s-wellness-package"}},"featured_collection_DR7y68":{"type":"featured_collection","settings":{"collection":"basic-health-checkup-package"}}},"block_order":["featured_collection_zJxm4p","featured_collection_BWcX7W","featured_collection_bntUWg","featured_collection_yYGgqW","featured_collection_3kRdPY","featured_collection_drLaLJ","featured_collection_KnWgqQ","featured_collection_DR7y68"],"name":"t:sections.collection-list.presets.name","settings":{"title":"Get Tested from the Comfort of Your Home","heading_size":"h2","heading_alignment":"center","image_ratio":"square","image_type":"cover_style_2","cover_overlay":"linear-gradient(\n  to top,\n  #000F11 0%,\n  #000F11cc 20%,\n  #000F1180 40%,\n  #000F1140 60%,\n  #000F111a 80%,\n  transparent 100%\n)","card_heading_size":"h6","cover_color_scheme":"","show_description":false,"link_label":"","columns_desktop":4,"color_scheme":"scheme-2","show_view_all":false,"columns_mobile":"2","swipe_on_mobile":false,"padding_top":130,"padding_bottom":8}},"featured_collection":{"type":"featured-collection","settings":{"title":"1000+ Lab Tests Available","heading_size":"h2","description":"<p>From Blood Sugar to Full Body Check-Up – All in One Place<\/p>","text_size_block":"medium","text_color":"secondary","show_description":false,"countdown_label":"Get The Report In 24 Hours","countdown_font_weight":"400","numbers_size":"h5","countdown_date":"July 31, 2024","countdown_end":"hide_countdown","days_label":"Days","hours_label":"Hours","mins_label":"Minutes","secs_label":"Seconds","countdown_label_bg":"#003e52","label_text_color":"secondary","collection":"all-tests","products_to_show":8,"columns_desktop":4,"full_width":false,"show_view_all":false,"view_all_style":"solid","enable_desktop_slider":false,"color_scheme":"scheme-1","image_ratio":"landscape","show_secondary_image":true,"show_vendor":false,"show_rating":true,"enable_quick_add":true,"columns_mobile":"2","swipe_on_mobile":false,"padding_top":130,"padding_bottom":130}},"d9c67ae0-02b4-4b54-a01f-6f10449397c1":{"type":"multicolumn","blocks":{"template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-1":{"type":"column","settings":{"item_color_scheme":"scheme-4","image":"shopify:\/\/shop_images\/Comprehensive_Full-body_Check-ups.jpg","image_cover":true,"image_overlay_opacity":35,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"Comprehensive Full-body Check-up","heading_size_block":"h4","heading_color":"foreground","subheading":"","text":"","text_size_block":"","text_color":"foreground","button_style":"link","link_label":"Explore Now","link":""}},"template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-2":{"type":"column","settings":{"item_color_scheme":"scheme-4","image":"shopify:\/\/shop_images\/Preventive_Healthcare.jpg","image_cover":true,"image_overlay_opacity":35,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"Preventive Health Care Packages","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"","text_color":"foreground","button_style":"link","link_label":"Explore Now","link":""}}},"block_order":["template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-1","template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-2"],"settings":{"title":"","heading_alignment":"center","heading_size":"h2","description":"","text_size_block":"small","text_color":"main","image_width":"full","image_ratio":"square","columns_desktop":2,"grid_type":"grid","column_divider":false,"column_alignment":"left","background_style":"primary","button_label":"","button_link":"","color_scheme":"scheme-2","background_color_full_width":true,"background_border_radius":false,"columns_mobile":"1","swipe_on_mobile":false,"padding_top":130,"padding_bottom":130}},"fee2a82b-1a9b-41ec-8ac2-d9d964c70db6":{"type":"scrolling-banner","blocks":{"template--16766664409325__fee2a82b-1a9b-41ec-8ac2-d9d964c70db6-heading-1":{"type":"heading","settings":{"text":"<p>Top-Rated Diagnostic Packages<\/p>","highlight_text":"#003e52"}}},"block_order":["template--16766664409325__fee2a82b-1a9b-41ec-8ac2-d9d964c70db6-heading-1"],"settings":{"color_scheme":"","scroll_speed":15,"scroll_direction":"direction-left","items_padding":30,"padding_top":0,"padding_bottom":0}},"4cdd6535-a1f1-4308-afd3-00c3b607afc0":{"type":"product-slider","blocks":{"template--16766664409325__4cdd6535-a1f1-4308-afd3-00c3b607afc0-Slide-1":{"type":"Slide","settings":{"image":"shopify:\/\/shop_images\/adult-blowing-their-snot-tissue.jpg","enable_img_radius":true,"slide_title":"Seasonal Health Screening Packages","highlight_slide_title":"","heading_size":"h2","slide_description":"<p>Detect common infections, allergies, and deficiencies early to keep you and your family protected year-round<\/p>","text_size_block":"small","text_color":"main","link_label":"Shop Now","enable_add_to_cart":true,"color_scheme_slide":"scheme-7","product":"curebay-select-healthcheck-package","product_heading_font_family":"heading-font"}},"slide_qJk3fM":{"type":"Slide","settings":{"image":"shopify:\/\/shop_images\/indian-family-nature-walk-with-local-expert-lush-forest-daytime-promoting-eco-touris.jpg","enable_img_radius":true,"slide_title":"Complete health checkups for your loved ones","highlight_slide_title":"","heading_size":"h3","slide_description":"<p>CureBay Family Wellness Combos offer essential health checkups for all your loved ones in a single, affordable package<\/p>","text_size_block":"small","text_color":"main","link_label":"Shop Now","enable_add_to_cart":true,"color_scheme_slide":"scheme-7","product":"curebay-mselect-healthcare-package-thyroid-function-iron-deficiency-liver-profile-lipid-profile-renal-profile-rbs","product_heading_font_family":"heading-font"}}},"block_order":["template--16766664409325__4cdd6535-a1f1-4308-afd3-00c3b607afc0-Slide-1","slide_qJk3fM"],"settings":{"image_position":"image-right","color_scheme":"","padding_top":130,"padding_bottom":130}},"ad33c27c-9ae9-44e8-a4ec-4b7a535c903a":{"type":"featured-product","blocks":{"template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-title-1":{"type":"title","settings":{"heading_size":"h3"}},"template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-price-1":{"type":"price","settings":{"price_size":"price--medium"}},"2e7d6db5-6715-43fe-a0dd-48f9b1837b5d":{"type":"inventory","settings":{"inventory_base":30,"inventory_threshold":10,"show_inventory_quantity":true,"show_progress_bar":true,"label_font_size":"extra-small","color_in_stock":"#2cb683","color_low_stock":"#ff353c"}},"b7c5acb6-8ab1-4bf3-8127-2291a65b8040":{"type":"text","settings":{"text":"Our curated collections are meant to inspire your creative side and provide you with product options.","text_size_block":"small","text_style":"body","text_color":"foreground-secondary"}},"template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-variant_picker-1":{"type":"variant_picker","settings":{"color_scheme":"","picker_type":"button","swatch_picker_type":"button","swatch_shape":"square","swatches_style":"outlined"}},"template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true,"quantity_color_scheme":"","color_scheme":""}}},"block_order":["template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-title-1","template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-price-1","2e7d6db5-6715-43fe-a0dd-48f9b1837b5d","b7c5acb6-8ab1-4bf3-8127-2291a65b8040","template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-variant_picker-1","template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1"],"settings":{"product":"curebay-mselect-healthcare-package-thyroid-function-iron-deficiency-liver-profile-lipid-profile-renal-profile-rbs","color_scheme":"scheme-1","secondary_background":true,"secondary_background_color":"#f4f2ec","enable_sticky_info":false,"media_size":"small","constrain_to_viewport":true,"media_fit":"cover","gallery_layout":"thumbnail_slider","thumbnail_position":"left","media_position":"left","mobile_thumbnails":"show","image_zoom":"none","hide_variants":false,"enable_video_looping":false,"padding_top":130,"padding_bottom":130}},"355af80a-5c77-40fb-83a7-dbff9c1c8ef4":{"type":"collection-tabs","blocks":{"ead2f763-03c8-4074-a7d3-5e991c045492":{"type":"collection","settings":{"collection":"all-tests","collection_title":"Lab Tests","show_view_all":false,"button_label":"View all","button_style_secondary":false}},"9345b7b0-cbbd-4c30-87b1-4e33079f26ba":{"type":"collection","settings":{"collection":"health-packages","collection_title":"","show_view_all":false,"button_label":"View all","button_style_secondary":false}},"147d461c-00ee-48ba-b203-96b9477efb60":{"type":"collection","disabled":true,"settings":{"collection":"basic-health-checkup-package","collection_title":"Family Health Check-Up","show_view_all":false,"button_label":"View all","button_style_secondary":false}}},"block_order":["ead2f763-03c8-4074-a7d3-5e991c045492","9345b7b0-cbbd-4c30-87b1-4e33079f26ba","147d461c-00ee-48ba-b203-96b9477efb60"],"settings":{"title":"Find the Right Test or Package for You","heading_alignment":"center","heading_size":"h3","description":"","text_size_block":"small","tabs_font_size":"h6","tabs_font_weight":"fw-600","tabs_font_family":"heading-font","card_heading_size":"h4","image_ratio":"adapt","image_overlay_opacity":0,"reverse_card":false,"product_image_ratio":"landscape","show_secondary_image":true,"show_vendor":false,"show_rating":true,"enable_quick_add":true,"products_to_show":8,"color_scheme":"scheme-2","columns_desktop":4,"columns_mobile":"2","padding_top":130,"padding_bottom":130}},"homepage_discount_banner":{"type":"image-banner","blocks":{"template--16766664409325__homepage_discount_banner-heading-1":{"type":"heading","settings":{"heading":"","heading_size":"h3"}},"template--16766664409325__homepage_discount_banner-text-1":{"type":"text","disabled":true,"settings":{"text":"Family Wellness Combos by CureBay bring complete health checkups for every family member in one affordable package","text_style":"body","text_color":"main"}},"template--16766664409325__homepage_discount_banner-buttons-1":{"type":"buttons","settings":{"button_label_1":"","button_link_1":"","button_style_secondary_1":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["template--16766664409325__homepage_discount_banner-heading-1","template--16766664409325__homepage_discount_banner-text-1","template--16766664409325__homepage_discount_banner-buttons-1"],"settings":{"full_width":false,"image_2":"shopify:\/\/shop_images\/kavach_web_Banner.jpg","image_overlay_opacity":5,"image_height":"small","content_width":450,"desktop_content_position":"middle-center","show_text_box":false,"desktop_content_alignment":"center","color_scheme":"scheme-6","image_behavior":"none","mobile_content_alignment":"center","stack_images_on_mobile":false,"show_text_below":false,"padding_top":0,"padding_bottom":0}},"collapsible_content_EYLqTr":{"type":"collapsible-content","blocks":{"collapsible_row_Kwz96T":{"type":"collapsible_row","settings":{"heading":"Can I get a diagnostic test done at home?","icon":"none","row_content":"<p>You can get sample collected at home for tests where it is not mandatory to visit the lab. A health worker will visit your location to collect the sample and deliver to chosen labs to complete the test. You will have to visit the lab for radiology tests since it is not allowed to be conducted at home.<\/p>","page":"","text_color":"foreground"}},"collapsible_row_VgiQh4":{"type":"collapsible_row","settings":{"heading":"Should I not eat before taking the test?","icon":"none","row_content":"<p>Our support team will notify you about the tests that need fasting.<\/p>","page":"","text_color":"foreground"}},"collapsible_row_63Dy4E":{"type":"collapsible_row","settings":{"heading":"Will you deliver my reports?","icon":"none","row_content":"<p>You can access the test results from the “Health Records” section on the CureBay app within 24-48 hours in most cases. All you need to do is to sign in to your account and check the “Health Records” tab . Please note that some of your test results may take longer than 48 hours depending on the time taken to complete the test. We will deliver the reports to your address, where it is not possible to get a digital copy.<\/p>","page":"","text_color":"foreground"}},"collapsible_row_DLrewa":{"type":"collapsible_row","settings":{"heading":"Can I see a doctor after getting my reports?","icon":"none","row_content":"<p>Yes. Your doctor can see the test results under “Health Records” section if you are consulting doctor in CureBay platform. Alternatively you can download the reports from “Health Records” section and share with doctor too.<\/p>","page":"","text_color":"foreground"}},"collapsible_row_3xTLpp":{"type":"collapsible_row","settings":{"heading":"Do you accept credit cards for payment?","icon":"none","row_content":"<p>You have multiple options to pay including Wallet, UPI, Debit\/Credit card, and Net Banking.<\/p>","page":"","text_color":"foreground"}}},"block_order":["collapsible_row_Kwz96T","collapsible_row_VgiQh4","collapsible_row_63Dy4E","collapsible_row_DLrewa","collapsible_row_3xTLpp"],"name":"t:sections.collapsible_content.presets.name","settings":{"heading":"Frequently Asked Questions","heading_size":"h2","description":"<p>Find quick answers to common questions about our tests, packages, and booking process<\/p>","description_text_color":"foreground","heading_alignment":"left","layout":"none","color_scheme":"","container_color_scheme":"","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_first","padding_top":70,"padding_bottom":70}},"bff1f354-16f7-4be2-a816-44e694d864e4":{"type":"testimonials","blocks":{"template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-1":{"type":"testimonial","settings":{"color_scheme":"scheme-2","rating_star":5,"image":"shopify:\/\/shop_images\/portrait-confident-indian-teacher-standing-front-black-board-class-room.jpg","full_name":"Harihara Mohapatra","name_color":"foreground","job_title":"School Teacher","job_title_color":"foreground-secondary","text":"“I recently booked a diagnostic test with CureBay, and I must say the service was excellent. As a school teacher, my schedule is always packed, but their free home sample collection and timely reports made the process so convenient. The staff was polite, professional, and ensured everything was done smoothly. I truly appreciate the reliability and care CureBay provides. Highly recommended","text_color":"foreground","border_color":"rgba(0,0,0,0)"}},"template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-2":{"type":"testimonial","settings":{"color_scheme":"scheme-2","rating_star":4,"image":"shopify:\/\/shop_images\/portrait-indian-pregnant-woman.jpg","full_name":"Snigdha Mandal","name_color":"foreground","job_title":"HR – Techzone","job_title_color":"foreground-secondary","text":"We booked CureBay’s Corporate Health Package for our staff at Techzone, and the experience was outstanding. The entire process—from booking to sample collection—was seamless, and the reports were delivered on time. Our employees truly appreciated the convenience and care provided. As an HR professional, I find CureBay’s services reliable and perfectly suited for workplace wellness","text_color":"foreground","border_color":"rgba(0,0,0,0)"}},"template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-3":{"type":"testimonial","settings":{"color_scheme":"scheme-2","rating_star":4,"image":"shopify:\/\/shop_images\/woman-smiles-warmly-while-cooking-surrounded-by-fresh-vegetables-kitchen-utensils.jpg","full_name":"Mamali Mohanty","name_color":"foreground","job_title":"Homemaker","job_title_color":"foreground-secondary","text":"I booked a health package with CureBay for my family, and I am very satisfied with their service. The home sample collection was hassle-free, and the reports came quickly with clear guidance from doctors. As a homemaker, I feel安心 knowing my family’s health is in safe hands with CureBay","text_color":"foreground","border_color":"rgba(0,0,0,0)"}}},"block_order":["template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-1","template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-2","template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-3"],"settings":{"title":"Real People. Real Happiness","heading_width":660,"heading_alignment":"center","heading_size":"h2","color_scheme":"scheme-1","description":"","text_size_block":"medium","text_color":"foreground","scrolling_speed":60,"padding_top":130,"padding_bottom":130}},"f6e4d7b0-8b93-4391-bc83-1d3b618d2ed3":{"type":"featured-blog","settings":{"heading":"Health Insights & Wellness Tips","heading_size":"h3","blog":"news","read_more_title":"READ MORE","post_limit":3,"columns_desktop":3,"color_scheme":"scheme-1","show_image":true,"show_date":true,"show_author":false,"show_comment":false,"all_button_style":"solid","show_view_all":true,"swipe_on_mobile":false,"padding_top":0,"padding_bottom":130}},"multicolumn_Nc8iBR":{"type":"multicolumn","blocks":{"column_giEtB7":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/iso.144c07dbab0d7e6cceb4.png","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"medium","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}},"column_wbQjGp":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/Seal_HIPAA.caa18c16d16b19cc4a88cfdbd62bfc52.svg","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"medium","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}},"column_aKkfMa":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/ayushman-bharath-digital-mission.jpg","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"medium","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}}},"block_order":["column_giEtB7","column_wbQjGp","column_aKkfMa"],"disabled":true,"name":"t:sections.multicolumn.presets.name","settings":{"title":"","heading_alignment":"center","heading_size":"h2","description":"","text_size_block":"medium","text_color":"main","image_width":"full","image_ratio":"adapt","columns_desktop":3,"grid_type":"grid","column_divider":false,"column_alignment":"left","background_style":"primary","button_label":"","button_link":"","color_scheme":"","background_color_full_width":true,"background_border_radius":false,"columns_mobile":"1","swipe_on_mobile":false,"padding_top":70,"padding_bottom":70}},"image_banner_filter_Htcwmx":{"type":"image-banner-filter","name":"Image banner filter","settings":{"image_height":"medium","filter_color_scheme":"","section_full_width":true,"section_background":"#ffffff"}}},"order":["custom_image_banner_RRA7Wj","image_banner_8fBx8p","collection_list_yY9iXL","featured_collection","d9c67ae0-02b4-4b54-a01f-6f10449397c1","fee2a82b-1a9b-41ec-8ac2-d9d964c70db6","4cdd6535-a1f1-4308-afd3-00c3b607afc0","ad33c27c-9ae9-44e8-a4ec-4b7a535c903a","355af80a-5c77-40fb-83a7-dbff9c1c8ef4","homepage_discount_banner","collapsible_content_EYLqTr","bff1f354-16f7-4be2-a816-44e694d864e4","f6e4d7b0-8b93-4391-bc83-1d3b618d2ed3","multicolumn_Nc8iBR","image_banner_filter_Htcwmx"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_image_banner_RRA7Wj": {
+      "type": "custom-image-banner",
+      "blocks": {
+        "heading_MPmwrL": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h2"
+          }
+        },
+        "text_KT4EXa": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body",
+            "text_color": "main"
+          }
+        },
+        "buttons_jXJmxK": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_MPmwrL",
+        "text_KT4EXa",
+        "buttons_jXJmxK"
+      ],
+      "name": "custom image banner",
+      "settings": {
+        "heading": "Smart Diagnostics. Smarter Health",
+        "subheading": "Search Tests or Labs",
+        "search_placeholder": "Start typing...",
+        "tab1": "Search by Test",
+        "tab2": "Search by Lab",
+        "full_width": true,
+        "image": "shopify://shop_images/hero_banner-_Background_png.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "content_width": 700,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_banner_8fBx8p": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_9gMPLj": {
+          "type": "heading",
+          "settings": {
+            "heading": "Book Your Pathology Test Online – Fast, Easy & Reliable",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_9QBfM6": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "SHOP NOW",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "EXPLORE OUR COLLECTIONS",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_9gMPLj",
+        "buttons_9QBfM6"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "image_overlay_opacity": 10,
+        "image_height": "large",
+        "content_width": 740,
+        "desktop_content_position": "bottom-left",
+        "show_text_box": false,
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_yY9iXL": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_zJxm4p": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "all-tests"
+          }
+        },
+        "featured_collection_BWcX7W": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "diabetes-care-package"
+          }
+        },
+        "featured_collection_bntUWg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "senior-citizen-health-package"
+          }
+        },
+        "featured_collection_yYGgqW": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "thyroid-profile-package"
+          }
+        },
+        "featured_collection_3kRdPY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "comprehensive-full-body-checkup"
+          }
+        },
+        "featured_collection_drLaLJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cardiac-care-package"
+          }
+        },
+        "featured_collection_KnWgqQ": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "women-s-wellness-package"
+          }
+        },
+        "featured_collection_DR7y68": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "basic-health-checkup-package"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_zJxm4p",
+        "featured_collection_BWcX7W",
+        "featured_collection_bntUWg",
+        "featured_collection_yYGgqW",
+        "featured_collection_3kRdPY",
+        "featured_collection_drLaLJ",
+        "featured_collection_KnWgqQ",
+        "featured_collection_DR7y68"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Get Tested from the Comfort of Your Home",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "image_ratio": "square",
+        "image_type": "cover_style_2",
+        "cover_overlay": "linear-gradient(\n  to top,\n  #000F11 0%,\n  #000F11cc 20%,\n  #000F1180 40%,\n  #000F1140 60%,\n  #000F111a 80%,\n  transparent 100%\n)",
+        "card_heading_size": "h6",
+        "cover_color_scheme": "",
+        "show_description": false,
+        "link_label": "",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 130,
+        "padding_bottom": 8
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "1000+ Lab Tests Available",
+        "heading_size": "h2",
+        "description": "<p>From Blood Sugar to Full Body Check-Up – All in One Place</p>",
+        "text_size_block": "small",
+        "text_color": "secondary",
+        "show_description": false,
+        "countdown_label": "Get The Report In 24 Hours",
+        "countdown_font_weight": "400",
+        "numbers_size": "h5",
+        "countdown_date": "July 31, 2024",
+        "countdown_end": "hide_countdown",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "mins_label": "Minutes",
+        "secs_label": "Seconds",
+        "countdown_label_bg": "#003e52",
+        "label_text_color": "secondary",
+        "collection": "predlab",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "landscape",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "d9c67ae0-02b4-4b54-a01f-6f10449397c1": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-1": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "scheme-4",
+            "image": "shopify://shop_images/Comprehensive_Full-body_Check-ups.jpg",
+            "image_cover": true,
+            "image_overlay_opacity": 35,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Comprehensive Full-body Check-up",
+            "heading_size_block": "h4",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "",
+            "text_color": "foreground",
+            "button_style": "link",
+            "link_label": "Explore Now",
+            "link": ""
+          }
+        },
+        "template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-2": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "scheme-4",
+            "image": "shopify://shop_images/Preventive_Healthcare.jpg",
+            "image_cover": true,
+            "image_overlay_opacity": 35,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "Preventive Health Care Packages",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "",
+            "text_color": "foreground",
+            "button_style": "link",
+            "link_label": "Explore Now",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-1",
+        "template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-2"
+      ],
+      "settings": {
+        "title": "",
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "description": "",
+        "text_size_block": "small",
+        "text_color": "main",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 2,
+        "grid_type": "grid",
+        "column_divider": false,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2",
+        "background_color_full_width": true,
+        "background_border_radius": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "fee2a82b-1a9b-41ec-8ac2-d9d964c70db6": {
+      "type": "scrolling-banner",
+      "blocks": {
+        "template--16766664409325__fee2a82b-1a9b-41ec-8ac2-d9d964c70db6-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Top-Rated Diagnostic Packages</p>",
+            "highlight_text": "#003e52"
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__fee2a82b-1a9b-41ec-8ac2-d9d964c70db6-heading-1"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "scroll_speed": 15,
+        "scroll_direction": "direction-left",
+        "items_padding": 30,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "4cdd6535-a1f1-4308-afd3-00c3b607afc0": {
+      "type": "product-slider",
+      "blocks": {
+        "template--16766664409325__4cdd6535-a1f1-4308-afd3-00c3b607afc0-Slide-1": {
+          "type": "Slide",
+          "settings": {
+            "image": "shopify://shop_images/adult-blowing-their-snot-tissue.jpg",
+            "enable_img_radius": true,
+            "slide_title": "Seasonal Health Screening Packages",
+            "highlight_slide_title": "",
+            "heading_size": "h2",
+            "slide_description": "<p>Detect common infections, allergies, and deficiencies early to keep you and your family protected year-round</p>",
+            "text_size_block": "small",
+            "text_color": "main",
+            "link_label": "Book Now",
+            "enable_add_to_cart": true,
+            "color_scheme_slide": "scheme-7",
+            "product": "curebay-select-healthcheck-package",
+            "product_heading_font_family": "heading-font"
+          }
+        },
+        "slide_qJk3fM": {
+          "type": "Slide",
+          "settings": {
+            "image": "shopify://shop_images/indian-family-nature-walk-with-local-expert-lush-forest-daytime-promoting-eco-touris.jpg",
+            "enable_img_radius": true,
+            "slide_title": "Complete health checkups for your loved ones",
+            "highlight_slide_title": "",
+            "heading_size": "h3",
+            "slide_description": "<p>CureBay Family Wellness Combos offer essential health checkups for all your loved ones in a single, affordable package</p>",
+            "text_size_block": "small",
+            "text_color": "main",
+            "link_label": "Shop Now",
+            "enable_add_to_cart": true,
+            "color_scheme_slide": "scheme-7",
+            "product": "curebay-mselect-healthcare-package-thyroid-function-iron-deficiency-liver-profile-lipid-profile-renal-profile-rbs",
+            "product_heading_font_family": "heading-font"
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__4cdd6535-a1f1-4308-afd3-00c3b607afc0-Slide-1",
+        "slide_qJk3fM"
+      ],
+      "settings": {
+        "image_position": "image-right",
+        "color_scheme": "",
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "ad33c27c-9ae9-44e8-a4ec-4b7a535c903a": {
+      "type": "featured-product",
+      "blocks": {
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-title-1": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h3"
+          }
+        },
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-price-1": {
+          "type": "price",
+          "settings": {
+            "price_size": "price--medium"
+          }
+        },
+        "2e7d6db5-6715-43fe-a0dd-48f9b1837b5d": {
+          "type": "inventory",
+          "settings": {
+            "inventory_base": 30,
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true,
+            "show_progress_bar": true,
+            "label_font_size": "extra-small",
+            "color_in_stock": "#2cb683",
+            "color_low_stock": "#ff353c"
+          }
+        },
+        "b7c5acb6-8ab1-4bf3-8127-2291a65b8040": {
+          "type": "text",
+          "settings": {
+            "text": "Full Body Health Package",
+            "text_size_block": "small",
+            "text_style": "body",
+            "text_color": "foreground-secondary"
+          }
+        },
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-variant_picker-1": {
+          "type": "variant_picker",
+          "settings": {
+            "color_scheme": "",
+            "picker_type": "button",
+            "swatch_picker_type": "button",
+            "swatch_shape": "square",
+            "swatches_style": "outlined"
+          }
+        },
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "quantity_color_scheme": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-title-1",
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-price-1",
+        "2e7d6db5-6715-43fe-a0dd-48f9b1837b5d",
+        "b7c5acb6-8ab1-4bf3-8127-2291a65b8040",
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-variant_picker-1",
+        "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1"
+      ],
+      "settings": {
+        "product": "curebay-sampurna-swathya-check-up",
+        "color_scheme": "scheme-1",
+        "secondary_background": true,
+        "secondary_background_color": "#f4f2ec",
+        "enable_sticky_info": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "thumbnail_position": "left",
+        "media_position": "left",
+        "mobile_thumbnails": "show",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "355af80a-5c77-40fb-83a7-dbff9c1c8ef4": {
+      "type": "collection-tabs",
+      "blocks": {
+        "ead2f763-03c8-4074-a7d3-5e991c045492": {
+          "type": "collection",
+          "settings": {
+            "collection": "predlab",
+            "collection_title": "Lab Tests",
+            "show_view_all": false,
+            "button_label": "View all",
+            "button_style_secondary": false
+          }
+        },
+        "9345b7b0-cbbd-4c30-87b1-4e33079f26ba": {
+          "type": "collection",
+          "settings": {
+            "collection": "health-packages",
+            "collection_title": "",
+            "show_view_all": false,
+            "button_label": "View all",
+            "button_style_secondary": false
+          }
+        },
+        "147d461c-00ee-48ba-b203-96b9477efb60": {
+          "type": "collection",
+          "settings": {
+            "collection": "basic-health-checkup-package",
+            "collection_title": "Family Health Check-Up",
+            "show_view_all": false,
+            "button_label": "View all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "ead2f763-03c8-4074-a7d3-5e991c045492",
+        "9345b7b0-cbbd-4c30-87b1-4e33079f26ba",
+        "147d461c-00ee-48ba-b203-96b9477efb60"
+      ],
+      "settings": {
+        "title": "Find the Right Test or Package for You",
+        "heading_alignment": "center",
+        "heading_size": "h3",
+        "description": "",
+        "text_size_block": "small",
+        "tabs_font_size": "h6",
+        "tabs_font_weight": "fw-600",
+        "tabs_font_family": "heading-font",
+        "card_heading_size": "h4",
+        "image_ratio": "adapt",
+        "image_overlay_opacity": 0,
+        "reverse_card": false,
+        "product_image_ratio": "landscape",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "products_to_show": 8,
+        "color_scheme": "scheme-2",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "homepage_discount_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "template--16766664409325__homepage_discount_banner-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h3"
+          }
+        },
+        "template--16766664409325__homepage_discount_banner-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Family Wellness Combos by CureBay bring complete health checkups for every family member in one affordable package",
+            "text_style": "body",
+            "text_color": "main"
+          }
+        },
+        "template--16766664409325__homepage_discount_banner-buttons-1": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__homepage_discount_banner-heading-1",
+        "template--16766664409325__homepage_discount_banner-text-1",
+        "template--16766664409325__homepage_discount_banner-buttons-1"
+      ],
+      "settings": {
+        "full_width": false,
+        "image_2": "shopify://shop_images/kavach_web_Banner.jpg",
+        "image_overlay_opacity": 5,
+        "image_height": "small",
+        "content_width": 450,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-6",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_EYLqTr": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Kwz96T": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I get a diagnostic test done at home?",
+            "icon": "none",
+            "row_content": "<p>You can get sample collected at home for tests where it is not mandatory to visit the lab. A health worker will visit your location to collect the sample and deliver to chosen labs to complete the test. You will have to visit the lab for radiology tests since it is not allowed to be conducted at home.</p>",
+            "page": "",
+            "text_color": "foreground"
+          }
+        },
+        "collapsible_row_VgiQh4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Should I not eat before taking the test?",
+            "icon": "none",
+            "row_content": "<p>Our support team will notify you about the tests that need fasting.</p>",
+            "page": "",
+            "text_color": "foreground"
+          }
+        },
+        "collapsible_row_63Dy4E": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Will you deliver my reports?",
+            "icon": "none",
+            "row_content": "<p>You can access the test results from the “Health Records” section on the CureBay app within 24-48 hours in most cases. All you need to do is to sign in to your account and check the “Health Records” tab . Please note that some of your test results may take longer than 48 hours depending on the time taken to complete the test. We will deliver the reports to your address, where it is not possible to get a digital copy.</p>",
+            "page": "",
+            "text_color": "foreground"
+          }
+        },
+        "collapsible_row_DLrewa": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I see a doctor after getting my reports?",
+            "icon": "none",
+            "row_content": "<p>Yes. Your doctor can see the test results under “Health Records” section if you are consulting doctor in CureBay platform. Alternatively you can download the reports from “Health Records” section and share with doctor too.</p>",
+            "page": "",
+            "text_color": "foreground"
+          }
+        },
+        "collapsible_row_3xTLpp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do you accept credit cards for payment?",
+            "icon": "none",
+            "row_content": "<p>You have multiple options to pay including Wallet, UPI, Debit/Credit card, and Net Banking.</p>",
+            "page": "",
+            "text_color": "foreground"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Kwz96T",
+        "collapsible_row_VgiQh4",
+        "collapsible_row_63Dy4E",
+        "collapsible_row_DLrewa",
+        "collapsible_row_3xTLpp"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h2",
+        "description": "<p>Find quick answers to common questions about our tests, packages, and booking process</p>",
+        "description_text_color": "foreground",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_first",
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "bff1f354-16f7-4be2-a816-44e694d864e4": {
+      "type": "testimonials",
+      "blocks": {
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "rating_star": 5,
+            "image": "shopify://shop_images/portrait-confident-indian-teacher-standing-front-black-board-class-room.jpg",
+            "full_name": "Harihara Mohapatra",
+            "name_color": "foreground",
+            "job_title": "School Teacher",
+            "job_title_color": "foreground-secondary",
+            "text": "“I recently booked a diagnostic test with CureBay, and I must say the service was excellent. As a school teacher, my schedule is always packed, but their free home sample collection and timely reports made the process so convenient. The staff was polite, professional, and ensured everything was done smoothly. I truly appreciate the reliability and care CureBay provides. Highly recommended",
+            "text_color": "foreground",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        },
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "rating_star": 4,
+            "image": "shopify://shop_images/portrait-indian-pregnant-woman.jpg",
+            "full_name": "Snigdha Mandal",
+            "name_color": "foreground",
+            "job_title": "HR – Techzone",
+            "job_title_color": "foreground-secondary",
+            "text": "We booked CureBay’s Corporate Health Package for our staff at Techzone, and the experience was outstanding. The entire process—from booking to sample collection—was seamless, and the reports were delivered on time. Our employees truly appreciated the convenience and care provided. As an HR professional, I find CureBay’s services reliable and perfectly suited for workplace wellness",
+            "text_color": "foreground",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        },
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "rating_star": 4,
+            "image": "shopify://shop_images/woman-smiles-warmly-while-cooking-surrounded-by-fresh-vegetables-kitchen-utensils.jpg",
+            "full_name": "Mamali Mohanty",
+            "name_color": "foreground",
+            "job_title": "Homemaker",
+            "job_title_color": "foreground-secondary",
+            "text": "I booked a health package with CureBay for my family, and I am very satisfied with their service. The home sample collection was hassle-free, and the reports came quickly with clear guidance from doctors. As a homemaker, I feel安心 knowing my family’s health is in safe hands with CureBay",
+            "text_color": "foreground",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-1",
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-2",
+        "template--16766664409325__bff1f354-16f7-4be2-a816-44e694d864e4-testimonial-3"
+      ],
+      "settings": {
+        "title": "Real People. Real Happiness",
+        "heading_width": 660,
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "description": "",
+        "text_size_block": "medium",
+        "text_color": "foreground",
+        "scrolling_speed": 60,
+        "padding_top": 130,
+        "padding_bottom": 130
+      }
+    },
+    "f6e4d7b0-8b93-4391-bc83-1d3b618d2ed3": {
+      "type": "featured-blog",
+      "settings": {
+        "heading": "Health Insights & Wellness Tips",
+        "heading_size": "h3",
+        "blog": "news",
+        "read_more_title": "READ MORE",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "show_comment": false,
+        "all_button_style": "solid",
+        "show_view_all": true,
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 130
+      }
+    },
+    "multicolumn_Nc8iBR": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_giEtB7": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/iso.144c07dbab0d7e6cceb4.png",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "medium",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_wbQjGp": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/Seal_HIPAA.caa18c16d16b19cc4a88cfdbd62bfc52.svg",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "medium",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_aKkfMa": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/ayushman-bharath-digital-mission.jpg",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "medium",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_giEtB7",
+        "column_wbQjGp",
+        "column_aKkfMa"
+      ],
+      "disabled": true,
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_alignment": "center",
+        "heading_size": "h2",
+        "description": "",
+        "text_size_block": "medium",
+        "text_color": "main",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "grid_type": "grid",
+        "column_divider": false,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "background_color_full_width": true,
+        "background_border_radius": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "image_banner_filter_Htcwmx": {
+      "type": "image-banner-filter",
+      "name": "Image banner filter",
+      "settings": {
+        "image_height": "medium",
+        "filter_color_scheme": "",
+        "section_full_width": true,
+        "section_background": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "custom_image_banner_RRA7Wj",
+    "image_banner_8fBx8p",
+    "collection_list_yY9iXL",
+    "featured_collection",
+    "d9c67ae0-02b4-4b54-a01f-6f10449397c1",
+    "fee2a82b-1a9b-41ec-8ac2-d9d964c70db6",
+    "4cdd6535-a1f1-4308-afd3-00c3b607afc0",
+    "ad33c27c-9ae9-44e8-a4ec-4b7a535c903a",
+    "355af80a-5c77-40fb-83a7-dbff9c1c8ef4",
+    "homepage_discount_banner",
+    "collapsible_content_EYLqTr",
+    "bff1f354-16f7-4be2-a816-44e694d864e4",
+    "f6e4d7b0-8b93-4391-bc83-1d3b618d2ed3",
+    "multicolumn_Nc8iBR",
+    "image_banner_filter_Htcwmx"
+  ]
+}
