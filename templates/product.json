@@ -23,7 +23,13 @@
         "title": {
           "type": "title",
           "settings": {
-            "heading_size": "h2"
+            "heading_size": "h3"
+          }
+        },
+        "description_6j9rdP": {
+          "type": "description",
+          "settings": {
+            "text_size_block": "small"
           }
         },
         "price": {
@@ -109,6 +115,7 @@
       "block_order": [
         "breadcrumbs_374JWg",
         "title",
+        "description_6j9rdP",
         "price",
         "inventory_pbCRT8",
         "countdown_FVE8hD",
