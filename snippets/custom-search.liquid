@@ -388,16 +388,21 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if (activeType === 'lab') {
       const matchedCollections = allCollections.filter(col =>
         col.title.toLowerCase().includes(query) && !selectedItems.includes(col.title)
-      );
+      ).map(col => col.title);
 
-      if (matchedCollections.length && query.length > 0) {
+      const uniqueCollections = [...new Set(matchedCollections)];
+
+      if (uniqueCollections.length && query.length > 0) {
         resultsList.style.display = "block";
 
-        matchedCollections.forEach(col => {
+        uniqueCollections.forEach(title => {
           const li = document.createElement("li");
-          li.textContent = col.title;
+          li.textContent = title;
           li.addEventListener("click", () => {
-            window.location.href = `/collections/${col.handle}`;
+            selectedItems.push(title);
+            renderSelectedItems();
+            searchInput.value = "";
+            resultsList.style.display = "none";
           });
           resultsList.appendChild(li);
         });
@@ -428,6 +433,5 @@ document.addEventListener("DOMContentLoaded", function() {
   updateContinueButtonState();
 });
 </script>
-
 
 
