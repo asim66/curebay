@@ -314,21 +314,69 @@ document.addEventListener("DOMContentLoaded", function() {
     resultsList.innerHTML = "";
 
     if (activeType === 'test') {
-      const matchedProducts = allProducts.filter(product =>
-        product.title.toLowerCase().includes(query) && !selectedItems.includes(product.title)
-      );
+      let matchedTests = [];
+      let matchedPackages = [];
 
-      if (matchedProducts.length && query.length > 0) {
+      allProducts.forEach(product => {
+        product.tags.forEach(tag => {
+          let type = null;
+          let cleanTag = "";
+
+          if (tag.toLowerCase().startsWith('test_')) {
+            type = 'test';
+            cleanTag = tag.slice(5);
+          } else if (tag.toLowerCase().startsWith('package_')) {
+            type = 'package';
+            cleanTag = tag.slice(8);
+          }
+
+          if (type) {
+            const words = cleanTag.split(/\s+/);
+            if (words.some(word => word.toLowerCase().includes(query))) {
+              if (type === 'test') matchedTests.push({ title: cleanTag, handle: product.handle });
+              else matchedPackages.push({ title: cleanTag, handle: product.handle });
+            }
+          }
+        });
+      });
+
+      matchedTests = [...new Map(matchedTests.map(item => [item.title, item])).values()];
+      matchedPackages = [...new Map(matchedPackages.map(item => [item.title, item])).values()];
+
+      if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
         resultsList.style.display = "block";
 
-        matchedProducts.forEach(product => {
-          const li = document.createElement("li");
-          li.textContent = product.title;
-          li.addEventListener("click", () => {
-            window.location.href = `/products/${product.handle}`;
+        if (matchedTests.length) {
+          const testsHeading = document.createElement("li");
+          testsHeading.className = "search-category-heading";
+          testsHeading.textContent = "Tests:";
+          resultsList.appendChild(testsHeading);
+
+          matchedTests.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = product.title;
+            li.addEventListener("click", () => {
+              window.location.href = `/products/${product.handle}`;
+            });
+            resultsList.appendChild(li);
           });
-          resultsList.appendChild(li);
-        });
+        }
+
+        if (matchedPackages.length) {
+          const packagesHeading = document.createElement("li");
+          packagesHeading.className = "search-category-heading";
+          packagesHeading.textContent = "Packages:";
+          resultsList.appendChild(packagesHeading);
+
+          matchedPackages.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = product.title;
+            li.addEventListener("click", () => {
+              window.location.href = `/products/${product.handle}`;
+            });
+            resultsList.appendChild(li);
+          });
+        }
       } else {
         resultsList.style.display = "none";
       }
@@ -361,12 +409,13 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   continueBtn.addEventListener("click", () => {
-    // No need to redirect anywhere as per new requirement
+    // No redirect logic as per your requirement
   });
 
   updateContinueButtonState();
 });
 </script>
+
 
 
 
