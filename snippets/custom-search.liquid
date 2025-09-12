@@ -235,14 +235,22 @@ document.addEventListener("DOMContentLoaded", function() {
   const continueBtn = document.getElementById("continueBtn");
 
   let activeType = "test";
-  let selectedItems = [];
+  let selectedItems = []; // Can store selected tests or labs
 
   const allProducts = [
     {% for product in collections.all.products %}
     {
       handle: "{{ product.handle | escape }}",
-      title: "{{ product.title | escape }}",
       tags: {{ product.tags | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  const allCollections = [
+    {% for collection in collections %}
+    {
+      title: "{{ collection.title | escape }}",
+      handle: "{{ collection.handle | escape }}"
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
@@ -284,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
     selectedItems.forEach((item, index) => {
       const div = document.createElement("div");
       div.className = "selected-test";
-      div.innerHTML = `${item.name} <span class="remove-test" data-index="${index}">✕</span>`;
+      div.innerHTML = `${item} <span class="remove-test" data-index="${index}">✕</span>`;
       parentDiv.appendChild(div);
     });
 
@@ -310,21 +318,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
       allProducts.forEach(product => {
         product.tags.forEach(tag => {
+          let type = null;
+          let cleanTag = "";
+
           if (tag.toLowerCase().startsWith('test_')) {
-            const cleanTag = tag.slice(5);
-            if (cleanTag.toLowerCase().includes(query)) {
-              matchedTests.push({ name: cleanTag, handle: product.handle });
-            }
+            type = 'test';
+            cleanTag = tag.slice(5);
           } else if (tag.toLowerCase().startsWith('package_')) {
-            if (product.title.toLowerCase().includes(query)) {
-              matchedPackages.push({ name: product.title, handle: product.handle });
+            type = 'package';
+            cleanTag = tag.slice(8);
+          }
+
+          if (type) {
+            const words = cleanTag.split(/\s+/);
+            if (words.some(word => word.toLowerCase().includes(query)) && !selectedItems.includes(cleanTag)) {
+              if (type === 'test') matchedTests.push(cleanTag);
+              else matchedPackages.push(cleanTag);
             }
           }
         });
       });
 
-      matchedTests = matchedTests.filter((v,i,a)=>a.findIndex(t=>(t.name === v.name && t.handle === v.handle))===i);
-      matchedPackages = matchedPackages.filter((v,i,a)=>a.findIndex(t=>(t.name === v.name && t.handle === v.handle))===i);
+      matchedTests = [...new Set(matchedTests)];
+      matchedPackages = [...new Set(matchedPackages)];
 
       if ((matchedTests.length || matchedPackages.length) && query.length > 0) {
         resultsList.style.display = "block";
@@ -335,11 +351,14 @@ document.addEventListener("DOMContentLoaded", function() {
           testsHeading.textContent = "Tests:";
           resultsList.appendChild(testsHeading);
 
-          matchedTests.forEach(item => {
+          matchedTests.forEach(tag => {
             const li = document.createElement("li");
-            li.textContent = item.name;
+            li.textContent = tag;
             li.addEventListener("click", () => {
-              window.location.href = `/products/${item.handle}`;
+              selectedItems.push(tag);
+              renderSelectedItems();
+              searchInput.value = "";
+              resultsList.style.display = "none";
             });
             resultsList.appendChild(li);
           });
@@ -351,11 +370,14 @@ document.addEventListener("DOMContentLoaded", function() {
           packagesHeading.textContent = "Packages:";
           resultsList.appendChild(packagesHeading);
 
-          matchedPackages.forEach(item => {
+          matchedPackages.forEach(tag => {
             const li = document.createElement("li");
-            li.textContent = item.name;
+            li.textContent = tag;
             li.addEventListener("click", () => {
-              window.location.href = `/products/${item.handle}`;
+              selectedItems.push(tag);
+              renderSelectedItems();
+              searchInput.value = "";
+              resultsList.style.display = "none";
             });
             resultsList.appendChild(li);
           });
@@ -365,22 +387,17 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     } else if (activeType === 'lab') {
       const matchedCollections = allCollections.filter(col =>
-        col.title.toLowerCase().includes(query)
-      ).map(col => col.title);
+        col.title.toLowerCase().includes(query) && !selectedItems.includes(col.title)
+      );
 
-      const uniqueCollections = [...new Set(matchedCollections)];
-
-      if (uniqueCollections.length && query.length > 0) {
+      if (matchedCollections.length && query.length > 0) {
         resultsList.style.display = "block";
 
-        uniqueCollections.forEach(title => {
+        matchedCollections.forEach(col => {
           const li = document.createElement("li");
-          li.textContent = title;
+          li.textContent = col.title;
           li.addEventListener("click", () => {
-            const selectedCollection = allCollections.find(col => col.title === title);
-            if (selectedCollection) {
-              window.location.href = `/collections/${selectedCollection.handle}`;
-            }
+            window.location.href = `/collections/${col.handle}`;
           });
           resultsList.appendChild(li);
         });
@@ -397,8 +414,14 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   continueBtn.addEventListener("click", () => {
-    if (selectedItems.length > 0) {
-      window.location.href = `/products/${selectedItems[0].handle}`;
+    if (activeType === 'test') {
+      const selectedHandles = selectedItems.join(",");
+      window.location.href = `/pages/tests?tests=${encodeURIComponent(selectedHandles)}`;
+    } else if (activeType === 'lab') {
+      const selectedCollection = allCollections.find(col => col.title === selectedItems[0]);
+      if (selectedCollection) {
+        window.location.href = `/collections/${selectedCollection.handle}`;
+      }
     }
   });
 
