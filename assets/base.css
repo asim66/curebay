@@ -1555,6 +1555,22 @@ summary::-webkit-details-marker {
 .media>*:not(.zoom):not(.deferred-media__poster-button),
 .media model-viewer {
   display: block;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.media>img {
+  object-fit: cover;
+  object-position: center center;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.main-product .media>*:not(.zoom):not(.deferred-media__poster-button),
+.main-product .media model-viewer {
+  display: block;
   max-width: 75%;
   position: absolute;
   top: 0;
@@ -1566,12 +1582,11 @@ summary::-webkit-details-marker {
   left: 50%;
 }
 
-.media>img {
+.main-product .media>img {
   object-fit: contain;
   object-position: center center;
   transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 .media--square {
   padding-bottom: 100%;
 }
