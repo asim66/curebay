@@ -222,7 +222,7 @@
         "label_text_color": "secondary",
         "collection": "predlab",
         "products_to_show": 8,
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
@@ -260,8 +260,8 @@
             "text_size_block": "",
             "text_color": "foreground",
             "button_style": "link",
-            "link_label": "Explore Now",
-            "link": ""
+            "link_label": "Book Now",
+            "link": "https://curebaylabtests.com/products/curebay-swasthya-50-parameters-3"
           }
         },
         "template--16766664409325__d9c67ae0-02b4-4b54-a01f-6f10449397c1-column-2": {
@@ -282,8 +282,8 @@
             "text_size_block": "",
             "text_color": "foreground",
             "button_style": "link",
-            "link_label": "Explore Now",
-            "link": ""
+            "link_label": "Book Now",
+            "link": "https://curebaylabtests.com/products/advanced-preventive-package-1"
           }
         }
       },
@@ -356,7 +356,7 @@
             "link_label": "Book Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "vital-screening-package-82-parameters",
+            "product": "dengue-igg-igm-antibodi-eia-4",
             "product_heading_font_family": "heading-font"
           }
         },
@@ -374,7 +374,7 @@
             "link_label": "Shop Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "curebay-sampurna-swathya-check-up",
+            "product": "swasthya-bharat-package-cbc-lft-kft-lipid-profile-rbs-thyroid-profile-4",
             "product_heading_font_family": "heading-font"
           }
         }
@@ -455,7 +455,7 @@
         "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1"
       ],
       "settings": {
-        "product": "swasthya-bharat-package-cbc-lft-kft-lipid-profile-rbs-thyroid-profile-1",
+        "product": "curebay-sampurna-swathya-check-up-3",
         "color_scheme": "scheme-1",
         "secondary_background": true,
         "secondary_background_color": "#f4f2ec",
@@ -499,6 +499,7 @@
         },
         "147d461c-00ee-48ba-b203-96b9477efb60": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "hope-diagnostic",
             "collection_title": "Hope Diagnostic",
@@ -533,7 +534,7 @@
         "enable_quick_add": true,
         "products_to_show": 8,
         "color_scheme": "scheme-2",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "columns_mobile": "2",
         "padding_top": 130,
         "padding_bottom": 130
