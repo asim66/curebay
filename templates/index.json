@@ -211,7 +211,7 @@
         "show_description": false,
         "countdown_label": "Get The Report In 24 Hours",
         "countdown_font_weight": "400",
-        "numbers_size": "h5",
+        "numbers_size": "h6",
         "countdown_date": "July 31, 2024",
         "countdown_end": "hide_countdown",
         "days_label": "Days",
