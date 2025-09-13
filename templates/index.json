@@ -463,7 +463,7 @@
         "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "cover",
-        "gallery_layout": "thumbnail_slider",
+        "gallery_layout": "stacked",
         "thumbnail_position": "left",
         "media_position": "left",
         "mobile_thumbnails": "show",
@@ -552,7 +552,6 @@
         },
         "template--16766664409325__homepage_discount_banner-text-1": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "text": "Family Wellness Combos by CureBay bring complete health checkups for every family member in one affordable package",
             "text_style": "body",
