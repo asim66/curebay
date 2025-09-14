@@ -92,20 +92,19 @@
       help_text: help_text
     %}
   {%- elsif picker_type == 'button' -%}
-    <input
-      type="radio"
-      id="{{ input_id }}"
-      name="{{ option.name }}"
-      value="{{ value | escape }}"
-      data-pincode="{{ option.name }}"
-      form="{{ product_form_id }}"
-      {% if option.selected_value == value %}
-        checked
-      {% endif %}
-      {% if option_disabled %}
-        class="disabled"
-      {% endif %}
-    >
+    {% for variant in product.variants %}
+  <input
+    type="radio"
+    id="variant-{{ variant.id }}"
+    name="variant"
+    value="{{ variant.title }}"
+    data-variant-id="{{ variant.id }}"
+    data-pincode="{{ variant.metafields.custom.pincode_availability | join: ',' }}"
+    {% if forloop.first %} checked {% endif %}
+  />
+  <label for="variant-{{ variant.id }}">{{ variant.title }}</label>
+{% endfor %}
+
     <label for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
