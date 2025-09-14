@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const productButtons = document.querySelector('.product-form__buttons');
 
   const userPincode = sessionStorage.getItem('userPincode');
+  console.log('10', userPincode)
 
   if (!userPincode) {
     popup.style.display = 'flex';
