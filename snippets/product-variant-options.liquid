@@ -87,7 +87,7 @@
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
-      data-pincode="{{ matching_variant.metafields.custom.pincode_availability }}"
+      data-pincode="{{ matching_variant.id }}"
       {% if option.selected_value == value %}
         checked
       {% endif %}
