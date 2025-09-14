@@ -99,26 +99,32 @@ document.addEventListener('DOMContentLoaded', function() {
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
   const productButtons = document.querySelector('.product-form__buttons');
-  
   const closeBtn = document.getElementById('closePincodePopup');
+  
   const userPincode = sessionStorage.getItem('userPincode');
-
-  const isPDP = window.location.pathname.includes('/products/');  // Detect if Product Detail Page
+  const popupClosed = sessionStorage.getItem('pincodePopupClosed');
+  const isPDP = window.location.pathname.includes('/products/');
 
   if (!userPincode) {
-    popup.classList.add('active');
-
-    if (isPDP && closeBtn) {
-      closeBtn.style.display = 'none';  // Hide close button on PDP
-    } else if (closeBtn) {
-      closeBtn.style.display = 'block';  // Show close button on other pages
-      closeBtn.addEventListener('click', function() {
-        sessionStorage.setItem('pincodePopupClosed', 'true');
-        popup.classList.remove('active');
-      });
+    // On Product Detail Page → Mandatory popup (no close button)
+    if (isPDP) {
+      popup.style.display = 'flex';
+      if (closeBtn) closeBtn.style.display = 'none';  // Hide close button
+    } else {
+      // On other pages → Show only if user hasn’t explicitly closed the popup
+      if (!popupClosed) {
+        popup.style.display = 'flex';
+        if (closeBtn) {
+          closeBtn.style.display = 'block';
+          closeBtn.addEventListener('click', function() {
+            sessionStorage.setItem('pincodePopupClosed', 'true');
+            popup.style.display = 'none';
+          });
+        }
+      }
     }
   } else {
-    popup.classList.remove('active');
+    popup.style.display = 'none';
     checkAvailability(userPincode);
   }
 
@@ -131,7 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
-      popup.classList.remove('active');
+      sessionStorage.removeItem('pincodePopupClosed');  // Reset closed state
+      popup.style.display = 'none';
       checkAvailability(input);
     } else {
       message.innerText = 'Please enter a valid 6-digit pincode.';
@@ -190,6 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (msgEl) msgEl.remove();
   }
 });
-
 </script>
+
 
