@@ -24,7 +24,7 @@
 
   assign product_form_id = 'product-form-' | append: section.id
 -%}
-
+snadeep {{  variants_available_arr }}
 {%- for value in option.values -%}
   {%- liquid
     assign option_disabled = true
