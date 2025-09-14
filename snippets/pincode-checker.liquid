@@ -99,32 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
   const productButtons = document.querySelector('.product-form__buttons');
-
+  
+  const closeBtn = document.getElementById('closePincodePopup');
   const userPincode = sessionStorage.getItem('userPincode');
-  const popupClosed = sessionStorage.getItem('pincodePopupClosed');
-  const isPDP = window.location.pathname.includes('/products/');
+
+  const isPDP = window.location.pathname.includes('/products/');  // Detect if Product Detail Page
 
   if (!userPincode) {
-    if (isPDP) {
-      popup.style.display = 'flex';
-      const closeBtn = document.getElementById('closePincodePopup');
-      if (closeBtn) closeBtn.style.display = 'none';  // Hide close button on PDP
-    } else {
-      if (!popupClosed) {
-        popup.style.display = 'flex';
+    popup.classList.add('active');
 
-        // Ensure the close button is available
-        waitForElement('#closePincodePopup', function(closeBtn) {
-          closeBtn.style.display = 'block';
-          closeBtn.addEventListener('click', function() {
-            sessionStorage.setItem('pincodePopupClosed', 'true');
-            popup.style.display = 'none';
-          });
-        });
-      }
+    if (isPDP && closeBtn) {
+      closeBtn.style.display = 'none';  // Hide close button on PDP
+    } else if (closeBtn) {
+      closeBtn.style.display = 'block';  // Show close button on other pages
+      closeBtn.addEventListener('click', function() {
+        sessionStorage.setItem('pincodePopupClosed', 'true');
+        popup.classList.remove('active');
+      });
     }
   } else {
-    popup.style.display = 'none';
+    popup.classList.remove('active');
     checkAvailability(userPincode);
   }
 
@@ -137,12 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
-      sessionStorage.removeItem('pincodePopupClosed');
-      popup.style.display = 'none';
+      popup.classList.remove('active');
       checkAvailability(input);
     } else {
       message.innerText = 'Please enter a valid 6-digit pincode.';
-      message.style.display = 'block';
     }
   });
 
@@ -197,24 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const msgEl = document.querySelector('.availability-message');
     if (msgEl) msgEl.remove();
   }
-
-  function waitForElement(selector, callback) {
-    const el = document.querySelector(selector);
-    if (el) {
-      callback(el);
-    } else {
-      const observer = new MutationObserver((mutations, me) => {
-        const el = document.querySelector(selector);
-        if (el) {
-          me.disconnect();
-          callback(el);
-        }
-      });
-      observer.observe(document, { childList: true, subtree: true });
-    }
-  }
 });
+
 </script>
-
-
 
