@@ -97,7 +97,7 @@
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
-      data-pincode="{{ name.id }}"
+      data-pincode="{{ option.name.id }}"
       form="{{ product_form_id }}"
       {% if option.selected_value == value %}
         checked
