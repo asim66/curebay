@@ -24,11 +24,10 @@
 
   assign product_form_id = 'product-form-' | append: section.id
 -%}
-snadeep {{  product.id }}
+
 {%- for value in option.values -%}
   {%- liquid
     assign option_disabled = true
-
     for option1_name in variants_option1_arr
       case option.position
         when 1
@@ -98,7 +97,7 @@ snadeep {{  product.id }}
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
-      data-pincode="{{ product.selected_or_first_available_variant.metafields.custom.pincode_availability }}"
+      data-pincode="{{ product.selected_or_first_available_variant.id }}"
       form="{{ product_form_id }}"
       {% if option.selected_value == value %}
         checked
