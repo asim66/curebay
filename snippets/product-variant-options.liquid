@@ -98,7 +98,7 @@
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
-      data-pincode="{{ product.metafields.custom.pincode_availability | join: ',' }}"
+      data-pincode="{{ product.metafields.custom.pincode_availability }}"
       form="{{ product_form_id }}"
       {% if option.selected_value == value %}
         checked
