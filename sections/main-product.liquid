@@ -117,7 +117,7 @@
 
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1 class="{{ block.settings.heading_size }}">{{ product.title | escape }}</h1>
+                  <h1 class="{{ block.settings.heading_size }} no-variant" data-pincode = {{ product.metafields.custom.available_location }}>{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="{{ block.settings.heading_size }}">
                       {{ product.title | escape }}
