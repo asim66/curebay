@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
           console.error('Invalid pincode metadata:', productMetaField);
         }
       console.log('181',allowedPincodes, pincode)
-
-      if (allowedPincodes.includes(pincode)) {
+const numericPincode = Number(pincode);
+      if (allowedPincodes.includes(numericPincode)) {
         productButtons.style.display = '';
         removeUnavailableMessage();
       } else {
