@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       validateCurrentVariant();
 
       function validateCurrentVariant() {
-        const selectedVariantInput = document.querySelector('input[name="id"]:checked');
+        const selectedVariantInput = document.querySelector('variant-selects input:checked');
         if (!selectedVariantInput) return;
 
         const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '[]';
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (e) {
           console.error('Invalid pincode metadata:', variantMetaField);
         }
-      console.log('164',allowedPincodes, pincode )
+        console.log('164',allowedPincodes, pincode )
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
           removeUnavailableMessage();
