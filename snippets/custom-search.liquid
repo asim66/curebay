@@ -151,21 +151,6 @@
   font-weight: bold;
 }
 
-.continue-btn {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #0d3c74;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.continue-btn.disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
 .images_below_search {
   display: flex;
   justify-content: space-around;
@@ -239,7 +224,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const searchInput = document.getElementById("searchInput");
   const resultsList = document.getElementById("searchResults");
   const searchBox = document.querySelector(".search-box");
-  const continueBtn = document.getElementById("continueBtn");
 
   let activeType = "test";
   let selectedItems = [];
@@ -271,20 +255,9 @@ document.addEventListener("DOMContentLoaded", function() {
       resultsList.style.display = "none";
       searchInput.value = "";
       selectedItems = [];
-      updateContinueButtonState();
       renderSelectedItems();
     });
   });
-
-  function updateContinueButtonState() {
-    if (selectedItems.length === 0) {
-      continueBtn.classList.add("disabled");
-      continueBtn.disabled = true;
-    } else {
-      continueBtn.classList.remove("disabled");
-      continueBtn.disabled = false;
-    }
-  }
 
   function renderSelectedItems() {
     let parentDiv = searchBox.querySelector(".selected-test-wrapper");
@@ -413,10 +386,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!e.target.closest(".search-box")) {
       resultsList.style.display = "none";
     }
-  });
-
-  continueBtn.addEventListener("click", () => {
-    // No redirect logic as per your requirements
   });
 
   updateContinueButtonState();
