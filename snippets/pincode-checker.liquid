@@ -178,7 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
     } else {
+      
       const productMetaField = document.querySelector('#product-available-location')?.value || '';
+      console.log('181', productMetaField)
       const allowedPincodes = productMetaField.split(',').map(x => x.trim());
 
       if (allowedPincodes.includes(pincode)) {
