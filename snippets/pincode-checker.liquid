@@ -183,9 +183,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       let allowedPincodes = [];
         try {
-          allowedPincodes = JSON.parse(variantMetaField);
+          allowedPincodes = JSON.parse(productMetaField);
         } catch (e) {
-          console.error('Invalid pincode metadata:', variantMetaField);
+          console.error('Invalid pincode metadata:', productMetaField);
         }
       console.log('181',allowedPincodes, pincode)
 
