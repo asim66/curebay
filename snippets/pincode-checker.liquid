@@ -20,12 +20,13 @@
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.5);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999;
     display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 .pincode-popup.active {
-  display: flex !important;
+    display: flex !important;
 }
 
 .pincode-content {
@@ -94,8 +95,6 @@
 }
 </style>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const popup = document.getElementById('pincodePopup');
@@ -103,23 +102,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
   const productButtons = document.querySelector('.product-form__buttons');
-  
   const closeBtn = document.getElementById('closePincodePopup');
-  const userPincode = sessionStorage.getItem('userPincode');
 
-  const isPDP = window.location.pathname.includes('/products/');  // Detect if Product Detail Page
+  const userPincode = sessionStorage.getItem('userPincode');
+  const popupClosed = sessionStorage.getItem('pincodePopupClosed');
+  const isPDP = window.location.pathname.includes('/products/');
 
   if (!userPincode) {
     popup.classList.add('active');
 
-    if (isPDP && closeBtn) {
-      closeBtn.style.display = 'none';  // Hide close button on PDP
-    } else if (closeBtn) {
-      closeBtn.style.display = 'block';  // Show close button on other pages
+    if (isPDP) {
+      closeBtn.style.display = 'none';  // Force mandatory pincode on PDP
+    } else {
+      closeBtn.style.display = 'block';
       closeBtn.addEventListener('click', function() {
         sessionStorage.setItem('pincodePopupClosed', 'true');
         popup.classList.remove('active');
       });
+
+      // Only show if not previously closed
+      if (popupClosed) popup.classList.remove('active');
     }
   } else {
     popup.classList.remove('active');
@@ -135,10 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
+      sessionStorage.removeItem('pincodePopupClosed');
       popup.classList.remove('active');
       checkAvailability(input);
     } else {
       message.innerText = 'Please enter a valid 6-digit pincode.';
+      message.style.display = 'block';
     }
   });
 
@@ -194,6 +198,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (msgEl) msgEl.remove();
   }
 });
-
 </script>
-
