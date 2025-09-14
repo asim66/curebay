@@ -234,7 +234,7 @@
           {%- endif -%}
         </div>
 
-        {%- if show_quick_add -%}
+        {% comment %} {%- if show_quick_add -%}
           <div class="quick-add no-js-hidden">
             {%- liquid
               assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id
@@ -307,7 +307,11 @@
             {% endif %}
 
           </div>
-        {%- endif -%}
+        {%- endif -%} {% endcomment %}
+         <a href="{{ card_product.url }}" id="CardLink-{{ section_id }}-{{ card_product.id }}" class="full-unstyled-link" aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}">
+          <div>Book Now</div>
+        </a>
+
 
         <div class="card__badge {{ settings.badge_position }}">
 					{% for tag in card_product.tags %}
