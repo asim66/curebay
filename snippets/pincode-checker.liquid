@@ -181,7 +181,12 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const productMetaField = document.querySelector('product-info .no-variant')?.getAttribute('data-pincode');
       
-      const allowedPincodes = productMetaField.split(',').map(x => x.trim());
+      let allowedPincodes = [];
+        try {
+          allowedPincodes = JSON.parse(variantMetaField);
+        } catch (e) {
+          console.error('Invalid pincode metadata:', variantMetaField);
+        }
       console.log('181',allowedPincodes, pincode)
 
       if (allowedPincodes.includes(pincode)) {
