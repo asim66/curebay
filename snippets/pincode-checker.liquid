@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '';
         const allowedPincodes = variantMetaField.split(',').map(x => x.trim());
+        console.log('164',allowedPincodes, pincode )
 
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
