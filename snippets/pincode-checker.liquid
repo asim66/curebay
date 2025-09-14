@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       validateCurrentVariant();
 
       function validateCurrentVariant() {
-        const selectedVariantInput = document.querySelector('input[name="id"]:checked');
+        const selectedVariantInput = document.querySelector('variant-selects input:checked');
         if (!selectedVariantInput) return;
 
         const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '';
