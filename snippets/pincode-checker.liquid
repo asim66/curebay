@@ -99,14 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
   const productButtons = document.querySelector('.product-form__buttons');
-
+  
+  const closeBtn = document.getElementById('closePincodePopup');
   const userPincode = sessionStorage.getItem('userPincode');
-  console.log('10', userPincode)
+
+  const isPDP = window.location.pathname.includes('/products/');  // Detect if Product Detail Page
 
   if (!userPincode) {
-    popup.style.display = 'flex';
+    popup.classList.add('active');
+
+    if (isPDP && closeBtn) {
+      closeBtn.style.display = 'none';  // Hide close button on PDP
+    } else if (closeBtn) {
+      closeBtn.style.display = 'block';  // Show close button on other pages
+      closeBtn.addEventListener('click', function() {
+        sessionStorage.setItem('pincodePopupClosed', 'true');
+        popup.classList.remove('active');
+      });
+    }
   } else {
-    popup.style.display = 'none';
+    popup.classList.remove('active');
     checkAvailability(userPincode);
   }
 
@@ -119,11 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
-      popup.style.display = 'none';
+      popup.classList.remove('active');
       checkAvailability(input);
     } else {
       message.innerText = 'Please enter a valid 6-digit pincode.';
-      message.style.display = 'block';
     }
   });
 
@@ -133,12 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const isProductVariant = variantSelector !== null;
 
     if (isProductVariant) {
-      // Monitor variant change
       variantSelector.addEventListener('change', validateCurrentVariant);
-      
-      // Trigger check on page load
       validateCurrentVariant();
-      
+
       function validateCurrentVariant() {
         const variantId = variantIdField.value;
         const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
@@ -179,10 +187,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function removeUnavailableMessage() {
     const msgEl = document.querySelector('.availability-message');
-    if (msgEl) {
-      msgEl.remove();
-    }
+    if (msgEl) msgEl.remove();
   }
 });
+
 </script>
 
