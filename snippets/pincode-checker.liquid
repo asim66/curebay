@@ -158,10 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
       function validateCurrentVariant() {
         
         const variantId = variantIdField.value;
-        console.log('159', "changed", variantId)
+        
         const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
         const allowedPincodes = variantMetaField.split(',').map(x => x.trim());
-
+console.log('159', "changed", variantId, variantMetaField)
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
           removeUnavailableMessage();
