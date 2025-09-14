@@ -92,7 +92,7 @@
       help_text: help_text
     %}
   {%- elsif picker_type == 'button' -%}
-    {% for variant in product.variants %}
+    {% comment %} {% for variant in product.variants %} {% endcomment %}
   <input
     type="radio"
     id="variant-{{ variant.id }}"
@@ -103,7 +103,7 @@
     {% if forloop.first %} checked {% endif %}
   />
   <label for="variant-{{ variant.id }}">{{ variant.title }}</label>
-{% endfor %}
+{% comment %} {% endfor %} {% endcomment %}
 
     <label for="{{ input_id }}">
       {{ value -}}
