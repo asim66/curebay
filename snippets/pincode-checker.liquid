@@ -1,145 +1,85 @@
-{% assign serviceable_pincode = shop.metaobjects.serviceable_pincode["serviceable-pincode-dpr6mvxj"] %}
-
-<div id="pincodePopup" class="pincode-popup">
-  <div class="pincode-content">
-    <button id="closePincodePopup" class="close-btn">✕</button>
-    <h2>Enter Your Pincode to check if we serve your area</h2>
-    
-    <div class="pincode-input-wrapper">
-      <input type="text" id="pincodeInput" placeholder="Enter Pincode" maxlength="6" pattern="\d*"/>
-      <button id="checkPincodeBtn" class="arrow-btn">→</button>
-    </div>
-    
-    <p id="pincodeMessage" class="pincode-message"></p>
-  </div>
-</div>
-
-<style>
-.pincode-popup {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999;
-}
-
-.pincode-content {
-    background: #fff;
-    padding: 30px 25px;
-    border-radius: 12px;
-    text-align: center;
-    width: 350px;
-    position: relative;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    font-family: sans-serif;
-}
-
-.pincode-content h2 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #0a3d4d;
-}
-
-.pincode-input-wrapper {
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.pincode-input-wrapper input {
-    border: none;
-    flex: 1;
-    padding: 10px 12px;
-    font-size: 14px;
-    outline: none;
-}
-
-.arrow-btn {
-    background: #007c89;
-    color: #fff;
-    border: none;
-    padding: 0 16px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background 0.3s;
-}
-
-.arrow-btn:hover {
-    background: #005f66;
-}
-
-.pincode-message {
-    margin-top: 12px;
-    font-size: 14px;
-    display: none;
-    color: red;
-}
-
-.close-btn {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #333;
-}
-</style>
-
-<script>
-function initializePincodePopup() {
-  let serviceablePincodes = [];
-  {% if serviceable_pincode.pin %}
-    serviceablePincodes = {{ serviceable_pincode.pin }};
-  {% endif %}
-
-  if (!Array.isArray(serviceablePincodes)) {
-    serviceablePincodes = [serviceablePincodes];
-  }
-
+document.addEventListener('DOMContentLoaded', function() {
   const popup = document.getElementById('pincodePopup');
   const inputField = document.getElementById('pincodeInput');
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
-  const closeBtn = document.getElementById('closePincodePopup');
+  const productButtons = document.querySelector('.product-form__buttons');
+  const variantSelector = document.querySelector('.single-option-selector');
+  const variantIdField = document.querySelector('[name="id"]');
 
   const userPincode = sessionStorage.getItem('userPincode');
-  const isPopupClosed = sessionStorage.getItem('pincodePopupClosed');
 
-  if (userPincode || isPopupClosed) {
-    popup.style.display = 'none';
-  } else {
+  if (!userPincode) {
     popup.style.display = 'flex';
+  } else {
+    popup.style.display = 'none';
+    checkAvailability(userPincode);
   }
 
   inputField.addEventListener('input', function () {
     this.value = this.value.replace(/\D/g, '').slice(0, 6);
   });
 
-  checkBtn.addEventListener('click', function () {
+  checkBtn.addEventListener('click', function() {
     const input = inputField.value.trim();
-
-    if (input.length === 6 && serviceablePincodes.includes(Number(input))) {
+    if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
       popup.style.display = 'none';
+      checkAvailability(input);
     } else {
-      message.innerText = 'Sorry, service is not available in this pincode.';
+      message.innerText = 'Please enter a valid 6-digit pincode.';
       message.style.display = 'block';
     }
   });
 
-  closeBtn.addEventListener('click', function () {
-    sessionStorage.setItem('pincodePopupClosed', 'true');
-    popup.style.display = 'none';
-  });
-}
+  function checkAvailability(pincode) {
+    if (variantSelector && variantIdField) {
+      variantSelector.addEventListener('change', validateCurrentVariant);
+      validateCurrentVariant();
 
-// Make it global
-window.initializePincodePopup = initializePincodePopup;
-initializePincodePopup();
-</script>
+      function validateCurrentVariant() {
+        const variantId = variantIdField.value;
+        const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
+        const allowedPincodes = variantMetaField.split(',').map(x => x.trim());
+
+        if (allowedPincodes.includes(pincode)) {
+          productButtons.style.display = '';
+          removeUnavailableMessage();
+        } else {
+          productButtons.style.display = 'none';
+          showUnavailableMessage();
+        }
+      }
+    } else {
+      const productMetaField = document.querySelector('#product-available-location')?.value || '';
+      const allowedPincodes = productMetaField.split(',').map(x => x.trim());
+
+      if (allowedPincodes.includes(pincode)) {
+        productButtons.style.display = '';
+        removeUnavailableMessage();
+      } else {
+        productButtons.style.display = 'none';
+        showUnavailableMessage();
+      }
+    }
+  }
+
+  function showUnavailableMessage() {
+    if (!document.querySelector('.availability-message')) {
+      const el = document.createElement('div');
+      el.className = 'availability-message';
+      el.style.color = 'red';
+      el.style.marginTop = '15px';
+      el.innerText = 'Sorry, this product is not available in your area.';
+      document.querySelector('.product-form').prepend(el);
+    }
+  }
+
+  function removeUnavailableMessage() {
+    const msgEl = document.querySelector('.availability-message');
+    if (msgEl) {
+      msgEl.remove();
+    }
+  }
+});
 
