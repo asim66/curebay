@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const isPDP = window.location.pathname.includes('/products/');
 
   if (!userPincode) {
-    if (!isPDP) {
+    if (isPDP) {
       popup.style.display = 'flex';
       const closeBtn = document.getElementById('closePincodePopup');
       if (closeBtn) closeBtn.style.display = 'none';  // Hide close button on PDP
