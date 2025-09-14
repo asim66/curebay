@@ -156,12 +156,12 @@ document.addEventListener('DOMContentLoaded', function() {
       validateCurrentVariant();
 
       function validateCurrentVariant() {
-        
-        const variantId = variantIdField.value;
-        
-        const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
+        const selectedVariantInput = document.querySelector('input[name="id"]:checked');
+        if (!selectedVariantInput) return;
+
+        const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '';
         const allowedPincodes = variantMetaField.split(',').map(x => x.trim());
-console.log('159', "changed", variantId, variantMetaField)
+
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
           removeUnavailableMessage();
