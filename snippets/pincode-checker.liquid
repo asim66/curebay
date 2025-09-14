@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       validateCurrentVariant();
 
       function validateCurrentVariant() {
+        console.log('159', "changed")
         const variantId = variantIdField.value;
         const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
         const allowedPincodes = variantMetaField.split(',').map(x => x.trim());
