@@ -1,21 +1,3 @@
-{% comment %}
-  Renders product variant options
-
-  Accepts:
-  - product: {Object} product object.
-  - option: {Object} current product_option object.
-  - block: {Object} block object.
-  - picker_type: {String} type of picker to dispay
-
-
-  Usage:
-  {% render 'product-variant-options',
-    product: product,
-    option: option,
-    block: block
-    picker_type: picker_type
-  %}
-{% endcomment %}
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
   assign variants_option1_arr = product.variants | map: 'option1'
@@ -28,19 +10,27 @@
 {%- for value in option.values -%}
   {%- liquid
     assign option_disabled = true
-    for option1_name in variants_option1_arr
+    assign matching_variant = null
+
+    for variant in product.variants
       case option.position
         when 1
-          if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if variant.option1 == value and variant.available
             assign option_disabled = false
+            assign matching_variant = variant
+            break
           endif
         when 2
-          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if variant.option2 == value and variant.available
             assign option_disabled = false
+            assign matching_variant = variant
+            break
           endif
         when 3
-          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if variant.option3 == value and variant.available
             assign option_disabled = false
+            assign matching_variant = variant
+            break
           endif
       endcase
     endfor
@@ -88,7 +78,7 @@
       checked: checked,
       visually_disabled: option_disabled,
       shape: block.settings.swatch_shape,
-			swatches_style: block.settings.swatches_style,
+      swatches_style: block.settings.swatches_style,
       help_text: help_text
     %}
   {%- elsif picker_type == 'button' -%}
@@ -97,7 +87,7 @@
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
-      data-pincode="{{ option }}"
+      data-pincode="{{ matching_variant.metafields.custom.pincode_availability | join: ',' }}"
       {% if option.selected_value == value %}
         checked
       {% endif %}
