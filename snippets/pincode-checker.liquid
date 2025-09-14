@@ -1,11 +1,10 @@
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   const popup = document.getElementById('pincodePopup');
   const inputField = document.getElementById('pincodeInput');
   const message = document.getElementById('pincodeMessage');
   const checkBtn = document.getElementById('checkPincodeBtn');
   const productButtons = document.querySelector('.product-form__buttons');
-  const variantSelector = document.querySelector('.single-option-selector');
-  const variantIdField = document.querySelector('[name="id"]');
 
   const userPincode = sessionStorage.getItem('userPincode');
 
@@ -22,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   checkBtn.addEventListener('click', function() {
     const input = inputField.value.trim();
+
     if (input.length === 6) {
       sessionStorage.setItem('userPincode', input);
       popup.style.display = 'none';
@@ -33,10 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   function checkAvailability(pincode) {
-    if (variantSelector && variantIdField) {
-      variantSelector.addEventListener('change', validateCurrentVariant);
-      validateCurrentVariant();
+    const variantSelector = document.querySelector('.single-option-selector');
+    const variantIdField = document.querySelector('[name="id"]');
+    const isProductVariant = variantSelector !== null;
 
+    if (isProductVariant) {
+      // Monitor variant change
+      variantSelector.addEventListener('change', validateCurrentVariant);
+      
+      // Trigger check on page load
+      validateCurrentVariant();
+      
       function validateCurrentVariant() {
         const variantId = variantIdField.value;
         const variantMetaField = document.querySelector(`#variant-available-location-${variantId}`)?.value || '';
@@ -82,4 +89,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-
+</script>
