@@ -26,7 +26,7 @@
     "spacing_grid_horizontal": 30,
     "spacing_grid_vertical": 40,
     "animations_reveal_on_scroll": true,
-    "animations_hover_elements": "default",
+    "animations_hover_elements": "vertical-lift",
     "animations_hover_buttons": "slide-diagonal",
     "buttons_text_style": "uppercase",
     "buttons_font_weight": "700",
