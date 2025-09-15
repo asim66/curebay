@@ -170,14 +170,14 @@ document.addEventListener('DOMContentLoaded', function() {
           const numericPincode = Number(pincode);
 
           if (allowedPincodes.includes(numericPincode)) {
-            input.closest('label').style.display = '';  // Show variant option
+            input.nextElementSibling.style.display = '';  // Show variant option
           } else {
-            input.closest('label').style.display = 'none';  // Hide variant option
+            input.nextElementSibling.style.display = 'none';  // Hide variant option
           }
         });
 
         const visibleVariants = Array.from(document.querySelectorAll('variant-selects input[type="radio"]'))
-          .some(input => input.closest('label').style.display !== 'none');
+          .some(input => input.nextElementSibling.style.display !== 'none');
 
         if (visibleVariants) {
           removeUnavailableMessage();
