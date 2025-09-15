@@ -170,10 +170,12 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('164',allowedPincodes, pincode )
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
-          removeUnavailableMessage();
+
+          {% comment %} removeUnavailableMessage(); {% endcomment %}
         } else {
           productButtons.style.display = 'none';
-          showUnavailableMessage();
+          console.log('177', variantSelector)
+          {% comment %} showUnavailableMessage(); {% endcomment %}
         }
       }
 
