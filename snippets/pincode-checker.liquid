@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
         popup.classList.remove('active');
       });
 
-      // Only show if not previously closed
       if (popupClosed) popup.classList.remove('active');
     }
   } else {
@@ -152,30 +151,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const isProductVariant = variantSelector !== null;
 
     if (isProductVariant) {
-      variantSelector.addEventListener('change', validateCurrentVariant);
-      validateCurrentVariant();
+      variantSelector.addEventListener('change', validateVariants);
+      validateVariants();
 
-      function validateCurrentVariant() {
-        const selectedVariantInput = document.querySelector('variant-selects input:checked');
-        if (!selectedVariantInput) return;
+      function validateVariants() {
+        const variantInputs = document.querySelectorAll('variant-selects input[type="radio"]');
 
-        const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '[]';
+        variantInputs.forEach(input => {
+          const variantMetaField = input.getAttribute('data-pincode') || '[]';
 
-        let allowedPincodes = [];
-        try {
-          allowedPincodes = JSON.parse(variantMetaField);
-        } catch (e) {
-          console.error('Invalid pincode metadata:', variantMetaField);
-        }
-        console.log('164',allowedPincodes, pincode )
-        if (allowedPincodes.includes(pincode)) {
-          productButtons.style.display = '';
+          let allowedPincodes = [];
+          try {
+            allowedPincodes = JSON.parse(variantMetaField);
+          } catch (e) {
+            console.error('Invalid pincode metadata:', variantMetaField);
+          }
 
+          const numericPincode = Number(pincode);
+
+          if (allowedPincodes.includes(numericPincode)) {
+            input.closest('label').style.display = '';  // Show variant option
+          } else {
+            input.closest('label').style.display = 'none';  // Hide variant option
+          }
+        });
+
+        const visibleVariants = Array.from(document.querySelectorAll('variant-selects input[type="radio"]'))
+          .some(input => input.closest('label').style.display !== 'none');
+
+        if (visibleVariants) {
           removeUnavailableMessage();
         } else {
-          productButtons.style.display = 'none';
-          console.log('177', variantSelector)
-          selectedVariantInput.nextElementSibling.style.display = 'none';
           showUnavailableMessage();
         }
       }
@@ -185,13 +191,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const productMetaField = document.querySelector('product-info .no-variant')?.getAttribute('data-pincode');
       
       let allowedPincodes = [];
-        try {
-          allowedPincodes = JSON.parse(productMetaField);
-        } catch (e) {
-          console.error('Invalid pincode metadata:', productMetaField);
-        }
-        console.log('181',allowedPincodes, pincode)
-        const numericPincode = Number(pincode);
+      try {
+        allowedPincodes = JSON.parse(productMetaField);
+      } catch (e) {
+        console.error('Invalid pincode metadata:', productMetaField);
+      }
+
+      console.log('181', allowedPincodes, pincode);
+
+      const numericPincode = Number(pincode);
+
       if (allowedPincodes.includes(numericPincode)) {
         productButtons.style.display = '';
         removeUnavailableMessage();
@@ -219,3 +228,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
