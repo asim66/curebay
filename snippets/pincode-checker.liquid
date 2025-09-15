@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (e) {
           console.error('Invalid pincode metadata:', productMetaField);
         }
-        console.log('181',allowedPincodes, pincode)
-        const numericPincode = Number(pincode);
+      console.log('181',allowedPincodes, pincode)
+      const numericPincode = Number(pincode);
       if (allowedPincodes.includes(numericPincode)) {
         productButtons.style.display = '';
         removeUnavailableMessage();
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
       el.className = 'availability-message';
       el.style.color = 'red';
       el.style.marginTop = '15px';
-      el.innerText = 'Sorry this Lab is not available in your Area';
+      el.innerText = 'This Lab  Is Not Serviceable In This Pin Code';
       document.querySelector('.product-form').prepend(el);
     }
   }
