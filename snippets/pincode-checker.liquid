@@ -171,11 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (allowedPincodes.includes(pincode)) {
           productButtons.style.display = '';
 
-          {% comment %} removeUnavailableMessage(); {% endcomment %}
+          removeUnavailableMessage();
         } else {
           productButtons.style.display = 'none';
           console.log('177', variantSelector)
-          {% comment %} showUnavailableMessage(); {% endcomment %}
+          showUnavailableMessage();
         }
       }
 
