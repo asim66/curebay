@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         popup.classList.remove('active');
       });
 
+      // Only show if not previously closed
       if (popupClosed) popup.classList.remove('active');
     }
   } else {
@@ -151,39 +152,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const isProductVariant = variantSelector !== null;
 
     if (isProductVariant) {
-      variantSelector.addEventListener('change', validateVariants);
-      validateVariants();
+      variantSelector.addEventListener('change', validateCurrentVariant);
+      validateCurrentVariant();
 
-      function validateVariants() {
-        const variantInputs = document.querySelectorAll('variant-selects input[type="radio"]');
+      function validateCurrentVariant() {
+        const selectedVariantInput = document.querySelector('variant-selects input:checked');
+        if (!selectedVariantInput) return;
 
-        variantInputs.forEach(input => {
-          const variantMetaField = input.getAttribute('data-pincode') || '[]';
+        const variantMetaField = selectedVariantInput.getAttribute('data-pincode') || '[]';
 
-          let allowedPincodes = [];
-          try {
-            allowedPincodes = JSON.parse(variantMetaField);
-          } catch (e) {
-            console.error('Invalid pincode metadata:', variantMetaField);
-          }
-
-          const numericPincode = Number(pincode);
-
-          if (allowedPincodes.includes(numericPincode)) {
-            input.nextElementSibling.style.display = '';  // Show variant option
-             productButtons.style.display = '';
-          } else {
-            input.nextElementSibling.style.display = 'none';  // Hide variant option
-             productButtons.style.display = 'none';
-          }
-        });
-
-        const visibleVariants = Array.from(document.querySelectorAll('variant-selects input[type="radio"]'))
-          .some(input => input.nextElementSibling.style.display !== 'none');
-
-        if (visibleVariants) {
+        let allowedPincodes = [];
+        try {
+          allowedPincodes = JSON.parse(variantMetaField);
+        } catch (e) {
+          console.error('Invalid pincode metadata:', variantMetaField);
+        }
+        console.log('164',allowedPincodes, pincode )
+        if (allowedPincodes.includes(pincode)) {
+          productButtons.style.display = '';
           removeUnavailableMessage();
         } else {
+          productButtons.style.display = 'none';
           showUnavailableMessage();
         }
       }
@@ -193,16 +182,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const productMetaField = document.querySelector('product-info .no-variant')?.getAttribute('data-pincode');
       
       let allowedPincodes = [];
-      try {
-        allowedPincodes = JSON.parse(productMetaField);
-      } catch (e) {
-        console.error('Invalid pincode metadata:', productMetaField);
-      }
-
-      console.log('181', allowedPincodes, pincode);
-
-      const numericPincode = Number(pincode);
-
+        try {
+          allowedPincodes = JSON.parse(productMetaField);
+        } catch (e) {
+          console.error('Invalid pincode metadata:', productMetaField);
+        }
+        console.log('181',allowedPincodes, pincode)
+        const numericPincode = Number(pincode);
       if (allowedPincodes.includes(numericPincode)) {
         productButtons.style.display = '';
         removeUnavailableMessage();
@@ -230,4 +216,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-
