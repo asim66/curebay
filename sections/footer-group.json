@@ -1,1 +1,201 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"multicolumn_bneNjj":{"type":"multicolumn","blocks":{"column_K9RXwp":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/ayushman-bharath-digital-mission.jpg","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"medium","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}},"column_c6XFXV":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/Seal_HIPAA.caa18c16d16b19cc4a88cfdbd62bfc52.svg","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"medium","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}},"column_zpqfAt":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/iso.144c07dbab0d7e6cceb4.png","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"small","text_color":"foreground","button_style":"link_icon","link_label":"","link":""}},"column_taENLU":{"type":"column","settings":{"item_color_scheme":"","image":"shopify:\/\/shop_images\/ebf7c5b995301add46722493671c8c67.jpg","image_cover":false,"image_overlay_opacity":0,"reduce_spaces":false,"content_full_width":false,"caption":"","title":"","heading_size_block":"h2","heading_color":"foreground","subheading":"","text":"","text_size_block":"small","text_color":"accent","button_style":"link_icon","link_label":"","link":""}}},"block_order":["column_K9RXwp","column_c6XFXV","column_zpqfAt","column_taENLU"],"name":"t:sections.multicolumn.presets.name","settings":{"title":"Internationally Certified Standards","heading_alignment":"center","heading_size":"h3","description":"","text_size_block":"small","text_color":"main","image_width":"full","image_ratio":"adapt","columns_desktop":4,"grid_type":"grid","column_divider":false,"column_alignment":"left","background_style":"primary","button_label":"","button_link":"","color_scheme":"","background_color_full_width":true,"background_border_radius":false,"columns_mobile":"2","swipe_on_mobile":false,"padding_top":70,"padding_bottom":70}},"footer":{"type":"footer","blocks":{"footer-0":{"type":"link_list","settings":{"heading":"Menu","menu":"footer"}},"footer-1":{"type":"link_list","disabled":true,"settings":{"heading":"Menu","menu":"footer"}},"89f2b72b-8551-4b3c-a430-1719424d7f61":{"type":"link_list","disabled":true,"settings":{"heading":"Menu","menu":"footer"}}},"block_order":["footer-0","footer-1","89f2b72b-8551-4b3c-a430-1719424d7f61"],"settings":{"color_scheme":"scheme-3","heading_size":"text--small","logo":"shopify:\/\/shop_images\/logo-white.3137d7f75284f02f8a9395f2a619bbb3.svg","logo_width":105,"show_social":true,"social_icon_style":"rounded","social_label":"Follow us","newsletter_enable":true,"newsletter_enable_top":false,"newsletter_title":"Newsletter","newsletter_description":"<p>Join our newsletter for new offers.<\/p>","enable_follow_on_shop":true,"enable_country_selector":true,"enable_language_selector":true,"footer_subtext":"","payment_enable":true,"policy_color_scheme":"scheme-1","show_policy":true,"policy_padding_top":20,"policy_padding_bottom":20,"margin_top":0,"padding_top":90,"padding_bottom":70}}},"order":["multicolumn_bneNjj","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "multicolumn_bneNjj": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_K9RXwp": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/ABDM_Curebay_Color.png",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "medium",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_c6XFXV": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/Seal_HIPAA.caa18c16d16b19cc4a88cfdbd62bfc52.svg",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "medium",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zpqfAt": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/iso.144c07dbab0d7e6cceb4.png",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "small",
+            "text_color": "foreground",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_taENLU": {
+          "type": "column",
+          "settings": {
+            "item_color_scheme": "",
+            "image": "shopify://shop_images/ebf7c5b995301add46722493671c8c67.jpg",
+            "image_cover": false,
+            "image_overlay_opacity": 0,
+            "reduce_spaces": false,
+            "content_full_width": false,
+            "caption": "",
+            "title": "",
+            "heading_size_block": "h2",
+            "heading_color": "foreground",
+            "subheading": "",
+            "text": "",
+            "text_size_block": "small",
+            "text_color": "accent",
+            "button_style": "link_icon",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_K9RXwp",
+        "column_c6XFXV",
+        "column_zpqfAt",
+        "column_taENLU"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Internationally Certified Standards",
+        "heading_alignment": "center",
+        "heading_size": "h3",
+        "description": "",
+        "text_size_block": "small",
+        "text_color": "main",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "grid_type": "grid",
+        "column_divider": false,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "background_color_full_width": true,
+        "background_border_radius": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Menu",
+            "menu": "footer"
+          }
+        },
+        "footer-1": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Menu",
+            "menu": "footer"
+          }
+        },
+        "89f2b72b-8551-4b3c-a430-1719424d7f61": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Menu",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "footer-1",
+        "89f2b72b-8551-4b3c-a430-1719424d7f61"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "heading_size": "text--small",
+        "logo": "shopify://shop_images/logo-white.3137d7f75284f02f8a9395f2a619bbb3.svg",
+        "logo_width": 105,
+        "show_social": true,
+        "social_icon_style": "rounded",
+        "social_label": "Follow us",
+        "newsletter_enable": true,
+        "newsletter_enable_top": false,
+        "newsletter_title": "Newsletter",
+        "newsletter_description": "<p>Join our newsletter for new offers.</p>",
+        "enable_follow_on_shop": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "footer_subtext": "",
+        "payment_enable": true,
+        "policy_color_scheme": "scheme-1",
+        "show_policy": true,
+        "policy_padding_top": 20,
+        "policy_padding_bottom": 20,
+        "margin_top": 0,
+        "padding_top": 90,
+        "padding_bottom": 70
+      }
+    }
+  },
+  "order": [
+    "multicolumn_bneNjj",
+    "footer"
+  ]
+}
