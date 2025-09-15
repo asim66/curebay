@@ -171,8 +171,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
           if (allowedPincodes.includes(numericPincode)) {
             input.nextElementSibling.style.display = '';  // Show variant option
+             productButtons.style.display = '';
           } else {
             input.nextElementSibling.style.display = 'none';  // Hide variant option
+             productButtons.style.display = 'none';
           }
         });
 
