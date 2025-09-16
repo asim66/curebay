@@ -221,7 +221,7 @@
         "countdown_label_bg": "#003e52",
         "label_text_color": "secondary",
         "collection": "predlab",
-        "products_to_show": 8,
+        "products_to_show": 5,
         "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
