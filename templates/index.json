@@ -356,7 +356,7 @@
             "link_label": "Book Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "dengue-igg-igm-antibodi-eia-4",
+            "product": "dengue-igg-igm-antibodi-eia-6",
             "product_heading_font_family": "heading-font"
           }
         },
@@ -374,7 +374,7 @@
             "link_label": "Shop Now",
             "enable_add_to_cart": true,
             "color_scheme_slide": "scheme-7",
-            "product": "swasthya-bharat-package-cbc-lft-kft-lipid-profile-rbs-thyroid-profile-4",
+            "product": "cbccomplete-blood-count",
             "product_heading_font_family": "heading-font"
           }
         }
@@ -455,7 +455,7 @@
         "template--16766664409325__ad33c27c-9ae9-44e8-a4ec-4b7a535c903a-buy_buttons-1"
       ],
       "settings": {
-        "product": "curebay-sampurna-swathya-check-up-3",
+        "product": "cbccomplete-blood-count",
         "color_scheme": "scheme-1",
         "secondary_background": true,
         "secondary_background_color": "#f4f2ec",
