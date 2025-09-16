@@ -532,7 +532,7 @@
         "show_vendor": false,
         "show_rating": true,
         "enable_quick_add": true,
-        "products_to_show": 8,
+        "products_to_show": 5,
         "color_scheme": "scheme-2",
         "columns_desktop": 5,
         "columns_mobile": "2",
